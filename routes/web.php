@@ -19,4 +19,4 @@ Route::get('/', function () {
 });
 
 
-Route::resource('post', PostController::class);
+Route::resource('dashboard/post', PostController::class);
