@@ -35,7 +35,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        return 'hola mundo';
+        $request->validate([
+            'title'     => 'required|min:5|max:50',
+            //'url_clean' => 'required|min:5|max:50',
+            'content'   => 'required|min:5',
+        ]);
+        return "post controller store";
     }
 
     /**
