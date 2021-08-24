@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostPost;
 
 class PostController extends Controller
 {
@@ -33,14 +35,11 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostPost $request)
     {
-        $request->validate([
-            'title'     => 'required|min:5|max:50',
-            //'url_clean' => 'required|min:5|max:50',
-            'content'   => 'required|min:5',
-        ]);
-        return "post controller store";
+
+        Post::create($request->validated());
+        return back()->with('status', 'Post creado con éxito!') ;
     }
 
     /**
