@@ -16,9 +16,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        return "Prueba de vista index PostController";
-    }
+        $posts = Post::orderBy('created_at','desc')->paginate(2);
+        return view('dashboard/post/index',['posts' => $posts]);
 
+    }
     /**
      * Show the form for creating a new resource.
      *
