@@ -28,6 +28,7 @@
                 <td>{{ $post->updated_at->format('Y-M-d') }}</td>
                 <td>
                     <a href="{{ route('post.show',$post->id) }}" class="btn btn-primary">Ver</a>
+                    <a href="{{ route('post.edit',$post->id) }}" class="btn btn-primary">Editar</a>
                 </td>
             </tr>
             @endforeach

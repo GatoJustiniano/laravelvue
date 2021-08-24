@@ -49,9 +49,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::find($id);
+        //$post = Post::findOrFail($id);
         return view('dashboard/post/show',['post' => $post]);
 
     }
@@ -62,9 +62,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('dashboard/post/edit',['post' => $post]);
     }
 
     /**
@@ -74,9 +74,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorePostPost $request,Post $post)
     {
-        //
+        $post->update($request->validated());
+        return back()->with('status','Post actualizado con éxito');
     }
 
     /**
