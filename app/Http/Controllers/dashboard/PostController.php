@@ -27,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('dashboard/post/create');
+        return view('dashboard/post/create',['post'=> new Post()]);
     }
 
     /**
@@ -86,8 +86,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->back()->with('status','Eliminado con éxito');
     }
 }
