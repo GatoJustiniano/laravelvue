@@ -16,6 +16,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="{{ route('post.index') }}">Post</a></li>
+                    <li><a class="dropdown-item" href="{{ route('category.index') }}">Categoria</a></li>
                     <li><hr class="dropdown-divider"></li>          
                 </ul>
             </li>
