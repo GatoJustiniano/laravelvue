@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostPost;
@@ -27,7 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('dashboard/post/create',['post'=> new Post()]);
+        $categories = Category::pluck('id','title');
+        return view('dashboard/post/create',['post'=> new Post(), 'categories'=>$categories]);
     }
 
     /**
@@ -64,7 +66,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('dashboard/post/edit',['post' => $post]);
+        $categories = Category::pluck('id','title') ;
+        return view('dashboard/post/edit',['post' => $post, 'categories' => $categories]);
     }
 
     /**
@@ -74,10 +77,24 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StorePostPost $request,Post $post)
+    public function update(StorePostPost $request, Post $post)
     {
         $post->update($request->validated());
         return back()->with('status','Post actualizado con éxito');
+    }
+
+    //método para subir una imagen a un Post
+    public function image(Request $request, Post $post)
+    {
+        $request->validate([
+            'image' => 'required|mimes:jpeg,bmp,png|max:10240'
+        ]);
+
+        $filename = time() . "." . $request->image->extension();
+
+        $request->image->move(public_path('images'), $filename); 
+
+        echo "Hola mundo".$filename;
     }
 
     /**

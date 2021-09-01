@@ -21,4 +21,6 @@ Route::get('/', function () {
 
 
 Route::resource('dashboard/post', PostController::class);
+Route::post('dashboard/post/{post}/image', [PostController::class, 'image'])->name('post.image');
+
 Route::resource('dashboard/category', CategoryController::class);

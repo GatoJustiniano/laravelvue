@@ -15,6 +15,24 @@
 </div>
 
 <div class="form-group">
+    <label for="category_id">Seleccionar Categoría</label>
+    <select   id="category_id" class="form-control" name="category_id">
+        @foreach ($categories as $title => $id)
+            <option {{ $post->category_id == $id ? 'selected="selected"' : '' }} value="{{ $id }}"> 
+                {{ $title }} 
+            </option>
+        @endforeach
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="posted">Posted</label>
+    <select id="posted" class="form-control" name="posted">
+        @include('dashboard.partials.option-yes-not', ['val' => $post->posted])
+    </select>
+</div>
+
+<div class="form-group">
     <label for="content">Contenido</label>
     <textarea class="form-control" name="content" id="content" cols="20" rows="3">{{ old('content', $post->content) }}</textarea>
 </div>
