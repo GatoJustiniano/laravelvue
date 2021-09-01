@@ -4,6 +4,7 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\PostImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostPost;
@@ -94,7 +95,12 @@ class PostController extends Controller
 
         $request->image->move(public_path('images'), $filename); 
 
-        echo "Hola mundo".$filename;
+        PostImage::create([
+            'image'     => $filename,
+            'post_id'   => $post->id
+        ]);
+
+        return back()->with('status', 'Imagen cargada con éxito! ');
     }
 
     /**

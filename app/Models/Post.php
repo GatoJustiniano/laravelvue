@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Category;
+use App\Models\PostImage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -18,5 +19,14 @@ class Post extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+    /**
+     * Get the image associated with the Post
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function image(): HasOne
+    {
+        return $this->hasOne(PostImage::class);
     }
 }
