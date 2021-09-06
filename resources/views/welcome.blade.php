@@ -46,7 +46,7 @@
                 </div>
 
                 @auth
-                    <p style="color:red;">{{ auth()->user()->name }}</p>
+                    <p style="color:red;">{{ auth()->user()->rol }}</p>
                 @endauth
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
