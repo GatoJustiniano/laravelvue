@@ -25,7 +25,7 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function image(): HasOne
+    public function image()
     {
         return $this->hasOne(PostImage::class);
     }
