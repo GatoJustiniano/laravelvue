@@ -43,4 +43,12 @@ class PostController extends ApiResponseController
     }
 
 
+    public function url_clean(String $url_clean)
+    {
+        $post = Post::where('url_clean', $url_clean)->firstOrFail();
+        $post->category;
+        return $this->successResponse($post);
+    }
+
+
 }

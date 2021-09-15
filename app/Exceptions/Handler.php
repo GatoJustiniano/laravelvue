@@ -50,6 +50,10 @@ class Handler extends ExceptionHandler
     {
         //dd($exception);
 
+        if (env('APP_ENV') == 'local') {
+            return parent::render($request, $exception);
+        }
+
         if ($exception instanceof NotFoundHttpException) {
             return $this->errorResponse("Página no encontrada", $code=404,$msj='Página no encontrada');
         }
