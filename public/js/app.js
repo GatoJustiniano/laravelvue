@@ -1900,11 +1900,60 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('list-posts', {
+  props: ['title'],
+  data: function data() {
+    return {
+      posts2: [{
+        title: 'Titulo 1',
+        image: '1630969529.jpg',
+        content: 'Next, aplicacion vue de prueba'
+      }, {
+        title: 'Titulo 2',
+        image: '1630969529.jpg',
+        content: 'Next, aplicacion vue de prueba'
+      }, {
+        title: 'Titulo 3',
+        image: '1630969529.jpg',
+        content: 'Next, aplicacion vue de prueba 3'
+      }, {
+        title: 'Titulo 4',
+        image: '1630969529.jpg',
+        content: 'Next, aplicacion vue de prueba4'
+      }, {
+        title: 'Titulo 5',
+        image: '1630969529.jpg',
+        content: 'Next, aplicacion vue de prueba 5'
+      }]
+    };
+  },
+  template: '<div> <h1>{{title}}</h1> <div class="card" v-for="post in posts2">                  <div class="card-body">             <h5 class="card-title">Card {{post.title}}</h5>             <p class="card-text">{{ post.content }}</p>             <a href="#" class="btn btn-primary">Ver resumen</a>         </div>     </div></div>'
+});
 var app = new Vue({
   el: '#app',
   data: {
     message: 'Hello Vue!',
-    posts: ['Titulo 1', 'Titulo 2', 'Titulo 3', 'Titulo 4', 'Titulo 5', 'Titulo 6']
+    posts: [{
+      title: 'Titulo 1',
+      image: '1630969529.jpg',
+      content: 'Next, aplicacion vue de prueba'
+    }, {
+      title: 'Titulo 2',
+      image: '1630969529.jpg',
+      content: 'Next, aplicacion vue de prueba'
+    }, {
+      title: 'Titulo 3',
+      image: '1630969529.jpg',
+      content: 'Next, aplicacion vue de prueba 3'
+    }, {
+      title: 'Titulo 4',
+      image: '1630969529.jpg',
+      content: 'Next, aplicacion vue de prueba4'
+    }, {
+      title: 'Titulo 5',
+      image: '1630969529.jpg',
+      content: 'Next, aplicacion vue de prueba 5'
+    }]
   }
 });
 
