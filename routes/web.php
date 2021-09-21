@@ -26,6 +26,8 @@ Route::post('dashboard/post/{post}/image', [PostController::class, 'image'])->na
 Route::resource('dashboard/category', CategoryController::class);
 Route::resource('dashboard/user', UserController::class);
 
+Route::get('/detail/{id}', [WebController::class, 'detail']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

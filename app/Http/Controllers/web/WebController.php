@@ -11,4 +11,9 @@ class WebController extends Controller
     {
         return view('web.index');
     }
+
+    public function detail()
+    {
+        return view('web.index');
+    }
 }

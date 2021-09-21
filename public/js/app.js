@@ -1900,21 +1900,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
-    console.log("Hola mundo Vue");
+    this.getPost();
   },
   methods: {
-    getPost: function getPost(p) {}
+    getPost: function getPost(p) {
+      var _this = this;
+
+      fetch("/api/post/" + this.$route.params.id).then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        return _this.post = json.data;
+      });
+    }
   },
   data: function data() {
     return {
       postSelected: "",
-      post: {
-        title: 'Titulo 1 de vue',
-        image: '1630969529.jpg',
-        content: 'Next, aplicacion vue de prueba'
-      }
+      post: ""
     };
   }
 });
@@ -1948,40 +1953,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  created: function created() {
+    this.getPost();
+  },
   methods: {
     postClick: function postClick(p) {
       this.postSelected = p;
+    },
+    getPost: function getPost() {
+      var _this = this;
+
+      fetch('/api/post').then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        return _this.posts = json.data.data;
+      });
     }
   },
   data: function data() {
     return {
       postSelected: "",
-      posts: [{
-        id: 1,
-        title: 'Titulo 1 de vue',
-        image: '1630969529.jpg',
-        content: 'Next, aplicacion vue de prueba'
-      }, {
-        id: 2,
-        title: 'Titulo 2',
-        image: '1630969529.jpg',
-        content: 'Next, aplicacion vue de prueba'
-      }, {
-        id: 3,
-        title: 'Titulo 3',
-        image: '1630969529.jpg',
-        content: 'Next, aplicacion vue de prueba 3'
-      }, {
-        id: 4,
-        title: 'Titulo 4',
-        image: '1630969529.jpg',
-        content: 'Next, aplicacion vue de prueba4'
-      }, {
-        id: 5,
-        title: 'Titulo 5',
-        image: '1630969529.jpg',
-        content: 'Next, aplicacion vue de prueba 5'
-      }]
+      posts: []
     };
   }
 });
@@ -2110,12 +2102,15 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 
 vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_3__.default);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue_router__WEBPACK_IMPORTED_MODULE_3__.default({
+  mode: 'history',
   routes: [{
     path: '/',
-    component: _components_PostListComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default
+    component: _components_PostListComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default,
+    name: "list"
   }, {
     path: '/detail/:id',
-    component: _components_PostDetailComponent_vue__WEBPACK_IMPORTED_MODULE_1__.default
+    component: _components_PostDetailComponent_vue__WEBPACK_IMPORTED_MODULE_1__.default,
+    name: "detail"
   }]
 }));
 
@@ -37910,20 +37905,36 @@ var render = function() {
               [
                 _c("img", {
                   staticClass: "card-img-top",
-                  attrs: { src: "/images/" + _vm.post.image, alt: "..." }
+                  attrs: { src: "/images/" + _vm.post.image.image, alt: "..." }
                 })
               ]
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("h1", { staticClass: "card-title" }, [
-                _vm._v("Card " + _vm._s(_vm.post.title))
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "card-text" }, [
-                _vm._v(_vm._s(_vm.post.content))
-              ])
-            ])
+            _c(
+              "div",
+              { staticClass: "card-body" },
+              [
+                _c("h1", { staticClass: "card-title" }, [
+                  _vm._v("Card " + _vm._s(_vm.post.title))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: {
+                      to: { name: "detail", params: { id: _vm.post.id } }
+                    }
+                  },
+                  [_vm._v(" " + _vm._s(_vm.post.category.title) + " ")]
+                ),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-text" }, [
+                  _vm._v(_vm._s(_vm.post.content))
+                ])
+              ],
+              1
+            )
           ])
         ])
       : _c("div", [_c("h1", [_vm._v("Post no existe")])])
@@ -37998,7 +38009,7 @@ var render = function() {
                   "router-link",
                   {
                     staticClass: "btn btn-success",
-                    attrs: { to: "detail/" + post.id }
+                    attrs: { to: { name: "detail", params: { id: post.id } } }
                   },
                   [_vm._v("ver")]
                 )

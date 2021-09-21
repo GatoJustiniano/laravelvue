@@ -7,9 +7,10 @@ import PostDetail from "../components/PostDetailComponent.vue" ;
 Vue.use(VueRouter);
 
 export default new VueRouter({
+    mode: 'history',
     routes: [
-        { path: '/', component: PostList },
-        { path: '/detail/:id', component: PostDetail }
+        { path: '/', component: PostList, name: "list" },
+        { path: '/detail/:id', component: PostDetail, name: "detail" }
     ]
 }); 
 

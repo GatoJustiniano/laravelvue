@@ -6,7 +6,7 @@
                 <h5 class="card-title">Card {{post.title}}</h5>
                 <p class="card-text">{{ post.content }}</p>
                 <button  class="btn btn-primary" v-on:click="postClick(post)">Ver resumen de componente</button>
-                <router-link class="btn btn-success" :to=" 'detail/' + post.id">ver</router-link>
+                <router-link class="btn btn-success" :to="{ name: 'detail', params: {id: post.id } }">ver</router-link>
             </div>
         </div>
         <modal-post :post="postSelected"></modal-post>
@@ -15,9 +15,18 @@
 
 <script>
 export default {
+    created() {
+        this.getPost()
+    },
     methods: {
         postClick: function (p) {
             this.postSelected = p;
+        },
+        getPost(){
+            fetch('/api/post')
+            .then( response => response.json() )
+            .then( json => (this.posts = json.data.data) );
+
         }
     },
 
@@ -26,36 +35,7 @@ export default {
         return {
             postSelected: "",
             posts: [
-                {
-                    id: 1,
-                    title: 'Titulo 1 de vue', 
-                    image:'1630969529.jpg',
-                    content:'Next, aplicacion vue de prueba'
-                },
-                {
-                    id: 2,
-                    title: 'Titulo 2', 
-                    image:'1630969529.jpg',
-                    content:'Next, aplicacion vue de prueba'
-                },
-                {
-                    id: 3,
-                    title: 'Titulo 3', 
-                    image:'1630969529.jpg',
-                    content:'Next, aplicacion vue de prueba 3'
-                },
-                {
-                    id: 4,
-                    title: 'Titulo 4', 
-                    image:'1630969529.jpg',
-                    content:'Next, aplicacion vue de prueba4'
-                },
-                {
-                    id: 5,
-                    title: 'Titulo 5', 
-                    image:'1630969529.jpg',
-                    content:'Next, aplicacion vue de prueba 5'
-                }
+                
             ],
         }
     },

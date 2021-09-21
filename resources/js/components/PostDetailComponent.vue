@@ -3,11 +3,12 @@
         <div v-if="post" >
             <div class="card mt-3 " >
             <div class="card-header" style="width: 18rem;">
-                <img v-bind:src=" '/images/' + post.image" class="card-img-top" alt="...">
+                <img v-bind:src=" '/images/' + post.image.image" class="card-img-top" alt="...">
 
             </div>
             <div class="card-body">
                 <h1 class="card-title">Card {{post.title}}</h1>
+                <router-link class="btn btn-success" :to="{ name: 'detail', params: {id: post.id } }"> {{ post.category.title }} </router-link>
                 <p class="card-text">{{ post.content }}</p>
             </div>
             </div>
@@ -21,11 +22,13 @@
 <script>
 export default {
     created() {
-        console.log("Hola mundo Vue");
+        this.getPost()
     },
     methods: {
         getPost: function (p) {
-
+            fetch( "/api/post/" + this.$route.params.id )
+            .then( response => response.json() )
+            .then( json => (this.post = json.data) );
         }
     },
 
@@ -33,11 +36,7 @@ export default {
     data: function(){
         return {
             postSelected: "",
-            post: {
-                    title: 'Titulo 1 de vue', 
-                    image:'1630969529.jpg',
-                    content:'Next, aplicacion vue de prueba'
-            }
+            post: ""
         }
     },
 }
