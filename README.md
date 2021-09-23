@@ -6,7 +6,7 @@ Este repositorio está en uso para el seguimiento del tutorial de Laravel + Vue
 Centrado en Laravel 8 en adelante
 Vue.js
 SGBD DBMaria 
-Laragon 
+Laragon como servidor
 
 ## License
 
