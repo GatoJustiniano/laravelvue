@@ -27,6 +27,7 @@ Route::resource('dashboard/category', CategoryController::class);
 Route::resource('dashboard/user', UserController::class);
 
 Route::get('/detail/{id}', [WebController::class, 'detail']);
+Route::get('/post-category/{id}', [WebController::class, 'post_category']);
 
 Auth::routes();
 
