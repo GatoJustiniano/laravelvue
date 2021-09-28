@@ -16,4 +16,8 @@ class WebController extends Controller
     {
         return view('web.index');
     }
+    public function post_category()
+    {
+        return view('web.index');
+    }
 }
