@@ -29,10 +29,7 @@
 export default {
     props: ["post"],
     created(){
-        console.log("modal creado");
-        // setTimeout(() => {
-        //     $("#postModal").modal("show");
-        // }, 200);
+        console.log("modal creado - PostModalComponent");
     },
     watch: {
         post: function () {

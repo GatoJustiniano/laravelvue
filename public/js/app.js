@@ -1900,7 +1900,6 @@ __webpack_require__.r(__webpack_exports__);
     getPosts: function getPosts() {
       var _this = this;
 
-      console.log("prueba de post api " + this.$route.params.category_id);
       fetch("/api/post/" + this.$route.params.category_id + "/category").then(function (response) {
         return response.json();
       }).then(function (json) {
@@ -2104,9 +2103,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["post"],
   created: function created() {
-    console.log("modal creado"); // setTimeout(() => {
-    //     $("#postModal").modal("show");
-    // }, 200);
+    console.log("modal creado - PostModalComponent");
   },
   watch: {
     post: function post() {

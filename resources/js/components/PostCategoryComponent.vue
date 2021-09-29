@@ -17,7 +17,6 @@ export default {
             this.postSelected = p;
         },
         getPosts(){
-            console.log("prueba de post api " + this.$route.params.category_id )
             fetch( "/api/post/" + this.$route.params.category_id + "/category")
             .then( response => response.json() )
             .then( json => {
