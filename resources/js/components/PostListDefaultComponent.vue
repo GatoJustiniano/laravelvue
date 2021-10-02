@@ -10,10 +10,14 @@
             </div>
         </div>
         <modal-post :post="postSelected"></modal-post>
+        <v-pagination v-model="currentPage" :page-count="total"></v-pagination>
     </div>
 </template>
 
 <script>
+
+import vPagination from 'vue-plain-pagination';
+
 export default {
     props: ["posts"],
     methods: {
@@ -26,7 +30,9 @@ export default {
     data: function(){
         return {
             postSelected: "",
+            currentPage: 1,
         }
     },
+    components: {vPagination},
 }
 </script>
