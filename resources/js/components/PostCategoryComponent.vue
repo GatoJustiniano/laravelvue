@@ -3,7 +3,15 @@
         <h1>
             Lista de Post de <b>{{ category.title }}</b>
         </h1>
-        <post-list-default :posts="posts"></post-list-default>
+        <post-list-default 
+            :key="currentPage"
+            @getCurrentPage="getCurrentPage"
+            v-if="total > 0 "
+            :posts="posts"
+            :pCurrentPage="currentPage" 
+            :total="total"
+            >
+        </post-list-default>
     </div>
 </template>
 
@@ -17,13 +25,18 @@ export default {
             this.postSelected = p;
         },
         getPosts(){
-            fetch( "/api/post/" + this.$route.params.category_id + "/category")
+            fetch( "/api/post/" + this.$route.params.category_id + "/category?page="+this.currentPage)
             .then( response => response.json() )
             .then( json => {
                 this.posts = json.data.posts.data,
+                this.total = json.data.posts.last_page,
                 this.category = json.data.category
-            } );
+            });
 
+        },
+        getCurrentPage: function (val) {
+            this.currentPage=val
+            this.getPosts()
         }
     },
 
@@ -33,6 +46,8 @@ export default {
             postSelected: "",
             posts: [ ],
             category: "",
+            total: 0,
+            currentPage: 1
         }
     },
 }
