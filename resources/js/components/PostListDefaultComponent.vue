@@ -10,7 +10,9 @@
             </div>
         </div>
         <modal-post :post="postSelected"></modal-post>
-        <v-pagination v-model="currentPage" 
+        <v-pagination 
+            class="mt-3"
+            v-model="currentPage" 
             :page-count="total"
             :classes="bootstrapPaginationClasses"
             :labels="paginationAnchorTexts">
@@ -24,7 +26,10 @@
 import vPagination from 'vue-plain-pagination';
 
 export default {
-    props: ["posts"],
+    props: ["posts","total","pCurrentPage"],
+    created() {
+        this.currentPage = this.pCurrentPage;
+    },
     methods: {
         postClick: function (p) {
             this.postSelected = p;
@@ -36,7 +41,6 @@ export default {
         return {
             postSelected: "",
             currentPage: 1,
-            total: 9,
             bootstrapPaginationClasses: {
                 ul: 'pagination',
                 li: 'page-item',
@@ -45,13 +49,18 @@ export default {
                 button: 'page-link'  
             },
             paginationAnchorTexts: {
-                first: 'First',
-                prev: 'Previous',
-                next: 'Next',
-                last: 'Last'
+                first: '',
+                prev: '&laquo;',
+                next: '&raquo;',
+                last: ''
             }
         }
     },
     components: {vPagination},
+    watch:{
+        currentPage: function (newVal, oldVal) {
+            this.$emit('getCurrentPage', newVal);
+        }
+    }
 }
 </script>

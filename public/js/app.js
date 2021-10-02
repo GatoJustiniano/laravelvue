@@ -1992,28 +1992,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
-    this.getPost();
+    this.getPosts();
   },
   methods: {
     postClick: function postClick(p) {
       this.postSelected = p;
     },
-    getPost: function getPost() {
+    getPosts: function getPosts() {
       var _this = this;
 
-      fetch('/api/post').then(function (response) {
+      fetch('/api/post?page=' + this.currentPage).then(function (response) {
         return response.json();
       }).then(function (json) {
-        return _this.posts = json.data.data;
+        _this.posts = json.data.data;
+        _this.total = json.data.last_page;
       });
+    },
+    getCurrentPage: function getCurrentPage(val) {
+      this.currentPage = val;
+      this.getPosts();
     }
   },
   data: function data() {
     return {
       postSelected: "",
-      posts: []
+      posts: [],
+      total: 0,
+      currentPage: 1
     };
   }
 });
@@ -2054,9 +2069,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["posts"],
+  props: ["posts", "total", "pCurrentPage"],
+  created: function created() {
+    this.currentPage = this.pCurrentPage;
+  },
   methods: {
     postClick: function postClick(p) {
       this.postSelected = p;
@@ -2066,7 +2086,6 @@ __webpack_require__.r(__webpack_exports__);
     return {
       postSelected: "",
       currentPage: 1,
-      total: 9,
       bootstrapPaginationClasses: {
         ul: 'pagination',
         li: 'page-item',
@@ -2075,15 +2094,20 @@ __webpack_require__.r(__webpack_exports__);
         button: 'page-link'
       },
       paginationAnchorTexts: {
-        first: 'First',
-        prev: 'Previous',
-        next: 'Next',
-        last: 'Last'
+        first: '',
+        prev: '&laquo;',
+        next: '&raquo;',
+        last: ''
       }
     };
   },
   components: {
     vPagination: (vue_plain_pagination__WEBPACK_IMPORTED_MODULE_0___default())
+  },
+  watch: {
+    currentPage: function currentPage(newVal, oldVal) {
+      this.$emit('getCurrentPage', newVal);
+    }
   }
 });
 
@@ -38262,7 +38286,19 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    [_c("post-list-default", { attrs: { posts: _vm.posts } })],
+    [
+      _vm.total > 0
+        ? _c("post-list-default", {
+            key: _vm.currentPage,
+            attrs: {
+              posts: _vm.posts,
+              pCurrentPage: _vm.currentPage,
+              total: _vm.total
+            },
+            on: { getCurrentPage: _vm.getCurrentPage }
+          })
+        : _vm._e()
+    ],
     1
   )
 }
@@ -38349,6 +38385,7 @@ var render = function() {
       _c("modal-post", { attrs: { post: _vm.postSelected } }),
       _vm._v(" "),
       _c("v-pagination", {
+        staticClass: "mt-3",
         attrs: {
           "page-count": _vm.total,
           classes: _vm.bootstrapPaginationClasses,
