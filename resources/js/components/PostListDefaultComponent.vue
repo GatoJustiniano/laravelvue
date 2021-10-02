@@ -10,7 +10,12 @@
             </div>
         </div>
         <modal-post :post="postSelected"></modal-post>
-        <v-pagination v-model="currentPage" :page-count="total"></v-pagination>
+        <v-pagination v-model="currentPage" 
+            :page-count="total"
+            :classes="bootstrapPaginationClasses"
+            :labels="paginationAnchorTexts">
+
+        </v-pagination>
     </div>
 </template>
 
@@ -31,6 +36,20 @@ export default {
         return {
             postSelected: "",
             currentPage: 1,
+            total: 9,
+            bootstrapPaginationClasses: {
+                ul: 'pagination',
+                li: 'page-item',
+                liActive: 'active',
+                liDisable: 'disabled',
+                button: 'page-link'  
+            },
+            paginationAnchorTexts: {
+                first: 'First',
+                prev: 'Previous',
+                next: 'Next',
+                last: 'Last'
+            }
         }
     },
     components: {vPagination},

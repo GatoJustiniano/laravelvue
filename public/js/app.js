@@ -2049,6 +2049,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["posts"],
@@ -2060,7 +2065,21 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       postSelected: "",
-      currentPage: 1
+      currentPage: 1,
+      total: 9,
+      bootstrapPaginationClasses: {
+        ul: 'pagination',
+        li: 'page-item',
+        liActive: 'active',
+        liDisable: 'disabled',
+        button: 'page-link'
+      },
+      paginationAnchorTexts: {
+        first: 'First',
+        prev: 'Previous',
+        next: 'Next',
+        last: 'Last'
+      }
     };
   },
   components: {
@@ -38330,7 +38349,11 @@ var render = function() {
       _c("modal-post", { attrs: { post: _vm.postSelected } }),
       _vm._v(" "),
       _c("v-pagination", {
-        attrs: { "page-count": _vm.total },
+        attrs: {
+          "page-count": _vm.total,
+          classes: _vm.bootstrapPaginationClasses,
+          labels: _vm.paginationAnchorTexts
+        },
         model: {
           value: _vm.currentPage,
           callback: function($$v) {
