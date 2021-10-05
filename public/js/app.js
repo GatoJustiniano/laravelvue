@@ -38353,57 +38353,50 @@ var render = function() {
     "div",
     [
       _vm._l(_vm.posts, function(post) {
-        return _c(
-          "div",
-          {
-            key: post.title,
-            staticClass: "card mt-3 ",
-            staticStyle: { width: "18rem" }
-          },
-          [
-            _c("img", {
-              staticClass: "card-img-top",
-              attrs: { src: "/images/" + post.image, alt: "..." }
-            }),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "card-body" },
-              [
-                _c("h5", { staticClass: "card-title" }, [
-                  _vm._v("Card " + _vm._s(post.title))
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "card-text" }, [
-                  _vm._v(_vm._s(post.content))
-                ]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    on: {
-                      click: function($event) {
-                        return _vm.postClick(post)
-                      }
+        return _c("div", { key: post.title, staticClass: "card mt-3 " }, [
+          _c("img", {
+            staticClass: "card-img-top",
+            staticStyle: { width: "15rem" },
+            attrs: { src: "/images/" + post.image, alt: "..." }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            [
+              _c("h5", { staticClass: "card-title" }, [
+                _vm._v("Card " + _vm._s(post.title))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v(_vm._s(post.content))
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: {
+                    click: function($event) {
+                      return _vm.postClick(post)
                     }
-                  },
-                  [_vm._v("Ver resumen de componente")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "btn btn-success",
-                    attrs: { to: { name: "detail", params: { id: post.id } } }
-                  },
-                  [_vm._v("ver")]
-                )
-              ],
-              1
-            )
-          ]
-        )
+                  }
+                },
+                [_vm._v("Ver resumen de componente")]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-success",
+                  attrs: { to: { name: "detail", params: { id: post.id } } }
+                },
+                [_vm._v("ver")]
+              )
+            ],
+            1
+          )
+        ])
       }),
       _vm._v(" "),
       _c("modal-post", { attrs: { post: _vm.postSelected } }),
