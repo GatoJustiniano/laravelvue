@@ -29,6 +29,8 @@ Route::resource('dashboard/user', UserController::class);
 Route::get('/detail/{id}', [WebController::class, 'detail']);
 Route::get('/post-category/{id}', [WebController::class, 'post_category']);
 
+Route::get('/contact', [WebController::class, 'contact']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
