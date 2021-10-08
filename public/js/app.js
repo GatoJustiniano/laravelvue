@@ -38643,12 +38643,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "router-link",
-        { staticClass: "btn btn-success", attrs: { to: { name: "contact" } } },
-        [_vm._v("Contacto")]
-      ),
-      _vm._v(" "),
       _vm.total > 0
         ? _c("post-list-default", {
             key: _vm.currentPage,

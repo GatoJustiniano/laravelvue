@@ -63,7 +63,8 @@
 <!-- Copyright -->
 <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
     © {{date('Y')}} Copyright:
-    <a class="text-white" href="/">LaravelVue </a>
+    <router-link class="text-white" to="/">LaravelVue </router-link>
+    <router-link class="text-white" :to="{ name: 'contact' }"><u>Contacto</u></router-link>
 </div>
 <!-- Copyright -->
 </footer>
