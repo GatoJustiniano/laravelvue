@@ -1,14 +1,13 @@
 <template>
     <div class="col-8 offset-2">
-        <h1>Contacto</h1>
     
         <div class="card">
             <div class="card-header">
-                Contacto
+                <img src="/images/logo.png" class="logo_200 mx-auto d-block" alt="logo">
             </div>
             <div class="card-body">
 
-                <div class="input-group mt-3">
+                <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Nombre</span>
                     </div>

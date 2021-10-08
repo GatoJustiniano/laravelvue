@@ -1887,7 +1887,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {},
   methods: {
@@ -38299,15 +38298,16 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-8 offset-2" }, [
-      _c("h1", [_vm._v("Contacto")]),
-      _vm._v(" "),
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-header" }, [
-          _vm._v("\n            Contacto\n        ")
+          _c("img", {
+            staticClass: "logo_200 mx-auto d-block",
+            attrs: { src: "/images/logo.png", alt: "logo" }
+          })
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "input-group mt-3" }, [
+          _c("div", { staticClass: "input-group" }, [
             _c("div", { staticClass: "input-group-prepend" }, [
               _c("span", { staticClass: "input-group-text" }, [
                 _vm._v("Nombre")
