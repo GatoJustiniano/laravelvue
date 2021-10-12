@@ -47,6 +47,13 @@ class PostController extends Controller
     public function store(StorePostPost $request)
     {
 
+        if ($request->url_clean == "") {
+            $urlClean = this.urlTitle(this.convertAccentedCharacters($request->title), '-' ,true);
+        }else {
+            $urlClean = $request->url_clean;
+        }
+
+
         Post::create($request->validated());
         return back()->with('status', 'Post creado con éxito!') ;
     }
@@ -118,5 +125,40 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect()->back()->with('status','Eliminado con éxito');
+    }
+
+
+    public static function convertAccentedCharacters($str)
+    {
+        return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+    }
+
+    public static function urlTitle($str, $separator = '-', $lowercase = false)
+    {
+        if ($separator === 'dash') {
+            $separator = '-';
+        } elseif ($separator === 'underscore') {
+            $separator = '_';
+        }
+
+        $q_separator = preg_quote($separator, '#');
+
+        $trans = array(
+            '&.+?;' => '',
+            '[^\w\d _-]' => '',
+            '\s+' => $separator,
+            '(' . $q_separator . ')+' => $separator,
+        );
+
+        $str = strip_tags($str);
+        foreach ($trans as $key => $val) {
+            $str = preg_replace('#' . $key . '#iu', $val, $str);
+        }
+
+        if ($lowercase === true) {
+            $str = strtolower($str);
+        }
+
+        return trim(trim($str, $separator));
     }
 }
