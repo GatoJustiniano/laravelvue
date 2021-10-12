@@ -54,8 +54,12 @@ class PostController extends Controller
             $urlClean = $request->url_clean;
         }
 
+        
+        $requestData = $request->validated();
+        
+        $requestData["url_clean"] = $urlClean;        
 
-        Post::create($request->validated());
+        Post::create($requestData);
         return back()->with('status', 'Post creado con éxito!') ;
     }
 
