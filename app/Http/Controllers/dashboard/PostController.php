@@ -9,6 +9,7 @@ use App\Helpers\CustomUrl;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostPost;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -54,10 +55,17 @@ class PostController extends Controller
             $urlClean = $request->url_clean;
         }
 
-        
-        $requestData = $request->validated();
-        
-        $requestData["url_clean"] = $urlClean;        
+        $requestData = $request->validated();        
+        $requestData["url_clean"] = $urlClean;
+
+        $validator = Validator::make($requestData, StorePostPost::myRules());
+
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         Post::create($requestData);
         return back()->with('status', 'Post creado con éxito!') ;
