@@ -11,7 +11,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <router-link to="/" class="text-white" >Home</router-link>
+                <router-link to="/" class="nav-link text-white" >Home</router-link>
+            </li>
+            <li class="nav-item dropdown">
+                <router-link to="/categories" class="nav-link text-white" >Categorías</router-link>
             </li>
         </ul>
 

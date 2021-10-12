@@ -3,7 +3,7 @@
         <div v-if="post" >
             <div class="card mt-3 " >
             <div class="card-header" style="width: 18rem;">
-                <img v-bind:src=" '/images/' + post.image.image" class="card-img-top" alt="...">
+                <img v-bind:src=" '/images_post/' + post.image.image" class="card-img-top" alt="...">
 
             </div>
             <div class="card-body">
