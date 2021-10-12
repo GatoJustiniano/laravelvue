@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\PostImage;
+use App\Helpers\CustomUrl;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostPost;
@@ -48,7 +49,7 @@ class PostController extends Controller
     {
 
         if ($request->url_clean == "") {
-            $urlClean = this.urlTitle(this.convertAccentedCharacters($request->title), '-' ,true);
+            $urlClean = CustomUrl::urlTitle(CustomUrl::convertAccentedCharacters($request->title), '-' ,true);
         }else {
             $urlClean = $request->url_clean;
         }
@@ -127,38 +128,5 @@ class PostController extends Controller
         return redirect()->back()->with('status','Eliminado con éxito');
     }
 
-
-    public static function convertAccentedCharacters($str)
-    {
-        return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
-    }
-
-    public static function urlTitle($str, $separator = '-', $lowercase = false)
-    {
-        if ($separator === 'dash') {
-            $separator = '-';
-        } elseif ($separator === 'underscore') {
-            $separator = '_';
-        }
-
-        $q_separator = preg_quote($separator, '#');
-
-        $trans = array(
-            '&.+?;' => '',
-            '[^\w\d _-]' => '',
-            '\s+' => $separator,
-            '(' . $q_separator . ')+' => $separator,
-        );
-
-        $str = strip_tags($str);
-        foreach ($trans as $key => $val) {
-            $str = preg_replace('#' . $key . '#iu', $val, $str);
-        }
-
-        if ($lowercase === true) {
-            $str = strtolower($str);
-        }
-
-        return trim(trim($str, $separator));
-    }
+    
 }
