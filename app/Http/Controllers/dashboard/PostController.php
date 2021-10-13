@@ -9,6 +9,7 @@ use App\Helpers\CustomUrl;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostPost;
+use App\Http\Requests\UpdatePostPut;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -103,7 +104,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StorePostPost $request, Post $post)
+    public function update(UpdatePostPut $request, Post $post)
     {
         $post->update($request->validated());
         return back()->with('status','Post actualizado con éxito');
@@ -118,7 +119,7 @@ class PostController extends Controller
 
         $filename = time() . "." . $request->image->extension();
 
-        $request->image->move(public_path('images'), $filename); 
+        $request->image->move(public_path('images_post'), $filename); 
 
         PostImage::create([
             'image'     => $filename,

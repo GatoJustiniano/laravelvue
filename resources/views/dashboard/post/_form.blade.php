@@ -37,6 +37,6 @@
     <textarea class="form-control" name="content" id="content" cols="20" rows="3">{{ old('content', $post->content) }}</textarea>
 </div>
 
-<input type="submit" value="Enviar">
+<input class="btn btn-success btn-lg" type="submit" value="Enviar">
 
 
