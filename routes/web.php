@@ -23,6 +23,9 @@ use App\Http\Controllers\dashboard\CategoryController;
 Route::resource('dashboard/post', PostController::class);
 Route::post('dashboard/post/{post}/image', [PostController::class, 'image'])->name('post.image');
 
+//route para cargar image con ckeditor
+Route::post('dashboard/post/content_image', [PostController::class, 'contentImage']);
+
 Route::resource('dashboard/category', CategoryController::class);
 Route::resource('dashboard/user', UserController::class);
 

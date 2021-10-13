@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\PostImage;
 use App\Helpers\CustomUrl;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostPost;
 use App\Http\Requests\UpdatePostPut;
@@ -127,6 +128,21 @@ class PostController extends Controller
         ]);
 
         return back()->with('status', 'Imagen cargada con éxito! ');
+    }
+
+    //método para subir una imagen con ck Editor
+    public function contentImage(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|mimes:jpeg,bmp,png|max:10240'
+        ]);
+
+        $filename = time() . "." . $request->image->extension();
+
+        $request->image->move(public_path('images_post'), $filename); 
+
+        return response()->json([ "default" => URL::to('/') . '/images_post/' . $filename ]);
+
     }
 
     /**
