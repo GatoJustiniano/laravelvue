@@ -2329,14 +2329,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_router_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/router.js */ "./resources/js/assets/router.js");
-/* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ckeditor/ckeditor5-build-classic */ "./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js");
-/* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1__);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
+/* harmony import */ var _assets_ckeditor_MyUploadAdapter_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/ckeditor/MyUploadAdapter.js */ "./resources/js/assets/ckeditor/MyUploadAdapter.js");
+/* harmony import */ var _assets_ckeditor_MyUploadAdapter_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_assets_ckeditor_MyUploadAdapter_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ckeditor/ckeditor5-build-classic */ "./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js");
+/* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_2__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -2346,6 +2342,51 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
+
+
+function MyCustomUploadAdapterPlugin(editor) {
+  editor.plugins.get('FileRepository').createUploadAdapter = function (loader) {
+    // Configure the URL to the upload script in your back-end here!
+    return new (_assets_ckeditor_MyUploadAdapter_js__WEBPACK_IMPORTED_MODULE_1___default())(loader);
+  };
+} // ...
+
+
+_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_2___default().create(document.querySelector('#content'), {
+  extraPlugins: [MyCustomUploadAdapterPlugin] // ...
+
+})["catch"](function (error) {
+  console.log(error);
+}); //////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+Vue.component('modal-post', __webpack_require__(/*! ./components/PostModalComponent.vue */ "./resources/js/components/PostModalComponent.vue").default);
+Vue.component('post-list-default', __webpack_require__(/*! ./components/PostListDefaultComponent.vue */ "./resources/js/components/PostListDefaultComponent.vue").default);
+var app = new Vue({
+  el: '#app',
+  router: _assets_router_js__WEBPACK_IMPORTED_MODULE_0__.default
+});
+
+/***/ }),
+
+/***/ "./resources/js/assets/ckeditor/MyUploadAdapter.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/assets/ckeditor/MyUploadAdapter.js ***!
+  \*********************************************************/
+/***/ ((module) => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var MyUploadAdapter = /*#__PURE__*/function () {
   function MyUploadAdapter(loader) {
@@ -2454,38 +2495,9 @@ var MyUploadAdapter = /*#__PURE__*/function () {
   }]);
 
   return MyUploadAdapter;
-}(); // ...
+}();
 
-
-function MyCustomUploadAdapterPlugin(editor) {
-  editor.plugins.get('FileRepository').createUploadAdapter = function (loader) {
-    // Configure the URL to the upload script in your back-end here!
-    return new MyUploadAdapter(loader);
-  };
-} // ...
-
-
-_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1___default().create(document.querySelector('#content'), {
-  extraPlugins: [MyCustomUploadAdapterPlugin] // ...
-
-})["catch"](function (error) {
-  console.log(error);
-}); //////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-Vue.component('modal-post', __webpack_require__(/*! ./components/PostModalComponent.vue */ "./resources/js/components/PostModalComponent.vue").default);
-Vue.component('post-list-default', __webpack_require__(/*! ./components/PostListDefaultComponent.vue */ "./resources/js/components/PostListDefaultComponent.vue").default);
-var app = new Vue({
-  el: '#app',
-  router: _assets_router_js__WEBPACK_IMPORTED_MODULE_0__.default
-});
+module.exports = MyUploadAdapter;
 
 /***/ }),
 
