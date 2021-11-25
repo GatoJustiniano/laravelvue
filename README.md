@@ -3,8 +3,9 @@
 ## Acerca del repositorio
 
 Este repositorio está en uso para el seguimiento del tutorial de Laravel + Vue
-Centrado en Laravel versió 8
-Vue.js como framework frontend
+=======
+Centrado en Laravel 8 como framework
+Vue.js como frontend 
 SGBD DBMaria 
 Laragon como servidor
 
