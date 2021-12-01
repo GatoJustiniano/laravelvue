@@ -44,5 +44,11 @@ class ContactController extends Controller
         return view('dashboard/contact/show',['contact' => $contact]);
 
     }
+
+    public function destroy(Contact $contact)
+    {
+        $contact->delete();
+        return redirect()->back()->with('status','Contacto eliminado con éxito');
+    }
     
 }
