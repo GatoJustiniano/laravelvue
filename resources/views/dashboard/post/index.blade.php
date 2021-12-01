@@ -31,6 +31,7 @@
                 <td>
                     <a href="{{ route('post.show',$post->id) }}" class="btn btn-primary">Ver</a>
                     <a href="{{ route('post.edit',$post->id) }}" class="btn btn-primary">Editar</a>
+                    <a href="{{ route('post-comment.post',$post->id) }}" class="btn btn-primary">Comentarios</a>
                     
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $post->id }}">
                         Eliminar

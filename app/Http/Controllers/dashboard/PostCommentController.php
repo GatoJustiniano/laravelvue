@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\dashboard;
 
-use App\Models\PostComment;
+use App\Models\Post;
 
+use App\Models\PostComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
@@ -20,6 +21,14 @@ class PostCommentController extends Controller
     public function index()
     {
         $postComments = PostComment::orderBy('created_at','desc')->paginate(10);
+        return view('dashboard/post-comment/index',['postComments' => $postComments]);
+
+    }
+
+    public function post(Post $post)
+    {
+        $postComments = PostComment::orderBy('created_at','desc')
+                                    ->where('post_id','=',$post->id)->paginate(10);
         return view('dashboard/post-comment/index',['postComments' => $postComments]);
 
     }
