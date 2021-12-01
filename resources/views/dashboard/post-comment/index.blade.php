@@ -8,27 +8,27 @@
         <thead>
             <tr>
             <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Email</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Aprobado</th>
+            <th scope="col">Usuario</th>
             <th scope="col">Creación</th>
             <th scope="col">Actualización</th>
             <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($contacts as $contact)
+            @foreach ($postComments as $postComment)
             <tr>
-                <td>{{ $contact->id }}</td>
-                <td>{{ $contact->name }}</td>
-                <td>{{ $contact->surname }}</td>
-                <td>{{ $contact->email }}</td>
-                <td>{{ $contact->created_at->format('Y-m-d') }}</td>
-                <td>{{ $contact->updated_at->format('Y-M-d') }}</td>
+                <td>{{ $postComment->id }}</td>
+                <td>{{ $postComment->title }}</td>
+                <td>{{ $postComment->approved }}</td>
+                <td>{{ $postComment->user->name }}</td>
+                <td>{{ $postComment->created_at->format('Y-m-d') }}</td>
+                <td>{{ $postComment->updated_at->format('Y-M-d') }}</td>
                 <td>
-                    <a href="{{ route('contact.show',$contact->id) }}" class="btn btn-primary">Ver</a>
+                    <a href="{{ route('post-comment.show',$postComment->id) }}" class="btn btn-primary">Ver</a>
                     
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $contact->id }}">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $postComment->id }}">
                         Eliminar
                     </button>
                     
@@ -37,7 +37,7 @@
             @endforeach
         </tbody>
     </table>
-    {{ $contacts->links() }}
+    {{ $postComments->links() }}
 
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -49,12 +49,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Seguro que deseas eliminar el contact seleccionado?</p>
+                <p>Seguro que deseas eliminar el Comentario del post seleccionado?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
-                <form id="formDelete" action="{{ route('contact.destroy',0) }}" method="POST" data-action="{{ route('contact.destroy',0) }}" >
+                <form id="formDelete" action="{{ route('post-comment.destroy',0) }}" method="POST" data-action="{{ route('post-comment.destroy',0) }}" >
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-danger">Borrar</button>
@@ -79,7 +79,7 @@
                 $('#formDelete').attr('action',action + id )
 
                 var modal = $(this)
-                modal.find('.modal-title').text('Vas a borrar el POST ' + id)
+                modal.find('.modal-title').text('Vas a borrar el comentario del post ' + id)
                 
             });
         };
