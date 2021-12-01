@@ -20,7 +20,7 @@ class CreatePostCommentsTable extends Migration
             $table->text('message');
             $table->bigInteger('post_id');
             $table->bigInteger('user_id');
-
+            $table->enum('approved', ['1', '0'])->default('0');
 
             $table->timestamps();
         });
