@@ -20,7 +20,7 @@ class PostController extends ApiResponseController
         join('post_images','post_images.post_id','=','posts.id')->
         join('categories','categories.id','=','posts.category_id')->
         select('posts.*','categories.title as category','post_images.image')->
-        orderBy('posts.created_at','desc')->paginate(2);
+        orderBy('posts.created_at','desc')->paginate(5);
         return $this->successResponse($post);
     }
 
@@ -45,7 +45,7 @@ class PostController extends ApiResponseController
         select('posts.*','categories.title as category','post_images.image')->
         orderBy('posts.created_at','desc')->
         where('categories.id',$category->id)->
-        paginate(2);
+        paginate(5);
         
         return $this->successResponse(["posts"=> $posts, "category"=> $category]);
         //return $this->successResponse(["posts"=> $category->post()->paginate(10), "category"=> $category]);

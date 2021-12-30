@@ -27,9 +27,13 @@ class PostCommentController extends Controller
 
     public function post(Post $post)
     {
+        $posts = Post::all();
+
         $postComments = PostComment::orderBy('created_at','desc')
                                     ->where('post_id','=',$post->id)->paginate(10);
-        return view('dashboard/post-comment/index',['postComments' => $postComments]);
+        return view('dashboard/post-comment/post',['postComments' => $postComments,
+                                                    'posts' => $posts, 
+                                                    'post' => $post]);
 
     }
     
