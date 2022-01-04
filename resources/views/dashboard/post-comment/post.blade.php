@@ -3,13 +3,22 @@
 @section('content')
 
     <div class="col-3 mb-3" >
-        <select name="" id="filterPost" class="form-control">
-            @foreach ($posts as $p)
-                <option value="{{ $p->id }}" {{ $p->id == $post->id ? 'selected' : '' }} >
-                    {{ Str::limit( $p->title, 25, '...') }}
-                </option>
-            @endforeach
-        </select>
+        <form action="{{ route('post-comment.post',1) }}" id="filterForm">
+            <div class="form-row">
+                <div class="col-10">
+                    <select name="" id="filterPost" class="form-control">
+                        @foreach ($posts as $p)
+                            <option value="{{ $p->id }}" {{ $p->id == $post->id ? 'selected' : '' }} >
+                                {{ Str::limit( $p->title, 25, '...') }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-success" type="submit">Enviar</button>
+                </div>
+            </div>
+        </form>
     </div>
 
     @if (count($postComments)> 0)
@@ -106,6 +115,16 @@
             <a href="{{ URL::previous() }}" class="btn btn-info" >Volver atrás! </a>
         </div>
     @endif
+
+    <script>
+        window.onload = function () {
+            $("#filterForm").submit(function () {
+                var action = $(this).attr("action");
+                action = action.replace(/[0-9]/g,$("#filterPost").val());
+                $(this).attr('action',action)
+            });
+        }
+    </script>
 
 @endsection
 
