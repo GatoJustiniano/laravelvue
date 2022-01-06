@@ -45,9 +45,21 @@
                     <td>{{ $postComment->created_at->format('Y-m-d') }}</td>
                     <td>{{ $postComment->updated_at->format('Y-M-d') }}</td>
                     <td>
-                        <a href="{{ route('post-comment.show',$postComment->id) }}" class="btn btn-primary">Ver</a>
+                        {{-- <a href="{{ route('post-comment.show',$postComment->id) }}" class="btn btn-primary">Ver</a> --}}
                         
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $postComment->id }}">
+                        <button type="button" class="btn btn-primary" 
+                                data-toggle="modal" 
+                                data-target="#showModal" 
+                                data-id="{{ $postComment->id }}"
+                                >
+                            Ver
+                        </button>
+
+                        <button type="button" class="btn btn-danger" 
+                                data-toggle="modal" 
+                                data-target="#deleteModal" 
+                                data-id="{{ $postComment->id }}"
+                                >
                             Eliminar
                         </button>
                         
@@ -84,8 +96,47 @@
             </div>
         </div>
 
+        <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title-comment" id="modalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="message">pruebs     </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+                </div>
+                </div>
+            </div>
+        </div>
+
         <script>
             window.onload = function () {
+                
+                $('#showModal').on('show.bs.modal', function (event) {
+
+                    var button = $(event.relatedTarget) // Button that triggered the modal
+                    var id = button.data('id') 
+
+                    var modal = $(this)
+                    $.ajax({
+                        method: "GET",
+                        type: "GET",
+                        url:  '{{URL::to("/")}}/dashboard/post-comment/j-show/7'
+                    }).done(function ( comment ) {
+                        modal.find('.modal-title-comment').text( comment.title )
+                        modal.find('.message ').text( comment.message )
+                    });
+
+                    
+                });
+
                 $('#deleteModal').on('show.bs.modal', function (event) {
 
                     var button = $(event.relatedTarget) // Button that triggered the modal

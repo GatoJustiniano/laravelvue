@@ -33,6 +33,7 @@ Route::resource('dashboard/user', UserController::class);
 Route::resource('dashboard/contact', ContactController::class)->only(['index','show','destroy']);
 Route::resource('dashboard/post-comment', PostCommentController::class)->only(['index','show','destroy']);
 Route::get('dashboard/post-comment/{post}/post', [PostCommentController::class,'post'])->name('post-comment.post');
+Route::get('dashboard/post-comment/j-show/{postComment}', [PostCommentController::class,'jshow']);
 
 Route::get('/detail/{id}', [WebController::class, 'detail']);
 Route::get('/post-category/{id}', [WebController::class, 'post_category']);
