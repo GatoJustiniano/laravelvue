@@ -48,6 +48,19 @@ class PostCommentController extends Controller
         return response()->json($postComment);
 
     }
+
+    public function proccess(PostComment $postComment)
+    {
+        if($postComment->approved == '1' ){
+            $postComment->approved = '0';
+        }else {
+            $postComment->approved = '1';
+        }
+
+        $postComment->save();
+        return response()->json($postComment->approved);
+
+    }
     
     public function destroy(PostComment $postComment)
     {

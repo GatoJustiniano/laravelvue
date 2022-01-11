@@ -54,6 +54,12 @@
                             Ver
                         </button>
 
+                        <button type="button" class="approved btn btn-{{ $postComment->approved == 1 ? "success" : "danger"}}"  
+                                data-id="{{ $postComment->id }}"
+                                >
+                            {{ $postComment->approved == 1 ? "Aprobado" : "Rechazado"}}
+                        </button>
+
                         <button type="button" class="btn btn-danger" 
                                 data-toggle="modal" 
                                 data-target="#deleteModal" 
@@ -70,34 +76,33 @@
         {{ $postComments->links() }}
 
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Seguro que desea borrar el registro seleccionado?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-
-                    <form id="formDelete" method="POST"
-                        action="{{ route('post-comment.destroy',0) }}"
-                        data-action="{{ route('post-comment.destroy',0) }}">
-                        @method('DELETE')
-                        @csrf
-                        <button type="submit" class="btn btn-danger">Borrar</button>
-                    </form>
-
-
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Seguro que desea borrar el registro seleccionado?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        
+                        <form id="formDelete" method="POST" action="{{ route('post-comment.destroy',0) }}"
+                            data-action="{{ route('post-comment.destroy',0) }}">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Borrar</button>
+                        </form>
+        
+        
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
     <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -133,6 +138,34 @@
     @endif
 
     <script>
+        document.querySelectorAll(".approved").forEach(button => button.addEventListener("click", function () {
+        console.log("Hola mundo: " + button.getAttribute("data-id"))
+
+        var id = button.getAttribute("data-id");
+
+        var formData = new FormData();
+        formData.append("_token", '{{ csrf_token() }}');
+
+        fetch("{{ URL::to("/") }}/dashboard/post-comment/proccess/" + id, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(aprroved => {
+
+                if (aprroved == 1) {
+                    button.classList.remove('btn-danger');
+                    button.classList.add('btn-success');
+                    button.innerHTML = "Aprobado";
+                } else {
+                    button.classList.remove('btn-success');
+                    button.classList.add('btn-danger');
+                    button.innerHTML = "Rechazado";
+                }
+            });
+
+        }))
+
         window.onload = function () {
             $('#showModal').on('show.bs.modal', function (event) {
             
