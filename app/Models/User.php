@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Rol;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -50,4 +51,8 @@ class User extends Authenticatable
         return $this->belongsTo(Rol::class);
     }
 
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes["password"] = Hash::make($value);
+    }
 }
