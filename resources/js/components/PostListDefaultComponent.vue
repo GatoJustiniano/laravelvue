@@ -1,7 +1,8 @@
 <template>
     <div>
         <div class="card mt-3 "  v-for="post in posts" v-bind:key="post.title">
-            <img v-bind:src=" '/images_post/' + post.image" class="card-img-top" alt="..." style="width: 15rem;">
+            <!-- <img v-bind:src=" '/images_post/' + post.image" class="card-img-top" alt="..." style="width: 15rem;"> -->
+            <img  v-bind:src=" 'https://picsum.photos/400/250?random=' + post.id" class="card-img-top" alt="..." style="width: 35rem;">
             <div class="card-body">
                 <h5 class="card-title">Card {{post.title}}</h5>
                 <p class="card-text">{{ post.content }}</p>

@@ -1,7 +1,6 @@
 <template>
     <div>
         
-
         <post-list-default 
             :key="currentPage"
             @getCurrentPage="getCurrentPage"

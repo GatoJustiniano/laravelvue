@@ -17,8 +17,8 @@
         "lodash": "^4.17.21",
         "popper.js": "^1.16.1",
         "postcss": "^8.4.5",
-        "resolve-url-loader": "^4.0.0",
-        "sass": "^1.47.0",
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.48.0",
         "sass-loader": "^12.4.0",
         "vue": "^2.6.14",
         "vue-loader": "^15.9.8",
@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "@ckeditor/ckeditor5-build-classic": "^31.1.0",
+        "@popperjs/core": "^2.11.2",
         "vue-plain-pagination": "^0.3.0"
     }
 }
