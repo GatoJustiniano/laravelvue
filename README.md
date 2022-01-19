@@ -9,6 +9,8 @@ Vue.js como frontend
 SGBD DBMaria 
 Laragon como servidor
 
+Bootstrap 5
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
