@@ -9,7 +9,7 @@
 
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav me-auto">
             <li class="nav-item">
                 <a href="{{ route('contact.index') }}"
                 class="nav-link"      >
@@ -18,7 +18,7 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     CRUD
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -44,10 +44,10 @@
                 
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Perfil
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="">Perfil</a></li>
                     <li><a class="dropdown-item" href="#">Listado</a></li>
                 </ul>
