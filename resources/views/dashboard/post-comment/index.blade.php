@@ -28,7 +28,7 @@
                     <td>
                         <a href="{{ route('post-comment.show',$postComment->id) }}" class="btn btn-primary">Ver</a>
                         
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $postComment->id }}">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $postComment->id }}">
                             Eliminar
                         </button>
                         
@@ -43,16 +43,15 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
                 <div class="modal-body">
                     <p>Seguro que deseas eliminar el Comentario del post seleccionado?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 
                     <form id="formDelete" action="{{ route('post-comment.destroy',0) }}" method="POST" data-action="{{ route('post-comment.destroy',0) }}" >
                         @method('DELETE')

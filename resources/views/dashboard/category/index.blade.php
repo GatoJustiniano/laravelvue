@@ -28,7 +28,7 @@
                     <a href="{{ route('category.show',$categoria->id) }}" class="btn btn-primary">Ver</a>
                     <a href="{{ route('category.edit',$categoria->id) }}" class="btn btn-primary">Editar</a>
                     
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $categoria->id }}">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $categoria->id }}">
                         Eliminar
                     </button>
                     
@@ -43,9 +43,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 </button>
             </div>
             <div class="modal-body">
