@@ -43155,7 +43155,10 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { "data-bs-toggle": "modal" },
+                  attrs: {
+                    "data-bs-toggle": "modal",
+                    "data-bs-target": "#postModal"
+                  },
                   on: {
                     click: function($event) {
                       return _vm.postClick(post)
