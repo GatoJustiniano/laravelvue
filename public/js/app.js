@@ -5736,6 +5736,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["posts", "total", "pCurrentPage"],
@@ -5789,7 +5790,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
 //
 //
 //
@@ -43155,13 +43155,18 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-primary",
+                  attrs: { "data-bs-toggle": "modal" },
                   on: {
                     click: function($event) {
                       return _vm.postClick(post)
                     }
                   }
                 },
-                [_vm._v("Ver resumen de componente")]
+                [
+                  _vm._v(
+                    "\n                Ver resumen Post " + _vm._s(post.title)
+                  )
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -43247,7 +43252,14 @@ var render = function() {
                 [_vm._v(" " + _vm._s(_vm.post.title) + " ")]
               ),
               _vm._v(" "),
-              _vm._m(0)
+              _c("button", {
+                staticClass: "btn-close",
+                attrs: {
+                  type: "button",
+                  "data-bs-dismiss": "modal",
+                  "aria-label": "Close"
+                }
+              })
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "modal-body" }, [
@@ -43263,25 +43275,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

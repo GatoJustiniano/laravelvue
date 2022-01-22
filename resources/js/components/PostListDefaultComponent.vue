@@ -6,7 +6,8 @@
             <div class="card-body">
                 <h5 class="card-title">Card {{post.title}}</h5>
                 <p class="card-text">{{ post.content }}</p>
-                <button  class="btn btn-primary" v-on:click="postClick(post)">Ver resumen de componente</button>
+                <button  class="btn btn-primary" v-on:click="postClick(post)" data-bs-toggle="modal">
+                    Ver resumen Post {{post.title}}</button>
                 <router-link class="btn btn-success" :to="{ name: 'detail', params: {id: post.id } }">ver</router-link>
             </div>
         </div>
