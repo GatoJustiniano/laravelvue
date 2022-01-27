@@ -39,6 +39,8 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="">Perfil</a></li>
                     <li><a class="dropdown-item" href="">Listado</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{{ route('post.index') }}">Dashboard</a></li>
                 </ul>
             </li>
             
