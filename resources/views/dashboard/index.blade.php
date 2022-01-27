@@ -10,7 +10,9 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/vnd.microsoft.icon" href="{{ url('/favicon.ico') }}">
-
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('css/bt5/core-dark.css') }}" class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{ asset('css/bt5/theme-default-dark.css') }}" class="template-customizer-theme-css" />
@@ -91,7 +93,7 @@
 </svg>
 
 </span>
-      <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+      <span class="app-brand-text demo menu-text fw-bolder ms-2">Gato</span>
     </a>
 
     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -107,7 +109,7 @@
     <!-- Dashboards -->
     <li class="menu-item active open">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+        <i class="menu-icon material-icons">assignment_turned_in</i>
         <div data-i18n="Dashboards">Dashboards</div>
       </a>
       <ul class="menu-sub">
