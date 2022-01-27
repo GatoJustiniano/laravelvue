@@ -60,9 +60,11 @@ let assetsPath = document.documentElement.getAttribute('data-assets-path'),
 }); */
 
 // To add more languages, just push it to LANGUAGES object.
-/*
-TemplateCustomizer.LANGUAGES.fr = { ... };
-*/
+
+// TemplateCustomizer.LANGUAGES.fr = { 
+//   "panel_header": "Panel de Control",
+//  };
+
 
 /**
  * TemplateCustomizer settings
