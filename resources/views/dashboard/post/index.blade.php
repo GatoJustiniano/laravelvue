@@ -2,6 +2,8 @@
 
 @section('content')
 
+    <div class="row">
+
     <a class="btn btn-success mt-3 mb-3" href="{{ route('post.create') }}">
         Crear
     </a>
@@ -90,6 +92,7 @@
 
 
     </script>
+    </div>
 
 @endsection
 

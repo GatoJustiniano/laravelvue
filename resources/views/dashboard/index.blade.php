@@ -56,7 +56,6 @@
 				<div class="app-brand demo ">
 					<a href="index.html" class="app-brand-link">
 						<span class="app-brand-logo demo">
-
 							
 							<svg width="343" height="464" viewBox="0 0 343 464" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path
