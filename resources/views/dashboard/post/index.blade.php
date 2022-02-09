@@ -19,7 +19,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive text-nowrap">
-                    <table class="table table-sm">
+                    <table class="table table-sm mb-3">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -41,10 +41,10 @@
                                 <td>{{ $post->created_at->format('Y-m-d') }}</td>
                                 <td>{{ $post->updated_at->format('Y-M-d') }}</td>
                                 <td>
-                                    <a href="{{ route('post.show',$post->id) }}" class="btn btn-primary">Ver</a>
-                                    <a href="{{ route('post.edit',$post->id) }}" class="btn btn-primary">Editar</a>
+                                    <a href="{{ route('post.show',$post->id) }}" class="btn btn-outline-primary">Ver</a>
+                                    <a href="{{ route('post.edit',$post->id) }}" class="btn btn-outline-primary">Editar</a>
                                     <a href="{{ route('post-comment.post',$post->id) }}"
-                                        class="btn btn-primary">Comentarios</a>
+                                        class="btn btn-outline-primary">Comentarios</a>
 
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal" data-id="{{ $post->id }}">
@@ -88,24 +88,22 @@
 
                     <script>
                         window.onload = function () {
-                    $('#deleteModal').on('show.bs.modal', function (event) {
-        
-                        var button = $(event.relatedTarget) // Button that triggered the modal
-                        var id = button.data('id') // Extract info from data-* attributes
-                        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-                        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        
-                        action = $('#formDelete').attr('data-action').slice(0,-1)
-        
-                        $('#formDelete').attr('action',action + id )
-        
-                        var modal = $(this)
-                        modal.find('.modal-title').text('Vas a borrar el POST ' + id)
-                        
-                    });
-                };
-        
-        
+                        $('#deleteModal').on('show.bs.modal', function (event) {
+            
+                            var button = $(event.relatedTarget) // Button that triggered the modal
+                            var id = button.data('id') // Extract info from data-* attributes
+                            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            
+                            action = $('#formDelete').attr('data-action').slice(0,-1)
+            
+                            $('#formDelete').attr('action',action + id )
+            
+                            var modal = $(this)
+                            modal.find('.modal-title').text('Vas a borrar el POST ' + id)
+                            
+                        });
+                        };
                     </script>
                 </div>
             </div>
