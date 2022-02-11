@@ -70,7 +70,18 @@
 
 					<div class="container-xxl flex-grow-1 container-p-y">
 						@include('dashboard.partials.session-flash-status')
-						@yield('content')
+
+						@guest
+							<p class="h3">							
+							Bienvenido invitado, contactate con el administrador para que te otorgue más permisos 
+							para interactuar con el sistema! 
+							</p>
+
+						@else 
+							@yield('content')
+
+						@endguest
+
 
 					</div>
 					<!-- / Content -->

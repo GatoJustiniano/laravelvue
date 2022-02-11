@@ -10,7 +10,7 @@
                 <h5 class="card-title mb-sm-0 me-2">Listado de Posts</h5>
                 <div class="action-btns">
                     <a class="btn btn-label-info me-3" href="{{ URL::previous() }}">
-                        Volver
+                        Retroceder
                     </a>
                     <a class="btn btn-label-success " href="{{ route('post.create') }}">
                         Crear
