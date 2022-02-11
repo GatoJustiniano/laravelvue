@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class CheckRolAdmin
+class CheckRolRegular
 {
     /**
      * Handle an incoming request.
@@ -21,7 +21,7 @@ class CheckRolAdmin
                 return $next($request);
                 break;
             case('regular'):
-                return redirect('dashboard');
+                return $next($request);
                 break;
             case('3'):
                 return redirect('home');

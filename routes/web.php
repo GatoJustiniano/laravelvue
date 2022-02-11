@@ -22,14 +22,13 @@ use App\Http\Controllers\dashboard\PostCommentController;
 
 
 
-Route::resource('dashboard/post', PostController::class);
+
 Route::post('dashboard/post/{post}/image', [PostController::class, 'image'])->name('post.image');
 
 //route para cargar image con ckeditor
 Route::post('dashboard/post/content_image', [PostController::class, 'contentImage']);
 
 Route::resource('dashboard/category', CategoryController::class);
-Route::resource('dashboard/user', UserController::class);
 Route::resource('dashboard/contact', ContactController::class)->only(['index','show','destroy']);
 Route::resource('dashboard/post-comment', PostCommentController::class)->only(['index','show','destroy']);
 Route::get('dashboard/post-comment/{post}/post', [PostCommentController::class,'post'])->name('post-comment.post');
@@ -48,3 +47,13 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard
 
 Route::get('/', [WebController::class, 'index'])->name('index');
 Route::get('/categories', [WebController::class, 'index'])->name('index');
+
+Route::middleware([ 'rol.admin'])->group(function () {
+    Route::resource('dashboard/post', PostController::class);
+    Route::resource('dashboard/user', UserController::class);
+
+});
+Route::middleware([ 'rol.regular'])->group(function () {
+    Route::resource('dashboard/post', PostController::class)->except(['edit','destroy']);
+
+});

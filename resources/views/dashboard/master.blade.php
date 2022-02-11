@@ -78,7 +78,13 @@
 							</p>
 
 						@else 
-							@yield('content')
+							@if (Auth::user()->getRoleName() == 'ADMIN')
+								@yield('content')
+								
+							@else
+								<p class="h3">Bienvenido {{Auth::user()->name}}! eres un usuario regular</p>
+								@yield('content')
+							@endif
 
 						@endguest
 

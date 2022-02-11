@@ -54,8 +54,7 @@ class User extends Authenticatable
     }
 
     public function getRoleName(){
-        $firstRole = $this->rol->first();
-        return Str::of($firstRole['key'])->upper();
+        return Str::of($this->rol->key)->upper();
     }
 
     public function setPasswordAttribute($value)

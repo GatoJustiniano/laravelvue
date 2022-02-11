@@ -42,14 +42,18 @@
                                 <td>{{ $post->updated_at->format('Y-M-d') }}</td>
                                 <td>
                                     <a href="{{ route('post.show',$post->id) }}" class="btn btn-outline-primary">Ver</a>
-                                    <a href="{{ route('post.edit',$post->id) }}" class="btn btn-outline-primary">Editar</a>
+                                    @can('post.edit')
+                                        <a href="{{ route('post.edit',$post->id) }}" class="btn btn-outline-primary">Editar</a>
+                                    @endcan
                                     <a href="{{ route('post-comment.post',$post->id) }}"
                                         class="btn btn-outline-primary">Comentarios</a>
 
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal" data-id="{{ $post->id }}">
-                                        Eliminar
-                                    </button>
+                                    @can('post.destroy')
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal" data-id="{{ $post->id }}">
+                                            Eliminar
+                                        </button>
+                                    @endcan
 
                                 </td>
                             </tr>
@@ -73,13 +77,15 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Cerrar</button>
-
-                                    <form id="formDelete" action="{{ route('post.destroy',0) }}" method="post"
-                                        data-action="{{ route('post.destroy',0) }}">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger">Borrar</button>
-                                    </form>
+                                    @can('post.destroy')
+                                        <form id="formDelete" action="{{ route('post.destroy',0) }}" method="post"
+                                            data-action="{{ route('post.destroy',0) }}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger">Borrar</button>
+                                        </form>
+                                        
+                                    @endcan
 
                                 </div>
                             </div>
