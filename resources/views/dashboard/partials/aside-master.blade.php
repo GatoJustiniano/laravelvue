@@ -84,24 +84,24 @@
             </ul>
         </li>
 
-        <!-- Charts & Maps -->
+        <!-- Roles y permisos -->
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Charts &amp; Maps</span>
+            <span class="menu-header-text">Roles &amp; Permisos</span>
         </li>
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-chart"></i>
-                <div data-i18n="Charts">Charts</div>
+                <div>Roles y Permisos</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="charts-apex.html" class="menu-link">
-                        <div data-i18n="Apex Charts">Apex Charts</div>
+                    <a href="{{ route('roles.index') }}" class="menu-link">
+                        <div>Roles</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="charts-chartjs.html" class="menu-link">
-                        <div data-i18n="ChartJS">ChartJS</div>
+                    <a href="{{ route('permissions.index') }}" class="menu-link">
+                        <div>Permisos</div>
                     </a>
                 </li>
             </ul>

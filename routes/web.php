@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\web\WebController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\dashboard\PostController;
 use App\Http\Controllers\dashboard\UserController;
 use App\Http\Controllers\dashboard\ContactController;
@@ -19,35 +21,40 @@ use App\Http\Controllers\dashboard\PostCommentController;
 |
 */
 
-
-
-
-
-Route::post('dashboard/post/{post}/image', [PostController::class, 'image'])->name('post.image');
-
-//route para cargar image con ckeditor
-Route::post('dashboard/post/content_image', [PostController::class, 'contentImage']);
-
-Route::resource('dashboard/category', CategoryController::class);
-Route::resource('dashboard/contact', ContactController::class)->only(['index','show','destroy']);
-Route::resource('dashboard/post-comment', PostCommentController::class)->only(['index','show','destroy']);
-Route::get('dashboard/post-comment/{post}/post', [PostCommentController::class,'post'])->name('post-comment.post');
-Route::get('dashboard/post-comment/j-show/{postComment}', [PostCommentController::class,'jshow']);
-Route::post('dashboard/post-comment/proccess/{postComment}', [PostCommentController::class,'proccess']);
-
-Route::get('/detail/{id}', [WebController::class, 'detail']);
-Route::get('/post-category/{id}', [WebController::class, 'post_category']);
-
-Route::get('/contact', [WebController::class, 'contact']);
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+Route::middleware(['auth'])->group(function () {
+    
+    Route::post('dashboard/post/{post}/image', [PostController::class, 'image'])->name('post.image');
+    
+    //route para cargar image con ckeditor
+    Route::post('dashboard/post/content_image', [PostController::class, 'contentImage']);
+    
+    Route::resource('dashboard/category', CategoryController::class);
+    Route::resource('dashboard/contact', ContactController::class)->only(['index','show','destroy']);
+    Route::resource('dashboard/post-comment', PostCommentController::class)->only(['index','show','destroy']);
+    Route::get('dashboard/post-comment/{post}/post', [PostCommentController::class,'post'])->name('post-comment.post');
+    Route::get('dashboard/post-comment/j-show/{postComment}', [PostCommentController::class,'jshow']);
+    Route::post('dashboard/post-comment/proccess/{postComment}', [PostCommentController::class,'proccess']);
+    
+    Route::get('/detail/{id}', [WebController::class, 'detail']);
+    Route::get('/post-category/{id}', [WebController::class, 'post_category']);
+    
+    Route::get('/contact', [WebController::class, 'contact']);
+    
+    
+    
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+    
+    Route::get('/', [WebController::class, 'index'])->name('index');
+    Route::get('/categories', [WebController::class, 'index'])->name('index');
+    
+    Route::resource('dashboard/post', PostController::class);
+    Route::resource('dashboard/user', UserController::class);
+    Route::resource('intermediary/permissions', PermissionController::class);
+    Route::resource('intermediary/roles', RoleController::class);
+});
 
-Route::get('/', [WebController::class, 'index'])->name('index');
-Route::get('/categories', [WebController::class, 'index'])->name('index');
 
-Route::resource('dashboard/post', PostController::class);
-Route::resource('dashboard/user', UserController::class);
 

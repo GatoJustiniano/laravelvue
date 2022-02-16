@@ -77,7 +77,7 @@
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ $message }} error de correo</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -89,7 +89,7 @@
                                     <input id="password" type="password" class="form-control 
                                         @error('password') is-invalid @enderror" 
                                         name="password" required autocomplete="current-password"
-                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                        
                                         aria-describedby="password"
                                         >
                                         @error('password')

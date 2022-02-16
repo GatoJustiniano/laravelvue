@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserPost;
 use App\Http\Requests\UpdateUserPut;
+use Spatie\Permission\Models\Role;
 
 
 class UserController extends Controller
@@ -30,7 +31,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('dashboard/user/create',['user'=> new User()]);
+        $roles = Role::all()->pluck('name', 'id');
+        return view('dashboard/user/create',['user'=> new User()], compact('roles'));
     }
 
     /**
@@ -41,14 +43,19 @@ class UserController extends Controller
      */
     public function store(StoreUserPost $request)
     {
-        User::create(
-            [
-                'name' => $request['name'],
-                'surname' => $request['surname'],
-                'email' => $request['email'],
-                'password' => $request['password'],
-            ]
+        $user = User::create(
+                [
+                    'name' => $request['name'],
+                    'surname' => $request['surname'],
+                    'email' => $request['email'],
+                    'password' => $request['password'],
+                ]
         );
+        $roles = $request->input('roles', []);
+        $team_id = $request->input('team_id');
+        
+        $user->syncRoles($roles,$team_id);
+
         return back()->with('status', 'Usuario creada con éxito!') ;
     }
 

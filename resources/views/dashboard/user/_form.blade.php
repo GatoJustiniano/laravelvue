@@ -22,6 +22,50 @@
     </div>
 @endif
 
+<div class="row">
+    <label for="roles" class="col-sm-2 col-form-label">Roles</label>
+    <div class="col-sm-7">
+        <div class="form-group">
+            <div class="tab-content">
+                <div class="tab-pane active">
+                    <table class="table">
+                        <tbody>
+                            @foreach ($roles as $id => $role)
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" name="roles[]"
+                                                value="{{ $id }}"
+                                            >
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    {{ $role }}
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="input-group">
+    <select class="form-select" id="team_id" name="team_id" aria-label="Seleccionar equipo">
+        <option selected>Seleccionar equipo...</option>
+        <option value="1">Equipo de desarrollo</option>
+        <option value="2">Equipo de markenting</option>
+        <option value="3">Usuario común</option>
+    </select>
+    <button class="btn btn-outline-secondary" type="button">Button</button>
+</div>
 <input type="submit" value="Enviar">
 
 
