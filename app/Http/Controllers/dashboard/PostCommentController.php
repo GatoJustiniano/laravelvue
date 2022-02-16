@@ -11,12 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class PostCommentController extends Controller
-{
-    public function __construct()
-    {
-        $this->middleware(['auth','rol.admin']);
-    }
-    
+{   
 
     public function index()
     {

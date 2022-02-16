@@ -43,7 +43,6 @@ class UserController extends Controller
     {
         User::create(
             [
-                'rol_id'    => 1, //rol de admin
                 'name' => $request['name'],
                 'surname' => $request['surname'],
                 'email' => $request['email'],

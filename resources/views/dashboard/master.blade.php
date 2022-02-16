@@ -78,7 +78,7 @@
 							</p>
 
 						@else 
-							@if (Auth::user()->getRoleName() == 'ADMIN')
+							@if (Auth::user())
 								@yield('content')
 								
 							@else

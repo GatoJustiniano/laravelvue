@@ -48,12 +48,6 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard
 Route::get('/', [WebController::class, 'index'])->name('index');
 Route::get('/categories', [WebController::class, 'index'])->name('index');
 
-Route::middleware([ 'rol.admin'])->group(function () {
-    Route::resource('dashboard/post', PostController::class);
-    Route::resource('dashboard/user', UserController::class);
+Route::resource('dashboard/post', PostController::class);
+Route::resource('dashboard/user', UserController::class);
 
-});
-Route::middleware([ 'rol.regular'])->group(function () {
-    Route::resource('dashboard/post', PostController::class)->except(['edit','destroy']);
-
-});

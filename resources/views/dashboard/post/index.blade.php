@@ -42,18 +42,18 @@
                                 <td>{{ $post->updated_at->format('Y-M-d') }}</td>
                                 <td>
                                     <a href="{{ route('post.show',$post->id) }}" class="btn btn-outline-primary">Ver</a>
-                                    @can('post.edit')
+                                    {{-- @can('post.edit') --}}
                                         <a href="{{ route('post.edit',$post->id) }}" class="btn btn-outline-primary">Editar</a>
-                                    @endcan
+                                    {{-- @endcan --}}
                                     <a href="{{ route('post-comment.post',$post->id) }}"
                                         class="btn btn-outline-primary">Comentarios</a>
 
-                                    @can('post.destroy')
+                                    {{-- @can('post.destroy') --}}
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                             data-bs-target="#deleteModal" data-id="{{ $post->id }}">
                                             Eliminar
                                         </button>
-                                    @endcan
+                                    {{-- @endcan --}}
 
                                 </td>
                             </tr>

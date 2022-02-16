@@ -14,7 +14,7 @@
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Correo</th>
-            <th scope="col">Rol</th>
+            {{-- <th scope="col">Rol</th> --}}
             <th scope="col">Actualización</th>
             <th scope="col">Acciones</th>
             </tr>
@@ -26,7 +26,7 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->surname }}</td>
                 <td>{{ $user->email }}</td>
-                <td>{{ $user->rol->key }}</td>
+                {{-- <td>{{ $user->rol->key }}</td> --}}
                 <td>{{ $user->created_at->format('Y-m-d') }}</td>
                 <td>{{ $user->updated_at->format('Y-M-d') }}</td>
                 <td>
