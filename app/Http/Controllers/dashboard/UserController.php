@@ -9,6 +9,8 @@ use App\Http\Requests\StoreUserPost;
 use App\Http\Requests\UpdateUserPut;
 use Spatie\Permission\Models\Role;
 
+use Illuminate\Support\Facades\DB;
+
 
 class UserController extends Controller
 {
@@ -43,20 +45,29 @@ class UserController extends Controller
      */
     public function store(StoreUserPost $request)
     {
-        $user = User::create(
-                [
-                    'name' => $request['name'],
-                    'surname' => $request['surname'],
-                    'email' => $request['email'],
-                    'password' => $request['password'],
-                ]
-        );
-        $roles = $request->input('roles', []);
-        $team_id = $request->input('team_id');
-        
-        $user->syncRoles($roles,$team_id);
+        try {
+            DB::beginTransaction();
 
-        return back()->with('status', 'Usuario creada con éxito!') ;
+            $user = User::create(
+                    [
+                        'name' => $request['name'],
+                        'surname' => $request['surname'],
+                        'email' => $request['email'],
+                        'password' => $request['password'],
+                    ]
+            );
+            $roles = $request->input('roles', []);
+        
+        
+            $user->syncRoles($roles);
+        DB::commit();
+            return back()->with('status', 'Usuario creada con éxito!') ;
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('status', $e->getMessage());
+        }
+
     }
 
     /**
