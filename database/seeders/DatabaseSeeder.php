@@ -19,6 +19,11 @@ class DatabaseSeeder extends Seeder
             PostImageTableSeeder::class,
             ContactTableSeeder::class,
             PostCommentsTableSeeder::class,
+            
+            PermissionSeeder::class,
+            RoleSeeder::class,
+            RoleHasPermissionSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

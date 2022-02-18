@@ -89,7 +89,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('dashboard/user/edit',['user' => $user]);
+        $roles = Role::all()->pluck('name', 'id');
+        $user->load('roles');
+        return view('dashboard/user/edit', compact('user', 'roles'));
     }
 
     /**
