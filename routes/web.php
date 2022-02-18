@@ -22,6 +22,8 @@ use App\Http\Controllers\dashboard\PostCommentController;
 */
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [WebController::class, 'index'])->name('index');
+
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
@@ -47,7 +49,6 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
     
-    Route::get('/', [WebController::class, 'index'])->name('index');
     Route::get('/categories', [WebController::class, 'index'])->name('index');
     
     Route::resource('dashboard/post', PostController::class);

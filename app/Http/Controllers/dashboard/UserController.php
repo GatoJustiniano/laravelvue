@@ -60,7 +60,7 @@ class UserController extends Controller
         
         
             $user->syncRoles($roles);
-        DB::commit();
+            DB::commit();
             return back()->with('status', 'Usuario creada con éxito!') ;
 
         } catch (\Exception $e) {

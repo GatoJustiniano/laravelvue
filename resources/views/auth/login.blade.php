@@ -73,7 +73,7 @@
                             <div class="mb-3">
                                 <label for="email" class="form-label">Correo electrónico</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" 
-                                    name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="ingresa tu correo electrónico" autofocus>
+                                    name="email" value="{{ old('email', null) }}" required autocomplete="email" placeholder="ingresa tu correo electrónico" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

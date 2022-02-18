@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      * Cambiado de Home a la raíz según el capitulo 73 del tutorial
      * @var string
      */
-    public const HOME = '/';
+    public const HOME = '/dashboard';
 
     /**
      * The controller namespace for the application.

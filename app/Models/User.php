@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Rol;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
@@ -52,4 +51,5 @@ class User extends Authenticatable
     {
         $this->attributes["password"] = Hash::make($value);
     }
+    
 }
