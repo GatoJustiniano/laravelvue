@@ -13,9 +13,9 @@
           <div class="card-body">
             <div class="row">
               <div class="col-12 text-right">
-                {{-- @can('role_create') --}}
+                @can('roles.create')
                 <a href="{{ route('roles.create') }}" class="btn btn-sm btn-facebook">Añadir nuevo rol</a>
-                {{-- @endcan --}}
+                @endcan
               </div>
             </div>
             <div class="table-responsive">
@@ -37,21 +37,21 @@
                     <td class="text-primary">{{ $role->created_at->toFormattedDateString() }}</td>
                     <td>
                       @forelse ($role->permissions as $permission)
-                          <span class="badge badge-info">{{ $permission->name }}</span>
+                          <span class="badge bg-info">{{ $permission->name }}</span>
                       @empty
-                          <span class="badge badge-danger">Permisos no Definidos</span>
+                          <span class="badge bg-danger">Permisos no Definidos</span>
                       @endforelse
                     </td>
                     <td class="td-actions text-right">
-                    {{-- @can('role_show') --}}
+                    @can('roles.show')
                       <a href="{{ route('roles.show', $role->id) }}" class="btn btn-info"> <i
                           class="material-icons">person</i> </a>
-                    {{-- @endcan --}}
-                    {{-- @can('role_edit') --}}
+                    @endcan
+                    @can('roles.edit')
                       <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-success"> <i
                           class="material-icons">edit</i> </a>
-                    {{-- @endcan --}}
-                    {{-- @can('role_destroy') --}}
+                    @endcan
+                    @can('roles.destroy')
                       <form action="{{ route('roles.destroy', $role->id) }}" method="post"
                         onsubmit="return confirm('areYouSure')" style="display: inline-block;">
                         @csrf
@@ -60,7 +60,7 @@
                           <i class="material-icons">close</i>
                         </button>
                       </form>
-                    {{-- @endcan --}}
+                    @endcan
                     </td>
                   </tr>
                   @empty
