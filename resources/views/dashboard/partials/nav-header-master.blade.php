@@ -359,7 +359,7 @@
                                 </div>
                                 <div class="flex-grow-1">
                                     <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>                                    
-                                    @forelse ($user->roles as $role)
+                                    @forelse (Auth::user()->roles as $role)
                                         <small class="text-muted">{{ $role->name }}</small>
                                     @empty
                                         <small class="text-muted">Sin roles</small>
