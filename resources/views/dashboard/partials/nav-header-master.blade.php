@@ -24,42 +24,7 @@
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
 
-            <!-- Language -->
-            <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
-                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                    <i class='flag-icon flag-icon-us flag-icon-squared rounded-circle fs-3 me-1'></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <a class="dropdown-item" href="javascript:void(0);" data-language="en">
-                            <i class="flag-icon flag-icon-us flag-icon-squared rounded-circle fs-4 me-1"></i>
-                            <span class="align-middle">English</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="javascript:void(0);" data-language="fr">
-                            <i class="flag-icon flag-icon-fr flag-icon-squared rounded-circle fs-4 me-1"></i>
-                            <span class="align-middle">France</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="javascript:void(0);" data-language="de">
-                            <i class="flag-icon flag-icon-de flag-icon-squared rounded-circle fs-4 me-1"></i>
-                            <span class="align-middle">German</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="javascript:void(0);" data-language="pt">
-                            <i class="flag-icon flag-icon-pt flag-icon-squared rounded-circle fs-4 me-1"></i>
-                            <span class="align-middle">Portuguese</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <!--/ Language -->
-
-
-
+        
 
             <!-- Style Switcher -->
             <li class="nav-item me-2 me-xl-0">
@@ -393,9 +358,12 @@
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
-                                    {{-- <small class="text-muted">{{ Auth::user()->rol->name }}</small>
-                                    <small class="text-muted">Tipo: {{ Auth::user()->getRoleName() }}</small> --}}
+                                    <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>                                    
+                                    @forelse ($user->roles as $role)
+                                        <small class="text-muted">{{ $role->name }}</small>
+                                    @empty
+                                        <small class="text-muted">Sin roles</small>
+                                    @endforelse
                                 </div>
                             </div>
                         </a>
