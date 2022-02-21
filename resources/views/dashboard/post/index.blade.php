@@ -12,9 +12,11 @@
                     <a class="btn btn-label-info me-3" href="{{ URL::previous() }}">
                         Retroceder
                     </a>
-                    <a class="btn btn-label-success " href="{{ route('post.create') }}">
-                        Crear
-                    </a>
+                    @can('post.create')
+                        <a class="btn btn-label-success " href="{{ route('post.create') }}">
+                            Crear
+                        </a>
+                    @endcan
                 </div>
             </div>
             <div class="card-body">
@@ -41,19 +43,27 @@
                                 <td>{{ $post->created_at->format('Y-m-d') }}</td>
                                 <td>{{ $post->updated_at->format('Y-M-d') }}</td>
                                 <td>
-                                    <a href="{{ route('post.show',$post->id) }}" class="btn btn-outline-primary">Ver</a>
-                                    {{-- @can('post.edit') --}}
-                                        <a href="{{ route('post.edit',$post->id) }}" class="btn btn-outline-primary">Editar</a>
-                                    {{-- @endcan --}}
+                                    @can('post.show')
+                                        <a href="{{ route('post.show',$post->id) }}" class="btn btn-outline-primary btn-icon ">
+                                            <i class="material-icons">person</i>
+                                        </a>
+                                    @endcan
+                                    @can('post.edit')
+                                        <a href="{{ route('post.edit',$post->id) }}" class="btn btn-outline-primary btn-icon ">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                    @endcan
                                     <a href="{{ route('post-comment.post',$post->id) }}"
-                                        class="btn btn-outline-primary">Comentarios</a>
+                                        class="btn btn-outline-primary ">
+                                        <span class="material-icons">comment</span> Comentarios
+                                    </a>
 
-                                    {{-- @can('post.destroy') --}}
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    @can('post.destroy')
+                                        <button type="button" class="btn btn-outline-danger btn-icon " data-bs-toggle="modal"
                                             data-bs-target="#deleteModal" data-id="{{ $post->id }}">
-                                            Eliminar
+                                            <i class="material-icons">delete</i>
                                         </button>
-                                    {{-- @endcan --}}
+                                    @endcan
 
                                 </td>
                             </tr>

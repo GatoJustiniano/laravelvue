@@ -44,12 +44,14 @@
                     </td>
                     <td class="td-actions text-right">
                     @can('roles.show')
-                      <a href="{{ route('roles.show', $role->id) }}" class="btn btn-info"> <i
-                          class="material-icons">person</i> </a>
+                      <a href="{{ route('roles.show', $role->id) }}" class="btn btn-info"> 
+                        <i class="material-icons">person</i> 
+                      </a>
                     @endcan
                     @can('roles.edit')
-                      <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-success"> <i
-                          class="material-icons">edit</i> </a>
+                      <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-success"> 
+                        <i class="material-icons">edit</i> 
+                      </a>
                     @endcan
                     @can('roles.destroy')
                       <form action="{{ route('roles.destroy', $role->id) }}" method="post"
