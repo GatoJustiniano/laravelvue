@@ -1,4 +1,5 @@
 @extends('dashboard.master')
+@section('title', 'Vista de post')
 
 @section('content')
 
@@ -42,8 +43,10 @@
                             <div>
                                 <h4>Datos</h4>
                                 <div>
-                                    <img class="img-fluid rounded ms-3" src="{{ asset('/images_post')}}/{{ $post->image->image }}" 
-                                        height="210" width="210" alt="{{ $post->image->image }}" />
+                                    @isset($post->image->image)
+                                        <img class="img-fluid rounded ms-3" src="{{ asset('/images_post')}}/{{ $post->image->image }}" 
+                                            height="210" width="210" alt="{{ $post->image->image }}" />
+                                    @endisset
                                 </div>
                                 <div class="mb-2">
                                     <span class="me-1 fw-semibold">Fecha de Creación:</span>
