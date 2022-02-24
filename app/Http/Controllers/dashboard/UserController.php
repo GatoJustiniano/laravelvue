@@ -61,7 +61,7 @@ class UserController extends Controller
         
             $user->syncRoles($roles);
             DB::commit();
-            return back()->with('status', 'Usuario creada con éxito!') ;
+            return redirect()->route('user.index')->with('status', 'Usuario creado con éxito!') ;
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -110,7 +110,7 @@ class UserController extends Controller
                 'email' => $request['email'],
             ]
         );
-        return back()->with('status','Usuario actualizado con éxito');
+        return redirect()->route('user.index')->with('status','Usuario actualizado con éxito!');
     }
 
     /**
@@ -122,6 +122,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->back()->with('status','Usuario eliminada con éxito');
+        return redirect()->back()->with('status','Usuario eliminado con éxito!');
     }
 }
