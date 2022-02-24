@@ -71,23 +71,7 @@
 					<div class="container-xxl flex-grow-1 container-p-y">
 						@include('dashboard.partials.session-flash-status')
 
-						@guest
-							<p class="h3">							
-							Bienvenido invitado, contactate con el administrador para que te otorgue más permisos 
-							para interactuar con el sistema! 
-							</p>
-
-						@else 
-							@if (Auth::user())
-								@yield('content')
-								
-							@else
-								<p class="h3">Bienvenido {{Auth::user()->name}}! eres un usuario regular</p>
-								@yield('content')
-							@endif
-
-						@endguest
-
+						@yield('content')
 
 					</div>
 					<!-- / Content -->

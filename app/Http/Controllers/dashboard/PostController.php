@@ -24,7 +24,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderBy('created_at','asc')->paginate(6);
-        return view('dashboard/post/index',['posts' => $posts]);
+        return view('dashboard/post/index', ['posts' => $posts]);
 
     }
     /**
@@ -35,7 +35,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::pluck('id','title');
-        return view('dashboard/post/create',['post'=> new Post(), 'categories'=>$categories]);
+        return view('dashboard/post/create', ['post'=> new Post(), 'categories'=>$categories]);
     }
 
     /**
@@ -66,7 +66,7 @@ class PostController extends Controller
         }
 
         Post::create($requestData);
-        return back()->with('status', 'Post creado con éxito!') ;
+        return redirect()->route('post.index')->with('status', 'Post creado con éxito!') ;
     }
 
     /**
@@ -78,7 +78,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //$post = Post::findOrFail($id);
-        return view('dashboard/post/show',['post' => $post]);
+        return view('dashboard/post/show', ['post' => $post]);
 
     }
 
@@ -91,7 +91,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::pluck('id','title') ;
-        return view('dashboard/post/edit',['post' => $post, 'categories' => $categories]);
+        return view('dashboard/post/edit', ['post' => $post, 'categories' => $categories]);
     }
 
     /**
@@ -104,7 +104,7 @@ class PostController extends Controller
     public function update(UpdatePostPut $request, Post $post)
     {
         $post->update($request->validated());
-        return back()->with('status','Post actualizado con éxito');
+        return redirect()->route('post.index')->with('status','Post actualizado con éxito! ');
     }
 
     //método para subir una imagen a un Post
@@ -123,7 +123,7 @@ class PostController extends Controller
             'post_id'   => $post->id
         ]);
 
-        return back()->with('status', 'Imagen cargada con éxito! ');
+        return redirect()->route('post.show', $post->id )->with('status', 'Imagen cargada con éxito! ');
     }
 
     //método para subir una imagen con ck Editor
@@ -150,7 +150,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->back()->with('status','Eliminado con éxito');
+        return redirect()->route('post.index')->with('status', 'Eliminado con éxito');
     }
 
     
