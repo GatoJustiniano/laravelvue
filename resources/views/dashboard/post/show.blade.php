@@ -16,18 +16,18 @@
                             <div class="col-7 mb-xl-0 mb-4">
                                 <h2>{{ $post->title }}</h2>
                                 <p class="mb-1">
-                                    <span class="me-1 fw-semibold">Categoría:</span>
+                                    <span class="me-1 fw-bold">Categoría:</span>
                                     <a href="{{ route('category.show',$post->category->id) }}">
                                         <span class="badge bg-secondary">{{$post->category->title}}
                                         </span>
                                     </a>
                                 </p>
                                 <p class="mb-1">
-                                    <span class="me-1 fw-semibold">Tipo de url:</span>
+                                    <span class="me-1 fw-bold">Tipo de url:</span>
                                     <span>{{$post->url_clean}}</span>
                                 </p>
                                 <p class="mb-1">
-                                    <span class="me-1 fw-semibold">Posteado:</span>
+                                    <span class="me-1 fw-bold">Posteado:</span>
                                     @if ($post->posted == "yes" )
                                         <span class="badge badge-dot bg-success me-1"></span>{{$post->posted}}
                                         @else
@@ -35,7 +35,7 @@
                                     @endif
                                 </p>
                                 <p class="mb-2">
-                                    <span class="me-1 fw-semibold">Contenido:</span>
+                                    <span class="me-1 fw-bold">Contenido:</span>
                                     <span>{{$post->content}}</span>
                                 </p>
                                 
@@ -49,11 +49,11 @@
                                     @endisset
                                 </div>
                                 <div class="mb-2">
-                                    <span class="me-1 fw-semibold">Fecha de Creación:</span>
+                                    <span class="me-1 fw-bold">Fecha de Creación:</span>
                                     <span class="">{{$post->created_at}}</span>
                                 </div>
                                 <div>
-                                    <span class="me-1 fw-semibold">Fecha de Actualización:</span>
+                                    <span class="me-1 fw-bold">Fecha de Actualización:</span>
                                     <span class="">{{$post->updated_at}} </span>
                                 </div>
                             </div>
