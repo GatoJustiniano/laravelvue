@@ -18,7 +18,11 @@
                                     alt="Imagen de user {{$user->id}}" />
                                 <div class="user-info text-center">
                                     <h4 class="mb-2">{{ $user->name }}</h4>
-                                    <span class="badge bg-label-secondary">{{ $user->surname }}</span>
+                                    @forelse (Auth::user()->roles as $role)
+                                        <span class="badge bg-label-secondary">{{ $role->name }}</span>
+                                    @empty
+                                        <span>Sin roles</span>
+                                    @endforelse
                                 </div>
                             </div>
                         </div>
