@@ -72,7 +72,7 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         abort_if(Gate::denies('roles.edit'), 403);
-        $permissions = Permission::all()->pluck('name', 'id');
+        $permissions = Permission::all()->sortBy('name')->pluck('name', 'id');
         $role->load('permissions');
 
         return view('intermediary/roles/edit', compact('role', 'permissions'));
@@ -90,7 +90,7 @@ class RoleController extends Controller
         $role->update($request->only('name'));
         $role->syncPermissions($request->input('permissions', []));
 
-        return redirect()->route('roles.index');
+        return redirect()->route('roles.index')->with('status', 'Permisos actualizados para el Rol '.$role->name);
     }
 
     /**

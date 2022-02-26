@@ -37,7 +37,7 @@
                                 </p>
                                 
                             </div>
-                            <div>
+                            <div class="ms-2">
                                 <h4>Datos</h4>
                                 <div>
                                     @isset($post->image->image)
