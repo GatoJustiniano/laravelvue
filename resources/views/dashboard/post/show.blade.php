@@ -3,16 +3,13 @@
 
 @section('content')
 
-    @include('dashboard.partials.validation-error')
     <div class="container-xxl flex-grow-1 container-p-y">
-    
         <div class="row invoice-preview">
             <!-- Tarjeja de presentación -->
             <div class="col-xl-9 col-md-8 col-12 mb-md-0 mb-4">
                 <div class="card invoice-preview-card">
                     <div class="card-body">
-                        <div
-                            class="d-flex justify-content-between flex-xl-row flex-md-column flex-sm-row flex-column p-sm-3 p-0">
+                        <div class="d-flex justify-content-between flex-xl-row flex-md-column flex-sm-row flex-column p-sm-3 p-0">
                             <div class="col-7 mb-xl-0 mb-4">
                                 <h2>{{ $post->title }}</h2>
                                 <p class="mb-1">
