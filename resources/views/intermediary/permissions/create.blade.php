@@ -1,34 +1,36 @@
-@extends('dashboard.master', ['activePage' => 'permissions', 'titlePage' => 'Nuevo permiso'])
+@extends('dashboard.master')
+@section('title', 'Crear nuevo rol')
 
 @section('content')
-<div class="content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <form action="{{ route('permissions.store') }}" method="post" class="form-horizontal">
+@include('dashboard.partials.validation-error')
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card-body ">
+
+        <form method="POST" action="{{ route('permissions.store') }}" class="form-horizontal">
           @csrf
-          <div class="card">
-            <div class="card-header card-header-primary">
-              <h4 class="card-title">Permiso</h4>
-              <p class="card-category">Ingresar Datos</p>
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <label for="name" class="col-sm-2 col-form-label">Nombre del permiso</label>
-                <div class="col-sm-7">
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="name" autofocus>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!--Footer-->
-            <div class="card-footer ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary">Guardar</button>
-            </div>
-            <!--End footer-->
+          
+          <div class="form-group">
+            <label for="name" class="form-label">Nombre del permiso</label>
+            <input type="text" class="form-control" name="name" 
+              autocomplete="off" autofocus>
           </div>
+          <button type="submit" class="btn btn-outline-success btn-lg mt-3">Guardar</button>
         </form>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <a href="{{ URL::previous() }}" class="btn btn-label-secondary d-grid w-100 mb-3">
+          Retroceder
+        </a>
+        <a href="{{ route('roles.index') }}" class="btn btn-label-secondary d-grid w-100 mb-3">
+          Lista de roles
+        </a>
       </div>
     </div>
   </div>
