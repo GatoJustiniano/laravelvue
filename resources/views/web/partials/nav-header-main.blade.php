@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 <div class="container-fluid">
-    <router-link class="navbar-brand" to="/">LaravelVue</router-link>
+    <router-link class="navbar-brand" to="/">Gato</router-link>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,19 +20,21 @@
 
         
         <ul class="navbar-nav ">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
+            @auth
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-                
-            </li>
-            <li class="nav-item dropdown">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                    
+                </li>
+            @endauth
+            <li class="nav-item dropstart">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"  aria-expanded="false">
                     Perfil
                 </a>
@@ -40,6 +42,7 @@
                     <li><a class="dropdown-item" href="">Perfil</a></li>
                     <li><a class="dropdown-item" href="">Listado</a></li>
                     <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{{ route('login') }}">Iniciar Sesión</a></li>
                     <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
                 </ul>
             </li>
