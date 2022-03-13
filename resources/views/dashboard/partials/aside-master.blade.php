@@ -48,7 +48,7 @@
                 Dashboards
             </a>
             <ul class="menu-sub">
-                <li class="menu-item active">
+                <li class="menu-item ">
                     <a href="{{ route('post.index') }}" class="menu-link">
                         Posts
                     </a>
@@ -106,26 +106,21 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-item">
-            <a href="maps-leaflet.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-map-alt"></i>
-                <div data-i18n="Leaflet Maps">Leaflet Maps</div>
-            </a>
-        </li>
+        
 
-        <!-- Misc -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
+        <!-- Ayuda -->
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Ayuda</span></li>
         <li class="menu-item">
-            <a href="https://themeselection.com/support/" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-support"></i>
-                <div data-i18n="Support">Support</div>
+            <a href="" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-receipt"></i>
+                <div>Tutorial</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+            <a href=""
                 class="menu-link">
                 <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Documentation">Documentation</div>
+                <div>Documentación</div>
             </a>
         </li>
     </ul>
