@@ -118,7 +118,7 @@ if (document.getElementById('layout-menu')) {
       if (styleSwitcherToggleEl) {
         styleSwitcherToggleEl.querySelector('i').classList.add('bx-moon');
         new bootstrap.Tooltip(styleSwitcherToggleEl, {
-          title: 'Dark mode',
+          title: 'Modo Oscuro',
           fallbackPlacements: ['bottom']
         });
       }
@@ -127,7 +127,7 @@ if (document.getElementById('layout-menu')) {
       if (styleSwitcherToggleEl) {
         styleSwitcherToggleEl.querySelector('i').classList.add('bx-sun');
         new bootstrap.Tooltip(styleSwitcherToggleEl, {
-          title: 'Light mode',
+          title: 'Modo Claro',
           fallbackPlacements: ['bottom']
         });
       }
