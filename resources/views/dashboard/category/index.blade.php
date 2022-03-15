@@ -2,43 +2,74 @@
 
 @section('content')
 
-    <a class="btn btn-success mt-3 mb-3" href="{{ route('category.create') }}">
-        Crear
-    </a>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div
+                    class="card-header sticky-element bg-label-secondary d-flex justify-content-sm-between align-items-sm-center flex-column flex-sm-row">
+                    <h5 class="card-title mb-sm-0 me-2">Listado de Categorias</h5>
+                    <div class="action-btns">
+                        <a class="btn btn-label-info me-3" href="{{ URL::previous() }}">
+                            Retroceder
+                        </a>
+                        @can('post.create')
+                            <a class="btn btn-label-success " href="{{ route('category.create') }}">
+                                Crear
+                            </a>
+                        @endcan
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-sm mb-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Título</th>
+                                    <th scope="col">Creación</th>
+                                    <th scope="col">Actualización</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($categories as $categoria)
+                                <tr>
+                                    <td>{{ $categoria->id }}</td>
+                                    <td>{{ $categoria->title }}</td>
+                                    <td>{{ $categoria->created_at->format('Y-m-d') }}</td>
+                                    <td>{{ $categoria->updated_at->format('Y-M-d') }}</td>
+                                    <td>
+                                        @can('category.show')
+                                            <a href="{{ route('category.show',$categoria->id) }}" class="btn btn-outline-primary btn-icon ">
+                                                <i class="material-icons">person</i>
+                                            </a>
+                                        @endcan
+                                        @can('category.edit')
+                                            <a href="{{ route('category.edit',$categoria->id) }}" class="btn btn-outline-primary btn-icon ">
+                                                <i class="material-icons">edit</i>
+                                            </a>
+                                        @endcan
 
+                                        @can('category.destroy')
+                                            <button type="button" class="btn btn-outline-danger btn-icon " data-bs-toggle="modal"
+                                                data-bs-target="#deleteModal" data-id="{{ $categoria->id }}">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        @endcan
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-            <th scope="col">#</th>
-            <th scope="col">Título</th>
-            <th scope="col">Creación</th>
-            <th scope="col">Actualización</th>
-            <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($categories as $categoria)
-            <tr>
-                <td>{{ $categoria->id }}</td>
-                <td>{{ $categoria->title }}</td>
-                <td>{{ $categoria->created_at->format('Y-m-d') }}</td>
-                <td>{{ $categoria->updated_at->format('Y-M-d') }}</td>
-                <td>
-                    <a href="{{ route('category.show',$categoria->id) }}" class="btn btn-primary">Ver</a>
-                    <a href="{{ route('category.edit',$categoria->id) }}" class="btn btn-primary">Editar</a>
-                    
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $categoria->id }}">
-                        Eliminar
-                    </button>
-                    
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-    {{ $categories->links() }}
-
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{ $categories->links() }}
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -87,7 +118,3 @@
     </script>
 
 @endsection
-
-
-
-
