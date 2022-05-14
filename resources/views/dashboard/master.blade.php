@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<html lang="es" class="dark-style layout-navbar-fixed layout-menu-fixed " dir="ltr" data-theme="theme-default"
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" 
+	class="dark-style layout-navbar-fixed layout-menu-fixed " dir="ltr" data-theme="theme-default"
 	data-assets-path="{{ asset('css/') }}" data-template="vertical-menu-template-dark">
 
 <head>

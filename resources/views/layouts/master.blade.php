@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<html lang="es" class="dark-style layout-navbar-fixed layout-menu-fixed " dir="ltr" data-theme="theme-default"
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" 
+	class="dark-style layout-navbar-fixed layout-menu-fixed " dir="ltr" data-theme="theme-default"
 	data-assets-path="{{ asset('css/') }}" data-template="vertical-menu-template-dark">
 
 <head>
@@ -8,7 +9,7 @@
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-	<title>Login | Gato Justiniano</title>
+		<title>@yield('title') | {{env('APP_NAME')}} - Gato Justiniano</title>
 
 	<!-- Favicon -->
 	<link rel="icon" type="image/vnd.microsoft.icon" href="{{ url('/favicon.ico') }}">
@@ -38,6 +39,11 @@
 	<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
 	<script src="{{ asset('js/bt5/config.js') }}"></script>
 
+	<style>
+		#template-customizer{
+			visibility: hidden !important;
+		}
+	</style>
 
 
 </head>
