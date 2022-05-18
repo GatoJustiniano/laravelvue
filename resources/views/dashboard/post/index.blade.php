@@ -1,4 +1,5 @@
-@extends('dashboard.master')
+@extends('dashboard.master', ['activePage' => 'posts'])
+@section('title', 'Listado de Posts')
 
 @section('content')
 

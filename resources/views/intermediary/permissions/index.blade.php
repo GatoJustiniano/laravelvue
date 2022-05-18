@@ -1,4 +1,5 @@
-@extends('dashboard.master')
+@extends('dashboard.master', ['activePage' => 'permissions'])
+@section('title', 'Listado de Permisos')
 
 @section('content')
 <div class="row">

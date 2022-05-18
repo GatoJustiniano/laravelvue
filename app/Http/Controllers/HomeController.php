@@ -29,6 +29,7 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        return view('dashboard.master');
+        $activePage='';
+        return view('dashboard.master', compact('activePage'));
     }
 }

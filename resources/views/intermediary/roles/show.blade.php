@@ -1,5 +1,5 @@
-@extends('dashboard.master')
-@section('title', 'Vista de Rol ' .$role->name )
+@extends('dashboard.master', ['activePage' => 'roles'])
+@section('title', 'Detalles del Rol '.$role->name )
 
 @section('content')
 

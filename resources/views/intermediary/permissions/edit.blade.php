@@ -1,4 +1,5 @@
-@extends('dashboard.master', ['activePage' => 'permissions', 'titlePage' => 'Editar permiso'])
+@extends('dashboard.master', ['activePage' => 'permissions'])
+
 @section('content')
 <div class="content">
   <div class="container-fluid">

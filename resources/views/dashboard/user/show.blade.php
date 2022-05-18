@@ -1,4 +1,5 @@
-@extends('dashboard.master')
+@extends('dashboard.master', ['activePage' => 'users'])
+@section('title', 'Detalles del Usuario '.$user->surname )
 
 @section('content')
 
@@ -48,7 +49,7 @@
                                 </li>
                                 <li class="mb-3">
                                     <span class="fw-bold me-2">Roles:</span>
-                                    @forelse (Auth::user()->roles as $role)
+                                    @forelse ($user->roles as $role)
                                         <span>{{ $role->name }}</span>
                                     @empty
                                         <span>Sin roles</span>

@@ -21,22 +21,26 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboards -->
-        <li class="menu-item active open">
+        <li class="menu-item {{ ($activePage == 'users'|| $activePage == 'posts') ? 'active open' : '' }} ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon material-icons">assignment_turned_in</i>
                 Dashboards
             </a>
             <ul class="menu-sub">
-                <li class="menu-item ">
-                    <a href="{{ route('post.index') }}" class="menu-link">
-                        Posts
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('user.index') }}" class="menu-link">
-                        Usuarios
-                    </a>
-                </li>
+                @can('post.index')
+                    <li class="menu-item {{ $activePage == 'posts' ? ' active' : '' }}">
+                        <a href="{{ route('post.index') }}" class="menu-link">
+                            Posts
+                        </a>
+                    </li>
+                @endcan
+                @can('user.index')
+                    <li class="menu-item {{ $activePage == 'users' ? ' active' : '' }}">
+                        <a href="{{ route('user.index') }}" class="menu-link">
+                            Usuarios
+                        </a>
+                    </li>
+                @endcan
             </ul>
         </li>
 
@@ -48,18 +52,20 @@
             </a>
 
             <ul class="menu-sub">
-
-                <li class="menu-item">
-                    <a href=" {{ route('category.index') }} " class="menu-link">
-                        <div>Categorias</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href=" {{ route('contact.index') }} " class="menu-link">
-                        <div>Contactos</div>
-                    </a>
-                </li>
-            
+                @can('category.index')
+                    <li class="menu-item">
+                        <a href=" {{ route('category.index') }} " class="menu-link">
+                            <div>Categorias</div>
+                        </a>
+                    </li>
+                @endcan
+                @can('contact.index')
+                    <li class="menu-item">
+                        <a href=" {{ route('contact.index') }} " class="menu-link">
+                            <div>Contactos</div>
+                        </a>
+                    </li>
+                @endcan
             </ul>
         </li>
 
@@ -67,22 +73,26 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Roles &amp; Permisos</span>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ ($activePage == 'roles'|| $activePage == 'permissions') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-chart"></i>
                 <div>Roles y Permisos</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('roles.index') }}" class="menu-link">
-                        <div>Roles</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('permissions.index') }}" class="menu-link">
-                        <div>Permisos</div>
-                    </a>
-                </li>
+                @can('roles.index')
+                    <li class="menu-item {{ $activePage == 'roles' ? ' active' : '' }}">
+                        <a href="{{ route('roles.index') }}" class="menu-link">
+                            <div>Roles</div>
+                        </a>
+                    </li>
+                @endcan
+                @can('permissions.index')    
+                    <li class="menu-item {{ $activePage == 'permissions' ? ' active' : '' }}">
+                        <a href="{{ route('permissions.index') }}" class="menu-link">
+                            <div>Permisos</div>
+                        </a>
+                    </li>
+                @endcan
             </ul>
         </li>
         

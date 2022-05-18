@@ -1,4 +1,5 @@
-@extends('dashboard.master')
+@extends('dashboard.master', ['activePage' => 'roles'])
+@section('title', 'Listado de Roles')
 
 @section('content')
 <div class="row">

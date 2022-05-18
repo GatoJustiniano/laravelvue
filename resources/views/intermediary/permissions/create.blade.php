@@ -1,5 +1,5 @@
-@extends('dashboard.master')
-@section('title', 'Crear nuevo rol')
+@extends('dashboard.master', ['activePage' => 'permissions'])
+@section('title', 'Crear nuevo permiso')
 
 @section('content')
 @include('dashboard.partials.validation-error')

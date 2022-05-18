@@ -1,4 +1,4 @@
-@extends('dashboard.master')
+@extends('dashboard.master', ['activePage' => 'roles'])
 
 @section('content')
 @include('dashboard.partials.validation-error')
