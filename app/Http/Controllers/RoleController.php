@@ -30,7 +30,7 @@ class RoleController extends Controller
     public function create()
     {
         abort_if(Gate::denies('roles.create'), 403);
-        $permissions = Permission::all()->pluck('name', 'id');
+        $permissions = Permission::all()->sortBy('name')->pluck('name', 'id');
         
         return view('intermediary/roles/create', compact('permissions'));
     }

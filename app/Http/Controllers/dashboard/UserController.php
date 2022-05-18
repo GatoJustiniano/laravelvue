@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('created_at','desc')->paginate(5);
+        $users = User::orderBy('surname','asc')->paginate(10);
         return view('dashboard/user/index',['users' => $users]);
     }
 
