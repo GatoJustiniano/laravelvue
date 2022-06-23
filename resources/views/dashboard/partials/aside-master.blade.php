@@ -45,7 +45,7 @@
         </li>
 
         <!-- Layouts -->
-        <li class="menu-item">
+        <li class="menu-item {{ ($activePage == 'category'|| $activePage == 'contacts') ? 'active open' : '' }} ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div>Otros</div>
@@ -53,14 +53,14 @@
 
             <ul class="menu-sub">
                 @can('category.index')
-                    <li class="menu-item">
+                    <li class="menu-item {{ $activePage == 'category' ? ' active' : '' }}">
                         <a href=" {{ route('category.index') }} " class="menu-link">
                             <div>Categorias</div>
                         </a>
                     </li>
                 @endcan
                 @can('contact.index')
-                    <li class="menu-item">
+                    <li class="menu-item {{ $activePage == 'contacts' ? ' active' : '' }}">
                         <a href=" {{ route('contact.index') }} " class="menu-link">
                             <div>Contactos</div>
                         </a>

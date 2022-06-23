@@ -1,4 +1,5 @@
-@extends('dashboard.master')
+@extends('dashboard.master', ['activePage' => 'category'])
+
 
 @section('content')
 
