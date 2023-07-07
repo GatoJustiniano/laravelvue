@@ -178,4 +178,5 @@
             </div>
         </div>
     </footer>
-    @endsection
+</div>
+@endsection
