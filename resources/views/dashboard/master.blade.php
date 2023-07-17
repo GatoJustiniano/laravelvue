@@ -2,7 +2,7 @@
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" 
 	class="dark-style layout-navbar-fixed layout-menu-fixed " dir="ltr" data-theme="theme-default"
-	data-assets-path="{{ asset('css/') }}" data-template="vertical-menu-template-dark">
+	data-assets-path="{{ asset('/') }}" data-template="vertical-menu-template-dark">
 
 <head>
 	<meta charset="utf-8" />
@@ -22,6 +22,9 @@
 	<link rel="stylesheet" href="{{ asset('css/bt5/core-dark.css') }}" class="template-customizer-core-css" />
 	<link rel="stylesheet" href="{{ asset('css/bt5/theme-default-dark.css') }}" class="template-customizer-theme-css" />
 	<link rel="stylesheet" href="{{ asset('css/bt5/demo.css') }}" />
+	
+	<link rel="stylesheet" href="{{ asset('css/select2/select2.css') }}" />	
+	
 
 	<!-- Vendors CSS -->
 	<link rel="stylesheet" href="{{ asset('css/bt5/perfect-scrollbar.css') }}" />
@@ -115,6 +118,8 @@
 
 	<script src="{{ asset('js/bt5/bootstrap.js') }}"></script>
 	<script src="{{ asset('js/bt5/menu.js') }}"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<!-- endbuild -->
 
 	<!-- Vendors JS -->

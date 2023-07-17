@@ -86,8 +86,8 @@ let assetsPath = document.documentElement.getAttribute('data-assets-path'),
 
 if (typeof TemplateCustomizer !== 'undefined') {
   window.templateCustomizer = new TemplateCustomizer({
-    cssPath: assetsPath + '/bt5' + (rtlSupport ? '/rtl' : '') + '/',
-    themesPath: assetsPath + '/bt5' + (rtlSupport ? '/rtl' : '') + '/',
+    cssPath: assetsPath + 'css/bt5' + (rtlSupport ? '/rtl' : '') + '/',
+    themesPath: assetsPath + 'css/bt5' + (rtlSupport ? '/rtl' : '') + '/',
     displayCustomizer: true,
     // lang: 'fr',
     // defaultTheme: 2,

@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\web\WebController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\dashboard\PostController;
 use App\Http\Controllers\dashboard\UserController;
+use App\Http\Controllers\SettingGeneralController;
 use App\Http\Controllers\dashboard\ContactController;
 use App\Http\Controllers\dashboard\CategoryController;
 use App\Http\Controllers\dashboard\PostCommentController;
@@ -47,7 +49,7 @@ Route::middleware(['auth'])->group(function () {
     
     
     
-    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     
     Route::get('/categories', [WebController::class, 'index'])->name('index');
     
@@ -55,6 +57,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('dashboard/user', UserController::class);
     Route::resource('intermediary/permissions', PermissionController::class);
     Route::resource('intermediary/roles', RoleController::class);
+
+
+    Route::get('setting/general_setting', [SettingGeneralController::class,'generalSetting'])->name('setting.general');
+	Route::post('setting/general_setting_store', [SettingGeneralController::class,'generalSettingStore'])->name('setting.generalStore');
+
 });
 
 
