@@ -6,56 +6,44 @@
 
 require('./bootstrap');
 
-import router from './assets/router.js' ;
+// import MyUploadAdapter from './assets/ckeditor/MyUploadAdapter.js' ;
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Echo from 'laravel-echo';
 
-import MyUploadAdapter from './assets/ckeditor/MyUploadAdapter.js' ;
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+window.Echo.private('notifications')
+    .listen('UserSessionChanged', (e) => {
+        const newLocal = document.getElementById('notification');
+        const notificationElement = newLocal;
+
+        notificationElement.innerText = e.message;
+        notificationElement.classList.remove('invisible');
+        notificationElement.classList.remove('alert-success');
+        notificationElement.classList.remove('alert-danger');
+
+        notificationElement.classList.add('alert-'+e.type);
+        console.log('Hola mundo, funciona por debajo');
+});
 
 
-
-
-function MyCustomUploadAdapterPlugin( editor ) {
-    editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) => {
-        // Configure the URL to the upload script in your back-end here!
-        return new MyUploadAdapter( loader );
-    };
-}
+// function MyCustomUploadAdapterPlugin( editor ) {
+//     editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) => {
+//         // Configure the URL to the upload script in your back-end here!
+//         return new MyUploadAdapter( loader );
+//     };
+// }
 
 // ...
 
-ClassicEditor
-    .create( document.querySelector( '#content' ), {
-        extraPlugins: [ MyCustomUploadAdapterPlugin ],
+// ClassicEditor
+//     .create( document.querySelector( '#content' ), {
+//         extraPlugins: [ MyCustomUploadAdapterPlugin ],
 
-        // ...
-    } )
-    .catch( error => {
-        console.log( error );
-    } );
+//         // ...
+//     } )
+//     .catch( error => {
+//         console.log( error );
+//     } );
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-Vue.component(
-    'modal-post', 
-    require('./components/PostModalComponent.vue').default
-);
-Vue.component(
-    'post-list-default', 
-    require('./components/PostListDefaultComponent.vue').default
-);
-
-
-const app = new Vue({
-    el: '#app',
-    router,
-});

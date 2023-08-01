@@ -15,9 +15,9 @@ class SettingGeneralController extends Controller
 
     public function generalSettingStore(Request $request)
     {
-        // $this->validate($request, [
-        //     'site_logo' => 'image|mimes:jpg,jpeg,png,gif|max:100000',
-        // ]);
+        $this->validate($request, [
+            'site_logo' => 'image|mimes:jpg,jpeg,png,gif|max:100000',
+        ]);
 
         $data = $request->except('site_logo');        
 

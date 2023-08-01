@@ -42,7 +42,7 @@
 	<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
 	<script src="{{ asset('js/bt5/config.js') }}"></script>
 
-
+	<script src="{{ asset("js/app.js") }}"></script>
 
 </head>
 
@@ -74,7 +74,8 @@
 
 					<div class="container-xxl flex-grow-1 container-p-y">
 						@include('dashboard.partials.session-flash-status')
-						<div id="notification" class="alert mx-3 invisible">
+						<p>Hola mundo</p>
+						<div id="notification" class="alert-success mx-3 ">
 							Bienvenido
 						</div>
 

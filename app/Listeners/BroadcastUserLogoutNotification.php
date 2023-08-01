@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\UserSessionChanged;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;

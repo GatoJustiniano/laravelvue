@@ -17,7 +17,7 @@
             </div>
 
             <div class="card-body mt-3">
-                <form action="{{ route('setting.generalStore') }}" method="POST" file="true">
+                <form action="{{ route('setting.generalStore') }}" method="POST" enctype="multipart/form-data" >
                     @csrf
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -27,16 +27,24 @@
                                     value="@if($data_setting){{$data_setting->site_title}}@endif" required />
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="form-group">
+                        <div class="row col-md-6 mb-3">                            
+                            <div class="col form-group">
                                 <label class="form-label" for="site_logo">Logo del sitio</label>
-                                <input type="file" name="site_logo" id="site_logo" class="form-control" value="" />
+                                <input type="file" name="site_logo" id="site_logo" 
+                                    class="form-control"  accept="image/png, image/jpeg" 
+                                />
+                                @if($errors->has('site_logo'))
+                                <span>
+                                    <strong>{{ $errors->first('site_logo') }}</strong>
+                                </span>
+                                @endif
                             </div>
-                            @if($errors->has('site_logo'))
-                            <span>
-                                <strong>{{ $errors->first('site_logo') }}</strong>
-                            </span>
-                            @endif
+                            <div class="col-md-2">                            
+                                @if ($data_setting->site_logo)
+                                <img src="{{ url('public/logo', $data_setting->site_logo) }}"
+                                    width="50">&nbsp;&nbsp;
+                                @endif
+                            </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-group">

@@ -9,6 +9,7 @@ use App\Http\Controllers\dashboard\PostController;
 use App\Http\Controllers\dashboard\UserController;
 use App\Http\Controllers\SettingGeneralController;
 use App\Http\Controllers\dashboard\ContactController;
+use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 use App\Http\Controllers\dashboard\CategoryController;
 use App\Http\Controllers\dashboard\PostCommentController;
 
@@ -23,12 +24,14 @@ use App\Http\Controllers\dashboard\PostCommentController;
 |
 */
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [WebController::class, 'index'])->name('index');
 
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::get('logs', [LogViewerController::class, 'index']);
     
     Route::post('dashboard/post/{post}/image', [PostController::class, 'image'])->name('post.image');
     
