@@ -32,6 +32,8 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
 
     Route::get('logs', [LogViewerController::class, 'index']);
+
+    Route::view('/game', 'game.show')->name('game.show');
     
     Route::post('dashboard/post/{post}/image', [PostController::class, 'image'])->name('post.image');
     

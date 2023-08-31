@@ -43,7 +43,7 @@
 	<script src="{{ asset('js/bt5/config.js') }}"></script>
 
 	<script src="{{ asset("js/app.js") }}"></script>
-
+	@stack('styles')
 </head>
 
 <body>
@@ -73,9 +73,8 @@
 					<!-- Content -->
 
 					<div class="container-xxl flex-grow-1 container-p-y">
-						@include('dashboard.partials.session-flash-status')
-						<p>Hola mundo</p>
-						<div id="notification" class="alert-success mx-3 ">
+						@include('dashboard.partials.session-flash-status')						
+						<div id="notification" class="alert-success mx-3 invisible">
 							Bienvenido
 						</div>
 
@@ -131,6 +130,10 @@
 
 	<!-- Page JS -->
 	<script src="{{ asset('js/bt5/dashboards-analytics.js') }}"></script>
+	
+	<!-- Uso del comando mix -->
+	<script src="{{ asset('js/app.js') }}"></script>
+	@stack('scripts')
 </body>
 
 </html>

@@ -14,3 +14,9 @@ Bootstrap 5
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## SistemaBlade
+
+Se agregó en el master, el atributo stack='styles'
+Se agregó en el master, el atributo stack='scripts'
