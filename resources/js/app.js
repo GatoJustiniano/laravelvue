@@ -11,6 +11,14 @@ Echo.private('notifications')
         notificationElement.classList.remove('alert-danger');
 
         notificationElement.classList.add('alert-' + e.type);
+
+        Swal.fire({
+            position: 'bottom-end',
+            icon: e.type,
+            title: e.message,
+            showConfirmButton: false,
+            timer: 5000
+        });
     });
 
 

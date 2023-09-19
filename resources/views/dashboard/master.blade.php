@@ -41,8 +41,7 @@
 	<script src="{{ asset('js/bt5/template-customizer.js') }}"></script>
 	<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
 	<script src="{{ asset('js/bt5/config.js') }}"></script>
-
-	<script src="{{ asset("js/app.js") }}"></script>
+	
 	@stack('styles')
 </head>
 
