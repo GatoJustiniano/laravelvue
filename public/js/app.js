@@ -2159,7 +2159,7 @@ Echo["private"]('notifications').listen('UserSessionChanged', function (e) {
   notificationElement.innerText = e.message;
   notificationElement.classList.remove('invisible');
   notificationElement.classList.remove('alert-success');
-  notificationElement.classList.remove('alert-danger');
+  notificationElement.classList.remove('alert-info');
   notificationElement.classList.add('alert-' + e.type);
   Swal.fire({
     position: 'bottom-end',
@@ -2181,6 +2181,8 @@ Echo["private"]('notifications').listen('UserSessionChanged', function (e) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 /**
@@ -2212,20 +2214,27 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 
 
+
 window.Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
-window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  broadcaster: 'pusher',
-  key: "public-key-9001",
-  cluster: "mt1",
-  wsHost: window.location.hostname,
-  wsPort: 6001,
-  wssPort: 6001,
-  forceTLS: false,
-  encrypted: false,
-  disableStats: false,
-  enabledTransports: ['ws', 'wss']
-});
+try {
+  // Inicializa Pusher dentro del bloque try
+  window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
+    broadcaster: 'pusher',
+    key: "public-key-9001",
+    cluster: "mt1",
+    wsHost: window.location.hostname,
+    wsPort: 6001,
+    wssPort: 6001,
+    forceTLS: false,
+    encrypted: false,
+    disableStats: false,
+    enabledTransports: ['ws', 'wss']
+  });
+} catch (error) {
+  // Manejo silencioso del error: no hacemos nada aquí
+  sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire('Error de conexión con el ServidorWeb');
+}
 
 /***/ }),
 
@@ -30273,6 +30282,18 @@ if (typeof this !== 'undefined' && this.Sweetalert2){this.swal = this.sweetAlert
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	

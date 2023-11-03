@@ -2,10 +2,10 @@
 
 ## Acerca del repositorio
 
-Este repositorio está en uso para el seguimiento del tutorial de Laravel + Vue
+Este repositorio está en uso para el seguimiento del tutorial de Laravel
 =======
 Centrado en Laravel 8 como framework
-Vue.js como frontend 
+Vue.js en desuso, solo Blade
 SGBD DBMaria 
 Laragon como servidor
 
@@ -20,3 +20,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 Se agregó en el master, el atributo stack='styles'
 Se agregó en el master, el atributo stack='scripts'
+
+## Agregación de bitácora según la IP
+
+Se podrá visualizar el /logs, según la IP y navegador. 

@@ -8,7 +8,7 @@ Echo.private('notifications')
 
         notificationElement.classList.remove('invisible');
         notificationElement.classList.remove('alert-success');
-        notificationElement.classList.remove('alert-danger');
+        notificationElement.classList.remove('alert-info');
 
         notificationElement.classList.add('alert-' + e.type);
 

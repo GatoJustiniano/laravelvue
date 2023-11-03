@@ -30,20 +30,28 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 
 import Echo from 'laravel-echo';
+import Swal from 'sweetalert2';
 
 window.Swal = require('sweetalert2');
 
 window.Pusher = require('pusher-js');
 
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: process.env.MIX_PUSHER_APP_KEY,
-    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    wsHost: window.location.hostname,
-    wsPort: 6001,
-    wssPort: 6001,
-    forceTLS: false,
-    encrypted: false,
-    disableStats: false,
-    enabledTransports: ['ws', 'wss'],
-}); 
+try {
+    // Inicializa Pusher dentro del bloque try
+    window.Echo = new Echo({
+        broadcaster: 'pusher',
+        key: process.env.MIX_PUSHER_APP_KEY,
+        cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+        wsHost: window.location.hostname,
+        wsPort: 6001,
+        wssPort: 6001,
+        forceTLS: false,
+        encrypted: false,
+        disableStats: false,
+        enabledTransports: ['ws', 'wss'],
+    });
+} catch (error) {
+    // Manejo silencioso del error: no hacemos nada aquí
+    Swal.fire('Error de conexión con el ServidorWeb');
+}
+
