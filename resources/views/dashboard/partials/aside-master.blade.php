@@ -106,10 +106,10 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href=""
+            <a href="{{ route('setting.general') }}"
                 class="menu-link">
-                <i class="menu-icon tf-icons bx bx-file"></i>
-                <div>Documentación</div>
+                <i class="menu-icon tf-icons bx bx-cog"></i>
+                <div>Configuración general</div>
             </a>
         </li>
     </ul>

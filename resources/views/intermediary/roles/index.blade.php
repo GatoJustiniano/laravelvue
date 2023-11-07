@@ -38,7 +38,7 @@
                                 <td>{{ $role->id }}</td>
                                 <td>{{ $role->name }}</td>
                                 <td>{{ $role->guard_name }}</td>
-                                <td class="text-primary">{{ $role->created_at->toFormattedDateString() }}</td>
+                                <td class="text-primary">{{ $role->created_at->format($data_setting->date_format . ' h:m:s') }}</td>
                                 <td>
                                     @forelse ($role->permissions as $permission)
                                     <span class="badge rounded-pill bg-label-info">{{ $permission->name }}</span>
@@ -60,15 +60,10 @@
                                     </a>
                                     @endcan
                                     @can('roles.destroy')
-                                    <form action="{{ route('roles.destroy', $role->id) }}" method="post"
-                                        onsubmit="return confirm('Está seguro de eliminar?')"
-                                        style="display: inline-block;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" rel="tooltip" class="btn btn-outline-danger btn-icon">
+                                        <button type="button" class="btn btn-outline-danger btn-icon "
+                                            data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $role->id }}">
                                             <i class="material-icons">delete</i>
-                                        </button>
-                                    </form>
+                                        </button>                                    
                                     @endcan
 
                                 </td>
@@ -87,5 +82,43 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Seguro que deseas eliminar el Rol seleccionado?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+                <form id="formDelete" action="{{ route('roles.destroy',0) }}" method="POST"
+                    data-action="{{ route('roles.destroy',0) }}">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Borrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            action = $('#formDelete').attr('data-action').slice(0,-1);
+            $('#formDelete').attr('action',action + id );
+            var modal = $(this);
+            modal.find('.modal-title').text('Vas a borrar el Rol ' + id)            
+        });
+    };  
+</script>
 
 @endsection

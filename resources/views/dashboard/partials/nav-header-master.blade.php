@@ -342,13 +342,7 @@
                             <i class="bx bx-user me-2"></i>
                             <span class="align-middle">Perfil</span>
                         </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('setting.general') }}">
-                            <i class="bx bx-cog me-2"></i>
-                            <span class="align-middle">Herramientas</span>
-                        </a>
-                    </li>
+                    </li>                    
                     <li>
                         <div class="dropdown-divider"></div>
                     </li>

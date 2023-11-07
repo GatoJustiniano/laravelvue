@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\SettingGeneral;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
@@ -17,9 +18,10 @@ class RoleController extends Controller
     public function index()
     {
         abort_if(Gate::denies('roles.index'), 403);
+        $data_setting = SettingGeneral::latest()->first();    
         $roles = Role::paginate(10);
 
-        return view('intermediary/roles/index', compact('roles'));
+        return view('intermediary/roles/index', compact('roles', 'data_setting'));
     }
 
     /**
@@ -101,7 +103,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        abort_if(Gate::denies('roles.delete'), 403);       
+        abort_if(Gate::denies('roles.destroy'), 403);       
         $role->delete();
 
         return redirect()->route('roles.index');

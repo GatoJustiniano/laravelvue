@@ -4,12 +4,13 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\SettingGeneral;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+
 use App\Http\Requests\StoreUserPost;
 use App\Http\Requests\UpdateUserPut;
-use Spatie\Permission\Models\Role;
-
-use Illuminate\Support\Facades\DB;
 
 
 class UserController extends Controller
@@ -22,8 +23,9 @@ class UserController extends Controller
      */
     public function index()
     {
+        $data_setting = SettingGeneral::latest()->first();    
         $users = User::orderBy('surname','asc')->paginate(10);
-        return view('dashboard/user/index',['users' => $users]);
+        return view('dashboard/user/index',['users' => $users], compact('data_setting'));
     }
 
     /**
