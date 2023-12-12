@@ -73,9 +73,6 @@
 
 					<div class="container-xxl flex-grow-1 container-p-y">
 						@include('dashboard.partials.session-flash-status')						
-						<div id="notification" class="alert-success mx-3 invisible">
-							Bienvenido
-						</div>
 
 						@yield('content')
 

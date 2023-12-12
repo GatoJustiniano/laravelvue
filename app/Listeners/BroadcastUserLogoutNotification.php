@@ -27,6 +27,6 @@ class BroadcastUserLogoutNotification
      */
     public function handle(Logout $event)
     {
-        broadcast(new UserSessionChanged("{$event->user->name} is offline",'info'));
+        broadcast(new UserSessionChanged("{$event->user->name} está fuera de línea",'info'));
     }
 }

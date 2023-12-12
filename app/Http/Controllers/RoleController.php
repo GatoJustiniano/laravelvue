@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\SettingGeneral;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
@@ -47,7 +48,8 @@ class RoleController extends Controller
     {
         $role = Role::create($request->only('name'));
         $role->syncPermissions($request->input('permissions', []));
-        
+
+        Session::flash('status', 'Rol creado exitosamente con nombre: '. $role->name);
         return redirect()->route('roles.index');
     }
 
@@ -106,6 +108,7 @@ class RoleController extends Controller
         abort_if(Gate::denies('roles.destroy'), 403);       
         $role->delete();
 
+        Session::flash('info', 'Se ha eliminado el Rol ' . $role->name);
         return redirect()->route('roles.index');
     }
 }

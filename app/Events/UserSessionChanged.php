@@ -35,10 +35,7 @@ class UserSessionChanged implements ShouldBroadcast
      * @return \Illuminate\Broadcasting\Channel|array
      */
     public function broadcastOn()
-    {
-        Log::info("Un usuario ha realizado cambio");
-        Log::info("El mensaje es {$this->message}");
-        Log::info("El tipo es {$this->type}");
+    {                
         return new PrivateChannel('notifications');
     }
 }

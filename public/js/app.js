@@ -33291,12 +33291,6 @@ var __webpack_exports__ = {};
   \*****************************/
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 Echo["private"]('notifications').listen('UserSessionChanged', function (e) {
-  var notificationElement = document.getElementById('notification');
-  notificationElement.innerText = e.message;
-  notificationElement.classList.remove('invisible');
-  notificationElement.classList.remove('alert-success');
-  notificationElement.classList.remove('alert-info');
-  notificationElement.classList.add('alert-' + e.type);
   Swal.fire({
     position: 'bottom-end',
     icon: e.type,
