@@ -4,7 +4,6 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\SettingGeneral;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
@@ -22,10 +21,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $data_setting = SettingGeneral::latest()->first();    
+    {         
         $users = User::orderBy('surname','asc')->paginate(10);
-        return view('dashboard/user/index',['users' => $users], compact('data_setting'));
+        return view('dashboard/user/index',['users' => $users]);
     }
 
     /**

@@ -47,8 +47,8 @@
                                     <span class="badge bg-danger">Sin roles</span>
                                     @endforelse
                                 </td>
-                                <td>{{ $user->created_at->format($data_setting->date_format) }}</td>
-                                <td>{{ $user->updated_at->format($data_setting->date_format) }}</td>
+                                <td>{{ $user->created_at->format($settingGeneral->date_format) }}</td>
+                                <td>{{ $user->updated_at->format($settingGeneral->date_format) }}</td>
                                 <td>
                                     @can('user.show')
                                     <a href="{{ route('user.show',$user->id) }}"

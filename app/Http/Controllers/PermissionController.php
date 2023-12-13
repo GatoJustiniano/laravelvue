@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SettingGeneral;
 use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Permission;
 
@@ -16,11 +15,10 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        abort_if(Gate::denies('permissions.index'), 403);
-        $data_setting = SettingGeneral::latest()->first(); 
+        abort_if(Gate::denies('permissions.index'), 403);        
         $permissions = Permission::paginate(10);
 
-        return view('intermediary.permissions.index', compact('permissions', 'data_setting'));
+        return view('intermediary.permissions.index', compact('permissions'));
     }
 
     /**

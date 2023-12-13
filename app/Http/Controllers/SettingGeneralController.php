@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\SettingGeneral;
 
@@ -30,7 +31,7 @@ class SettingGeneralController extends Controller
 
         $logo = $request->file('site_logo');
         if ($logo) {
-            $logoName = $logo->getClientOriginalName();
+            $logoName = Str::random(7);
             $logo->move('public/logo', $logoName);
             $general_setting->site_logo = $logoName;
         }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SettingGeneral;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
@@ -18,11 +17,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        abort_if(Gate::denies('roles.index'), 403);
-        $data_setting = SettingGeneral::latest()->first();    
+        abort_if(Gate::denies('roles.index'), 403);        
         $roles = Role::paginate(10);
 
-        return view('intermediary/roles/index', compact('roles', 'data_setting'));
+        return view('intermediary/roles/index', compact('roles'));
     }
 
     /**

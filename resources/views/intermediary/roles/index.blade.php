@@ -38,7 +38,7 @@
                                 <td>{{ $role->id }}</td>
                                 <td>{{ $role->name }}</td>
                                 <td>{{ $role->guard_name }}</td>
-                                <td class="text-primary">{{ $role->created_at->format($data_setting->date_format . ' h:m:s') }}</td>
+                                <td class="text-primary">{{ $role->created_at->format($settingGeneral->date_format . ' h:m:s') }}</td>
                                 <td>
                                     @forelse ($role->permissions as $permission)
                                     <span class="badge rounded-pill bg-label-info">{{ $permission->name }}</span>

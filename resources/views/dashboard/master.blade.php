@@ -79,6 +79,9 @@
 					</div>
 					<!-- / Content -->
 
+					<div>
+						<p>{{ $settingGeneral }}</p>
+					</div>
 
 					<!-- Footer -->
 					@include('dashboard.partials.footer-master')
