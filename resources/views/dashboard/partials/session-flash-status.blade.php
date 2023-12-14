@@ -14,11 +14,29 @@
     </div>        
 @endif
 
+@if(session('warning'))
+    <div id="autoCloseAlert" class="alert alert-warning alert-dismissible text-center">
+        {{ session('warning') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        </button>
+    </div>        
+@endif
+
 @if(session('status'))
     <script>
         window.onload = function() {
             Swal.fire("{{ session('status') }}", {
                 icon: "status",
+            });
+        };
+    </script>     
+@endif
+
+@if(session('warning'))
+    <script>
+        window.onload = function() {
+            Swal.fire("{{ session('warning') }}", {
+                icon: "warning",
             });
         };
     </script>     

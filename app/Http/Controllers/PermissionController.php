@@ -42,7 +42,7 @@ class PermissionController extends Controller
     {
         Permission::create($request->only('name'));
 
-        return redirect()->route('permissions.index');
+        return redirect()->route('permissions.index')->with('warning','Permiso guardado');
     }
 
     /**
@@ -91,9 +91,9 @@ class PermissionController extends Controller
      */
     public function destroy(Permission $permission)
     {
-        abort_if(Gate::denies('permissions.delete'), 403);
+        abort_if(Gate::denies('permissions.destroy'), 403);
         
         $permission->delete();
-        return redirect()->route('permissions.index');
+        return redirect()->route('permissions.index')->with('info','Permiso eliminado');
     }
 }

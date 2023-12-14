@@ -77,11 +77,7 @@
 						@yield('content')
 
 					</div>
-					<!-- / Content -->
-
-					<div>
-						<p>{{ $settingGeneral }}</p>
-					</div>
+					<!-- / Content -->					
 
 					<!-- Footer -->
 					@include('dashboard.partials.footer-master')

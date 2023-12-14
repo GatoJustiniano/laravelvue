@@ -13,9 +13,9 @@
                         Retroceder
                     </a>
                     @can('permissions.create')
-                    <a class="btn btn-label-success " href="{{ route('permissions.create') }}">
-                        Crear
-                    </a>
+                    <button type="button" class="btn btn-label-success" data-bs-toggle="modal"
+                        data-bs-target="#addNewPermiso"> Crear
+                    </button>
                     @endcan
                 </div>
             </div>
@@ -37,7 +37,8 @@
                                 <td>{{ $permission->id }}</td>
                                 <td>{{ $permission->name }}</td>
                                 <td>{{ $permission->guard_name }}</td>
-                                <td class="text-primary">{{ $permission->created_at->format($settingGeneral->date_format . ' H:m:s') }}</td>
+                                <td class="text-primary">{{ $permission->created_at->format($settingGeneral->date_format
+                                    . ' H:m:s') }}</td>
                                 <td>
                                     @can('permissions.show')
                                     <a href="{{ route('permissions.show',$permission->id) }}"
@@ -62,7 +63,6 @@
                                         </button>
                                     </form>
                                     @endcan
-
                                 </td>
                             </tr>
                             @empty
@@ -75,6 +75,34 @@
                     {{ $permissions->links() }}
 
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="addNewPermiso" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered1 modal-simple modal-add-new-cc">
+        <div class="modal-content p-3 p-md-5">
+            <div class="modal-body">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center mb-4">
+                    <h3>Crear nuevo permiso</h3>
+                </div>
+                <form method="POST" action="{{ route('permissions.store') }}" class="form-horizontal">
+                    @csrf
+                    <div class="col-12 col-md-12">
+                        <label class="form-label" for="name">Nombre del permiso:</label>
+                        <input type="text" name="name" id="name" class="form-control"
+                            placeholder="Ingrese un nombre de permiso" />
+                    </div>
+                    <div class="col-12 text-center mt-3">
+                        <button type="submit" class="btn btn-primary me-sm-3 me-1 mt-3">Guardar</button>
+                        <button type="reset" class="btn btn-label-secondary btn-reset mt-3" data-bs-dismiss="modal"
+                            aria-label="Close">Cancelar
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
