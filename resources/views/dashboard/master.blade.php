@@ -23,6 +23,9 @@
 	<link rel="stylesheet" href="{{ asset('css/bt5/theme-default-dark.css') }}" class="template-customizer-theme-css" />
 	<link rel="stylesheet" href="{{ asset('css/bt5/demo.css') }}" />
 	
+	<link rel="stylesheet" href="{{ asset('css/bt5/datatables-bootstrap5.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/bt5/responsive-bootstrap5.css') }}" />
+	
 	<link rel="stylesheet" href="{{ asset('css/select2/select2.css') }}" />	
 	
 
@@ -110,6 +113,7 @@
 	<script src="{{ asset('js/bt5/libs/hammer.js') }}"></script>
 	<script src="{{ asset('js/bt5/libs/i18n.js') }}"></script>
 	<script src="{{ asset('js/bt5/libs/typeahead.js') }}"></script>
+	<script src="{{ asset('js/bt5/libs/datatables-bootstrap5.js') }}"></script>
 
 	<script src="{{ asset('js/bt5/bootstrap.js') }}"></script>
 	<script src="{{ asset('js/bt5/menu.js') }}"></script>

@@ -4,10 +4,11 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
-use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserPost;
 use App\Http\Requests\UpdateUserPut;
 
@@ -24,6 +25,19 @@ class UserController extends Controller
     {         
         $users = User::orderBy('surname','asc')->paginate(10);
         return view('dashboard/user/index',['users' => $users]);
+    }
+
+    public function listarUsuarios()
+    {         
+        $users = User::all(); 
+        foreach ($users as $user) {
+            $user->canDelete = auth()->user()->can('user.destroy');
+            $user->role_name = $user->roles->pluck('name')->implode(', ') ?: 'Sin roles';
+            $user->v_created_at = $user->created_at->format('d-m-y H:m:s');
+            $user->v_updated_at = $user->updated_at->format('d-m-y H:m:s');
+        }       
+        return DataTables::of($users)            
+            ->toJson();
     }
 
     /**

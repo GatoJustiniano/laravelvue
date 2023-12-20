@@ -64,10 +64,10 @@
                                     @endcan
 
                                     @can('user.destroy')
-                                        <button type="button" class="btn btn-outline-danger btn-icon "
-                                            data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $user->id }}">
-                                            <i class="material-icons">delete</i>
-                                        </button>
+                                    <button type="button" class="btn btn-outline-danger btn-icon "
+                                        data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $user->id }}">
+                                        <i class="material-icons">delete</i>
+                                    </button>
                                     @endcan
                                 </td>
                             </tr>
@@ -75,6 +75,26 @@
                         </tbody>
                     </table>
                     {{ $users->links() }}
+
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive text-nowrap">
+                    <table id="listUsuarios" class="table table-sm mb-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">Apellidos</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Rol</th>
+                                <th scope="col">Creación</th>
+                                <th scope="col">Actualización</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
 
                 </div>
             </div>
@@ -124,8 +144,36 @@
             modal.find('.modal-title').text('Vas a borrar el usuario ' + id)
             
         });
+
+        $('#listUsuarios').DataTable({
+            "ajax" : "{{ route('list_users') }}",
+            "columns" : [
+                {data: 'surname'},
+                {data: 'name'},
+                {data: 'email'},
+                {data: 'role_name', render: function(data) {
+                    return '<span class="badge bg-info">'+data+'</span>'
+                }},                
+                {data: 'v_created_at'},                
+                {data: 'v_updated_at'},                
+                {
+                    data: null,
+                    render: function(data) {
+                        if (data.canDelete) {
+                            return '<button type="button" class="btn btn-outline-danger btn-icon" ' +
+                                'data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="' + data.id + '">' +
+                                '<i class="material-icons">delete</i>' +
+                                '</button>';
+                        } else {
+                            return 'no existe permiso';
+                        }
+                    }
+                },
+            ],            
+        });
     };  
 
+    
 
 </script>
 

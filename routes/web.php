@@ -59,6 +59,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/categories', [WebController::class, 'index'])->name('index');
     
     Route::resource('dashboard/post', PostController::class);
+    Route::get('dashboard/list_users', [UserController::class, 'listarUsuarios'])->name('list_users');
     Route::resource('dashboard/user', UserController::class);
     Route::resource('intermediary/permissions', PermissionController::class);
     Route::resource('intermediary/roles', RoleController::class);
