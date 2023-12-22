@@ -30,8 +30,8 @@ class UserController extends Controller
     public function listarUsuarios()
     {         
         $users = User::all(); 
-        foreach ($users as $user) {
-            $user->canDelete = auth()->user()->can('user.destroy');
+        foreach ($users as $user) {                   
+            // $user->canDelete = auth()->user()->can('user.destroy');
             $user->role_name = $user->roles->pluck('name')->implode(', ') ?: 'Sin roles';
             $user->v_created_at = $user->created_at->format('d-m-y H:m:s');
             $user->v_updated_at = $user->updated_at->format('d-m-y H:m:s');

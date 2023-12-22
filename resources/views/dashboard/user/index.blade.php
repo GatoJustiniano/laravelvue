@@ -103,6 +103,24 @@
 </div>
 
 
+<div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">     
+                <h2>Ingresar datos del user. </h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>                
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -114,16 +132,14 @@
             <div class="modal-body">
                 <p>Seguro que deseas eliminar el usuario seleccionada?</p>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-
+            <div class="modal-footer">                
                 <form id="formDelete" action="{{ route('user.destroy',0) }}" method="POST"
                     data-action="{{ route('user.destroy',0) }}">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-danger">Borrar</button>
                 </form>
-
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -159,14 +175,22 @@
                 {
                     data: null,
                     render: function(data) {
-                        if (data.canDelete) {
-                            return '<button type="button" class="btn btn-outline-danger btn-icon" ' +
-                                'data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="' + data.id + '">' +
-                                '<i class="material-icons">delete</i>' +
-                                '</button>';
-                        } else {
-                            return 'no existe permiso';
-                        }
+                        return `
+                            @can('user.show')
+                                <button type="button" class="btn btn-outline-primary btn-icon"
+                                    data-bs-toggle="modal" data-bs-target="#showModal" data-id="${data.id}">                                
+                                    <i class="material-icons">person</i>
+                                </button>
+                            @endcan
+                            @can('user.destroy')
+                                <button type="button" class="btn btn-outline-danger btn-icon" 
+                                    data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="${data.id}">
+                                    <i class="material-icons">delete</i>
+                                </button>                            
+                            @endcan
+
+                            
+                        `;
                     }
                 },
             ],            
