@@ -146,7 +146,7 @@
 </div>
 
 <script>
-    window.onload = function () {
+    window.onload = function () {        
         $('#deleteModal').on('show.bs.modal', function (event) {
 
             var button = $(event.relatedTarget) 
@@ -162,6 +162,10 @@
         });
 
         $('#listUsuarios').DataTable({
+            "language": {
+                "url": "{{ asset('js/bt5/libs/datatable-i18n-es-ES.json') }}"
+            },
+            
             "ajax" : "{{ route('list_users') }}",
             "columns" : [
                 {data: 'surname'},
@@ -187,14 +191,12 @@
                                     data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="${data.id}">
                                     <i class="material-icons">delete</i>
                                 </button>                            
-                            @endcan
-
-                            
+                            @endcan                            
                         `;
                     }
                 },
             ],            
-        });
+        });                
     };  
 
     
