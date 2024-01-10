@@ -26,7 +26,7 @@
                         <form class="mb-3" method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="mb-3">
-                                <label for="name" class="form-label">Nombres</label>
+                                <label for="name" class="form-label">Nombre</label>
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
@@ -36,10 +36,29 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="surname" class="form-label">Apellidos</label>
-                                <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus>
+                                <label for="middle_name" class="form-label">Segundo Nombre</label>
+                                <input id="middle_name" type="text" class="form-control @error('middle_name') is-invalid @enderror" name="middle_name" value="{{ old('middle_name') }}" autocomplete="middle_name" autofocus>
+                                @error('middle_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="last_name" class="form-label">Apellido Paterno</label>
+                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
 
-                                @error('surname')
+                                @error('last_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="maternal_last_name" class="form-label">Apellido Materno</label>
+                                <input id="maternal_last_name" type="text" class="form-control @error('maternal_last_name') is-invalid @enderror" name="maternal_last_name" value="{{ old('maternal_last_name') }}" autocomplete="maternal_last_name" autofocus>
+
+                                @error('maternal_last_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

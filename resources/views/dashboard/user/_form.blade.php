@@ -1,13 +1,23 @@
 @csrf
 
 <div class="form-group">
-    <label class="form-label" for="name">Nombres</label>
+    <label class="form-label" for="name">Nombre</label>
     <input class="form-control" type="text" name="name" id="name" value="{{ old('name',$user->name) }}">
 </div>
 
 <div class="form-group">
-    <label class="form-label" for="surname">Apellidos</label>
-    <input class="form-control" type="text" name="surname" id="surname" value="{{ old('surname',$user->surname) }}">
+    <label class="form-label" for="middle_name">Segundo Nombre</label>
+    <input class="form-control" type="text" name="middle_name" id="middle_name" value="{{ old('middle_name',$user->middle_name) }}">
+</div>
+
+<div class="form-group">
+    <label class="form-label" for="last_name">Apellido Paterno</label>
+    <input class="form-control" type="text" name="last_name" id="last_name" value="{{ old('last_name',$user->last_name) }}">
+</div>
+
+<div class="form-group">
+    <label class="form-label" for="maternal_last_name">Apellido Materno</label>
+    <input class="form-control" type="text" name="maternal_last_name" id="maternal_last_name" value="{{ old('maternal_last_name',$user->maternal_last_name) }}">
 </div>
 
 <div class="form-group">

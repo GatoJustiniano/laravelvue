@@ -152,7 +152,9 @@ return [
 
     'attributes' => [
         'name' => 'Nombres',
-        'surname' => 'Apellidos',
+        'middle_name' => 'Segundo Nombre',
+        'last_name' => 'Apellido Paterno',
+        'maternal_last_name' => 'Apellido Materno',
         'email' => 'Correo Electrónico',
         'password' => 'Contraseña',
     ],

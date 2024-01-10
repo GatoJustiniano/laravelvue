@@ -1,5 +1,5 @@
 @extends('dashboard.master', ['activePage' => 'users'])
-@section('title', 'Detalles del Usuario '.$user->surname )
+@section('title', 'Detalles del Usuario '.$user->last_name )
 
 @section('content')
 
@@ -33,11 +33,11 @@
                             <ul class="list-unstyled">
                                 <li class="mb-3">
                                     <span class="fw-bold me-2">Nombres:</span>
-                                    <span>{{ $user->name }}</span>
+                                    <span>{{ $user->name . ' ' . $user->middle_name }}</span>
                                 </li>
                                 <li class="mb-3">
                                     <span class="fw-bold me-2">Apellidos:</span>
-                                    <span>{{ $user->surname }}</span>
+                                    <span>{{ $user->last_name . ' ' . $user->maternal_last_name }}</span>
                                 </li>
                                 <li class="mb-3">
                                     <span class="fw-bold me-2">Correo Electrónico:</span>

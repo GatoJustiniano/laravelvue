@@ -26,7 +26,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Apellidos</th>
-                                <th scope="col">Nombre</th>
+                                <th scope="col">Nombres</th>
                                 <th scope="col">Correo</th>
                                 <th scope="col">Rol</th>
                                 <th scope="col">Creación</th>
@@ -37,8 +37,8 @@
                         <tbody>
                             @foreach ($users as $user)
                             <tr>
-                                <td>{{ $user->surname }}</td>
-                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->last_name . ' ' . $user->maternal_last_name }}</td>
+                                <td>{{ $user->name . ' ' . $user->middle_name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
                                     @forelse ($user->roles as $role)
@@ -162,13 +162,10 @@
         });
 
         $('#listUsuarios').DataTable({
-            "language": {
-                "url": "{{ asset('js/bt5/libs/datatable-i18n-es-ES.json') }}"
-            },
-            
+            "language": { "url": "{{ asset('js/bt5/libs/datatable-i18n-es-ES.json') }}" },            
             "ajax" : "{{ route('list_users') }}",
             "columns" : [
-                {data: 'surname'},
+                {data: 'last_name'},
                 {data: 'name'},
                 {data: 'email'},
                 {data: 'role_name', render: function(data) {

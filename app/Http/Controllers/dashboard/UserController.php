@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function index()
     {         
-        $users = User::orderBy('surname','asc')->paginate(10);
+        $users = User::orderBy('last_name','asc')->paginate(10);
         return view('dashboard/user/index',['users' => $users]);
     }
 
@@ -65,7 +65,9 @@ class UserController extends Controller
             $user = User::create(
                     [
                         'name' => $request['name'],
-                        'surname' => $request['surname'],
+                        'middle_name' => $request['middle_name'],
+                        'last_name' => $request['last_name'],
+                        'maternal_last_name' => $request['maternal_last_name'],
                         'email' => $request['email'],
                         'password' => $request['password'],
                     ]
@@ -120,7 +122,9 @@ class UserController extends Controller
         $user->update(
             [
                 'name' => $request['name'],
-                'surname' => $request['surname'],
+                'middle_name' => $request['middle_name'],
+                'last_name' => $request['last_name'],
+                'maternal_last_name' => $request['maternal_last_name'],
                 'email' => $request['email'],
             ]
         );
