@@ -164,12 +164,16 @@
         $('#listUsuarios').DataTable({
             "language": { "url": "{{ asset('js/bt5/libs/datatable-i18n-es-ES.json') }}" },            
             "ajax" : "{{ route('list_users') }}",
-            "columns" : [
-                {data: 'last_name'},
-                {data: 'name'},
+            "columns" : [                
+                {data: 'apellidos'},
+                {data: 'nombres'},
                 {data: 'email'},
                 {data: 'role_name', render: function(data) {
-                    return '<span class="badge bg-info">'+data+'</span>'
+                    if (data === 'Sin roles') {
+                        return '<span class="badge bg-danger">'+data+'</span>'                        
+                    } else {
+                        return '<span class="badge bg-info">'+data+'</span>'                        
+                    }
                 }},                
                 {data: 'v_created_at'},                
                 {data: 'v_updated_at'},                

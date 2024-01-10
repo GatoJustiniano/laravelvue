@@ -32,6 +32,8 @@ class UserController extends Controller
         $users = User::all(); 
         foreach ($users as $user) {                   
             // $user->canDelete = auth()->user()->can('user.destroy');
+            $user->nombres = $user->name . ' ' . $user->middle_name;
+            $user->apellidos = $user->last_name . ' ' . $user->maternal_last_name;
             $user->role_name = $user->roles->pluck('name')->implode(', ') ?: 'Sin roles';
             $user->v_created_at = $user->created_at->format('d-m-y H:m:s');
             $user->v_updated_at = $user->updated_at->format('d-m-y H:m:s');
