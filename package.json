@@ -17,15 +17,15 @@
         "laravel-mix": "^6.0.49",
         "lodash": "^4.17.21",
         "popper.js": "^1.16.1",
-        "postcss": "^8.4.31",
+        "postcss": "^8.4.33",
         "pusher-js": "^8.3.0",
         "resolve-url-loader": "^5.0.0",
-        "sass": "^1.69.5",
-        "sass-loader": "^13.3.2"
+        "sass": "^1.70.0",
+        "sass-loader": "^14.1.0"
     },
     "dependencies": {
-        "@ckeditor/ckeditor5-build-classic": "^40.0.0",
+        "@ckeditor/ckeditor5-build-classic": "^41.0.0",
         "@popperjs/core": "^2.11.8",
-        "sweetalert2": "^11.9.0"
+        "sweetalert2": "^11.10.4"
     }
 }
