@@ -28,6 +28,7 @@ class SettingGeneralController extends Controller
         $general_setting->currency = $data['currency'];                
         $general_setting->date_format = $data['date_format'];
         $general_setting->t_c = $data['t_c'];
+        $general_setting->notification_type = $data['notification_type'];
 
         $logo = $request->file('site_logo');
         if ($logo) {

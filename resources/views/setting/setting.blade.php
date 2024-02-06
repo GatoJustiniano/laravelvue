@@ -84,10 +84,22 @@
                                     <option value="Y/m/d"> yyyy/mm/dd</option>
                                     <option value="Y.m.d"> yyyy.mm.dd</option>
                                 </select>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input type="submit" value="Confirmar" class="btn btn-primary">
-                            </div>
+                            </div>                            
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                <label class="form-label">Formato de fecha</label>
+                                @if($data_setting)
+                                <input type="hidden" name="notification_type_hidden" value="{{$data_setting->notification_type}}">
+                                @endif
+                                <select name="notification_type" class="select2 form-control">
+                                    <option value="sweet-alert">Sweet Alert</option>
+                                    <option value="bootstrap">Badge Bootstrap</option>                                    
+                                </select>
+                            </div>                            
+                        </div>
+                        <div class="col-12 form-group mt-3">
+                            <input type="submit" value="Confirmar" class="btn btn-primary">
                         </div>
                     </div>
                 </form>
@@ -101,7 +113,9 @@
     window.onload = function () {
         $('.select2').select2();
         $('select[name=date_format]').val($("input[name='date_format_hidden']").val());
+        $('select[name=notification_type]').val($("input[name='notification_type_hidden']").val());
         $('.select2').trigger('change');
+        console.log('PROBLEM 1');
     };    
 </script>
 

@@ -12,6 +12,7 @@ class SettingGeneral extends Model
         "site_logo", 
         "currency", 
         "date_format", 
-        "t_c"     
+        "t_c",     
+        "notification_type"     
     ];
 }

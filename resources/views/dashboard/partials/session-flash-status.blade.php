@@ -24,8 +24,10 @@
 
 @if(session('status'))
     <script>
+        console.log('Hola mundo' + "{{ session('status') }}");
+
         window.onload = function() {
-            Swal.fire("{{ session('status') }}", {
+            window.Swal.fire("{{ session('status') }}", {
                 icon: "status",
             });
         };
