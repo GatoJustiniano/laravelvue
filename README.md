@@ -24,3 +24,13 @@ Se agregó en el master, el atributo stack='scripts'
 ## Agregación de bitácora según la IP
 
 Se podrá visualizar el /logs, según la IP y navegador. 
+
+
+## Sistema de mensajes de alertas
+
+En el siguiente orden: 
+- success
+- error 
+- warning 
+- info 
+- question

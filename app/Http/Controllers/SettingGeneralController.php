@@ -37,6 +37,6 @@ class SettingGeneralController extends Controller
             $general_setting->site_logo = $logoName;
         }
         $general_setting->save();    
-        return redirect()->back()->with('status', 'Datos actualizados con éxito');
+        return redirect()->back()->with('success', 'Datos actualizados con éxito');
     }
 }

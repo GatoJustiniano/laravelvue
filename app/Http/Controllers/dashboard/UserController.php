@@ -29,14 +29,15 @@ class UserController extends Controller
 
     public function listarUsuarios()
     {         
+        $data_setting = view()->shared('settingGeneral');
         $users = User::all(); 
         foreach ($users as $user) {                   
             // $user->canDelete = auth()->user()->can('user.destroy');
             $user->nombres = $user->name . ' ' . $user->middle_name;
             $user->apellidos = $user->last_name . ' ' . $user->maternal_last_name;
             $user->role_name = $user->roles->pluck('name')->implode(', ') ?: 'Sin roles';
-            $user->v_created_at = $user->created_at->format('d-m-y H:m:s');
-            $user->v_updated_at = $user->updated_at->format('d-m-y H:m:s');
+            $user->v_created_at = $user->created_at->format($data_setting->date_format . ' H:m:s');
+            $user->v_updated_at = $user->updated_at->format($data_setting->date_format . ' H:m:s');
         }       
         return DataTables::of($users)            
             ->toJson();
@@ -79,7 +80,7 @@ class UserController extends Controller
         
             $user->syncRoles($roles);
             DB::commit();
-            return redirect()->route('user.index')->with('status', 'Usuario creado con éxito!') ;
+            return redirect()->route('user.index')->with('success', 'Usuario creado con éxito!') ;
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -130,7 +131,7 @@ class UserController extends Controller
                 'email' => $request['email'],
             ]
         );
-        return redirect()->route('user.index')->with('status','Usuario actualizado con éxito!');
+        return redirect()->route('user.index')->with('success','Usuario actualizado con éxito!');
     }
 
     /**
@@ -142,6 +143,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->back()->with('status','Usuario eliminado con éxito!');
+        return redirect()->back()->with('success','Usuario eliminado con éxito!');
     }
 }

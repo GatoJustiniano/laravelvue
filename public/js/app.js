@@ -44,7 +44,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 
 
-window.Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+window.Swal = (sweetalert2__WEBPACK_IMPORTED_MODULE_1___default());
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 try {
   // Inicializa Pusher dentro del bloque try

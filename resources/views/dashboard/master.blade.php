@@ -18,6 +18,9 @@
 	<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
+	<!-- Uso del comando mix -->
+	<script src="{{ asset('js/app.js') }}"></script>
+
 	<!-- Core CSS -->
 	<link rel="stylesheet" href="{{ asset('css/bt5/core-dark.css') }}" class="template-customizer-core-css" />
 	<link rel="stylesheet" href="{{ asset('css/bt5/theme-default-dark.css') }}" class="template-customizer-theme-css" />
@@ -129,9 +132,7 @@
 
 	<!-- Page JS -->
 	<script src="{{ asset('js/bt5/dashboards-analytics.js') }}"></script>
-	
-	<!-- Uso del comando mix -->
-	<script src="{{ asset('js/app.js') }}"></script>
+		
 	@stack('scripts')
 </body>
 

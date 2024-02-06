@@ -88,13 +88,13 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <label class="form-label">Formato de fecha</label>
+                                <label class="form-label">Tipo de notificación</label>
                                 @if($data_setting)
                                 <input type="hidden" name="notification_type_hidden" value="{{$data_setting->notification_type}}">
                                 @endif
                                 <select name="notification_type" class="select2 form-control">
-                                    <option value="sweet-alert">Sweet Alert</option>
-                                    <option value="bootstrap">Badge Bootstrap</option>                                    
+                                    <option value="nt-1">Sweet Alert</option>
+                                    <option value="nt-2">Badge Bootstrap</option>                                    
                                 </select>
                             </div>                            
                         </div>
@@ -114,8 +114,7 @@
         $('.select2').select2();
         $('select[name=date_format]').val($("input[name='date_format_hidden']").val());
         $('select[name=notification_type]').val($("input[name='notification_type_hidden']").val());
-        $('.select2').trigger('change');
-        console.log('PROBLEM 1');
+        $('.select2').trigger('change');        
     };    
 </script>
 
