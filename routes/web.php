@@ -24,49 +24,41 @@ use App\Http\Controllers\dashboard\PostCommentController;
 |
 */
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [WebController::class, 'index'])->name('index');
 
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
 
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+
     Route::get('logs', [LogViewerController::class, 'index']);
 
-    Route::view('/game', 'game.show')->name('game.show');
-    
-    Route::post('dashboard/post/{post}/image', [PostController::class, 'image'])->name('post.image');
-    
-    //route para cargar image con ckeditor
-    Route::post('dashboard/post/content_image', [PostController::class, 'contentImage']);
+    Route::get('setting/general_setting', [SettingGeneralController::class,'generalSetting'])->name('setting.general');
+	Route::post('setting/general_setting_store', [SettingGeneralController::class,'generalSettingStore'])->name('setting.generalStore');
+
+    Route::resource('intermediary/permissions', PermissionController::class);
+    Route::resource('intermediary/roles', RoleController::class);
+
+    Route::get('dashboard/list_users', [UserController::class, 'listarUsuarios'])->name('list_users');
+    Route::resource('dashboard/user', UserController::class);        
     
     Route::resource('dashboard/category', CategoryController::class);
     Route::resource('dashboard/contact', ContactController::class)->only(['index','show','destroy']);
     Route::resource('dashboard/post-comment', PostCommentController::class)->only(['index','show','destroy']);
     Route::get('dashboard/post-comment/{post}/post', [PostCommentController::class,'post'])->name('post-comment.post');
     Route::get('dashboard/post-comment/j-show/{postComment}', [PostCommentController::class,'jshow']);
-    Route::post('dashboard/post-comment/proccess/{postComment}', [PostCommentController::class,'proccess']);
-    
-    Route::get('/detail/{id}', [WebController::class, 'detail']);
-    Route::get('/post-category/{id}', [WebController::class, 'post_category']);
-    
-    Route::get('/contact', [WebController::class, 'contact']);
-    
-    
-    
-    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-    
-    Route::get('/categories', [WebController::class, 'index'])->name('index');
+    Route::post('dashboard/post-comment/proccess/{postComment}', [PostCommentController::class,'proccess']);    
     
     Route::resource('dashboard/post', PostController::class);
-    Route::get('dashboard/list_users', [UserController::class, 'listarUsuarios'])->name('list_users');
-    Route::resource('dashboard/user', UserController::class);
-    Route::resource('intermediary/permissions', PermissionController::class);
-    Route::resource('intermediary/roles', RoleController::class);
+    Route::post('dashboard/post/{post}/image', [PostController::class, 'image'])->name('post.image');    
+    // route para cargar image con ckeditor
+    Route::post('dashboard/post/content_image', [PostController::class, 'contentImage']);  
+    
+    
+    Route::view('/game', 'game.show')->name('game.show');
 
-
-    Route::get('setting/general_setting', [SettingGeneralController::class,'generalSetting'])->name('setting.general');
-	Route::post('setting/general_setting_store', [SettingGeneralController::class,'generalSettingStore'])->name('setting.generalStore');
+    
 
 });
 

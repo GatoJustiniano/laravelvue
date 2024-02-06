@@ -6,7 +6,7 @@
 <div class="container-xxl">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">{{env('APP_NAME')}}</a>
+            <a class="navbar-brand" href="/">{{ $settingGeneral->site_title }}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-ex-7">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -43,7 +43,7 @@
 
         <section class="row">
             <div class="col-7">
-                <h1 class="">Bienvenido a {{env('APP_NAME')}}! </h1>
+                <h1 class="">Bienvenido a {{ $settingGeneral->site_title }}! </h1>
                 <p class=""> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut ex quam. Fusce sit amet
                     ultrices neque. Suspendisse vehicula dictum ullamcorper. Aliquam sodales fermentum massa in
                     vehicula. Suspendisse eu ultrices nisi. Sed pretium nunc at fermentum rhoncus. Integer erat nisi,

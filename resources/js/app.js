@@ -8,7 +8,8 @@ Echo.private('notifications')
             title: e.message,
             showConfirmButton: false,
             timer: 5000
-        });
-    });
+        });        
+    }
+);
 
 

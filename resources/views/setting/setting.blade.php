@@ -40,10 +40,11 @@
                                 </span>
                                 @endif
                             </div>
-                            <div class="col-md-2">                            
+                            <div class="col-md-2 text-center">      
+                                <label class="invisible">.</label>                      
                                 @if ($data_setting->site_logo)
                                 <img src="{{ url('public/logo', $data_setting->site_logo) }}"
-                                    width="50">&nbsp;&nbsp;
+                                    width="50">
                                 @endif
                             </div>
                         </div>
@@ -111,7 +112,9 @@
 <script>
 
     window.onload = function () {
-        $('.select2').select2();
+        $('.select2').select2({
+            minimumResultsForSearch: Infinity
+        });
         $('select[name=date_format]').val($("input[name='date_format_hidden']").val());
         $('select[name=notification_type]').val($("input[name='notification_type_hidden']").val());
         $('.select2').trigger('change');        
