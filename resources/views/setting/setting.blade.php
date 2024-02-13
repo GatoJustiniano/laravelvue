@@ -30,9 +30,15 @@
                         </div>
                         <div class="row col-md-6 mb-3">                            
                             <div class="col form-group">
-                                <label class="form-label" for="site_logo">Logo del sitio</label>
+                                <label class="form-label" for="site_logo">Logo del sitio                                     
+                                    <span class="badge btn-secondary" 
+                                        data-bs-toggle="tooltip" data-bs-placement="right" 
+                                        title="Logo del sitio. Formato de archivo permitido: .svg no mayor a 1mb">
+                                        <i class='bx bx-info-circle'></i>
+                                    </span>
+                                </label>
                                 <input type="file" name="site_logo" id="site_logo" 
-                                    class="form-control"  accept="image/png, image/jpeg" 
+                                    class="form-control"  accept=".svg"  
                                 />
                                 @if($errors->has('site_logo'))
                                 <span>
@@ -43,8 +49,8 @@
                             <div class="col-md-2 text-center">      
                                 <label class="invisible">.</label>                      
                                 @if ($data_setting->site_logo)
-                                <img src="{{ url('public/logo', $data_setting->site_logo) }}"
-                                    width="50">
+                                <img src="{{ url('img_logo', $data_setting->site_logo) }}"                                    
+                                    width="50" alt="img logo" >
                                 @endif
                             </div>
                         </div>

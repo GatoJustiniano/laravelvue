@@ -3,7 +3,7 @@
     <div class="app-brand demo ">
         <a href="/dashboard" class="app-brand-link">
             <span class="app-brand-logo demo">
-                <img width="30px" src="{{ asset('garrita.svg')}}" alt ="icon garrita" />
+                <img width="30px" src="{{ asset('img_logo/' . $data_setting->site_logo )}}" alt ="icon garrita" />
             </span>
             <span class="app-brand-text demo menu-text fw-bolder ms-2">
                 {{ $settingGeneral->site_title }}

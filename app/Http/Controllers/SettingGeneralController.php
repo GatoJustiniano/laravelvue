@@ -19,7 +19,7 @@ class SettingGeneralController extends Controller
     public function generalSettingStore(Request $request)
     {
         $this->validate($request, [
-            'site_logo' => 'image|mimes:jpg,jpeg,png,gif|max:100000',
+            'site_logo' => 'file|mimes:svg|max:512',
         ]);
 
         $data = $request->except('site_logo');        
@@ -34,8 +34,8 @@ class SettingGeneralController extends Controller
 
         $logo = $request->file('site_logo');
         if ($logo) {
-            $logoName = Str::random(7);
-            $logo->move('public/logo', $logoName);
+            $logoName = 'logo_' . Str::random(7) . '.' . $logo->getClientOriginalExtension();
+            $logo->move('img_logo', $logoName);
             $general_setting->site_logo = $logoName;
         }
         $general_setting->save();    
