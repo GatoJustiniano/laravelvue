@@ -6,7 +6,7 @@
                 <img width="30px" src="{{ asset('garrita.svg')}}" alt ="icon garrita" />
             </span>
             <span class="app-brand-text demo menu-text fw-bolder ms-2">
-                {{env('APP_NAME')}}
+                {{ $data_setting->site_title }}
             </span>
         </a>
 

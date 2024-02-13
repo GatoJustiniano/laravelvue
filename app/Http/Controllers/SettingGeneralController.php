@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\SettingGeneral;
+use Illuminate\Support\Facades\Gate;
 
 class SettingGeneralController extends Controller
 {
     public function generalSetting()
     {
+        abort_if(Gate::denies('setting'), 403);        
         $data_setting = SettingGeneral::latest()->first();                
         return view('setting.setting', compact('data_setting'));
     }
