@@ -111,7 +111,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
-    {
+    {        
         Gate::authorize('user.edit');
         $roles = Role::all()->pluck('name', 'id');
         $user->load('roles');
@@ -126,7 +126,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateUserPut $request, User $user)
-    {
+    {        
         $user->update(
             [
                 'name' => $request['name'],
@@ -136,6 +136,13 @@ class UserController extends Controller
                 'email' => $request['email'],
             ]
         );
+        $user->syncRoles([]);
+        if($request->has('roles') && !empty($request['roles'])) {
+            $roles = $request['roles'];        
+            foreach($roles as $role) {
+                $user->assignRole($role);
+            }
+        }
         return redirect()->route('user.index')->with('success','Usuario actualizado con éxito!');
     }
 

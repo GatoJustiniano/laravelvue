@@ -46,7 +46,10 @@
                                     <div class="form-check">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="checkbox" name="roles[]"
-                                                value="{{ $id }}"
+                                                value="{{ $role }}"
+                                                @foreach ($user->roles as $isRol)
+                                                    {{ $isRol->id == $id ? 'checked' : '' }}
+                                                @endforeach                                            
                                             >
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
