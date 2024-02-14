@@ -30,8 +30,8 @@
                         </div>
                         <div class="row col-md-6 mb-3">                            
                             <div class="col form-group">
-                                <label class="form-label" for="site_logo">Logo del sitio                                     
-                                    <span class="badge btn-secondary" 
+                                <label class="form-label">Logo del sitio                                     
+                                    <span class="badge bg-secondary" 
                                         data-bs-toggle="tooltip" data-bs-placement="right" 
                                         title="Logo del sitio. Formato de archivo permitido: .svg no mayor a 1mb">
                                         <i class='bx bx-info-circle'></i>

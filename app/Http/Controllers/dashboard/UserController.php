@@ -11,6 +11,7 @@ use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserPost;
 use App\Http\Requests\UpdateUserPut;
+use Illuminate\Support\Facades\Gate;
 
 
 class UserController extends Controller
@@ -23,6 +24,7 @@ class UserController extends Controller
      */
     public function index()
     {         
+        Gate::authorize('user.index');
         $users = User::orderBy('last_name','asc')->paginate(10);
         return view('dashboard/user/index',['users' => $users]);
     }
@@ -50,6 +52,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        Gate::authorize('user.create');
         $roles = Role::all()->pluck('name', 'id');
         return view('dashboard/user/create',['user'=> new User()], compact('roles'));
     }
@@ -97,6 +100,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        Gate::authorize('user.show');
         return view('dashboard/user/show', ['user' => $user]);
     }
 
@@ -108,6 +112,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        Gate::authorize('user.edit');
         $roles = Role::all()->pluck('name', 'id');
         $user->load('roles');
         return view('dashboard/user/edit', compact('user', 'roles'));
@@ -142,6 +147,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        Gate::authorize('user.destroy');
         $user->delete();
         return redirect()->back()->with('success','Usuario eliminado con éxito!');
     }
