@@ -42,7 +42,7 @@ class PermissionController extends Controller
     {
         Permission::create($request->only('name'));
 
-        return redirect()->route('permissions.index')->with('warning','Permiso guardado');
+        return redirect()->route('permissions.index')->with('success','Permiso guardado');
     }
 
     /**
@@ -80,7 +80,7 @@ class PermissionController extends Controller
     {
         $permission->update($request->only('name'));
 
-        return redirect()->route('permissions.index');
+        return redirect()->route('permissions.index')->with('success','Permiso actualizado');
     }
 
     /**

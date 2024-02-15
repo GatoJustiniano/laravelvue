@@ -47,7 +47,7 @@ class RoleController extends Controller
         $role = Role::create($request->only('name'));
         $role->syncPermissions($request->input('permissions', []));
 
-        Session::flash('status', 'Rol creado exitosamente con nombre: '. $role->name);
+        Session::flash('success', 'Rol creado exitosamente con nombre: '. $role->name);
         return redirect()->route('roles.index');
     }
 
@@ -92,7 +92,7 @@ class RoleController extends Controller
         $role->update($request->only('name'));
         $role->syncPermissions($request->input('permissions', []));
 
-        return redirect()->route('roles.index')->with('status', 'Permisos actualizados para el Rol '.$role->name);
+        return redirect()->route('roles.index')->with('success', 'Permisos actualizados para el Rol '.$role->name);
     }
 
     /**
