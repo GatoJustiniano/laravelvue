@@ -30,11 +30,11 @@
                             </p>
                             <p class="mb-2">
                                 <span class="me-1 fw-bold">Fecha de Creación:</span>
-                                <span class="">{{ $role->created_at->format($settingGeneral->date_format . ' h:m:s') }}</span>
+                                <span class="">{{ $role->created_at->format($settingGeneral->date_format . ' H:i:s') }}</span>
                             </p>
                             <p>
                                 <span class="me-1 fw-bold">Fecha de Actualización:</span>
-                                <span class="">{{$role->updated_at->format($settingGeneral->date_format . ' h:m:s')}} </span>
+                                <span class="">{{$role->updated_at->format($settingGeneral->date_format . ' H:i:s')}} </span>
                             </p>
                         </div>
                         <div class="ms-2">

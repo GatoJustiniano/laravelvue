@@ -27,7 +27,7 @@
                                 <th scope="col"> # </th>
                                 <th scope="col"> Nombre </th>
                                 <th scope="col"> Guard </th>
-                                <th scope="col"> Fecha de creación </th>
+                                <th scope="col"> Fecha actualización </th>
                                 <th scope="col"> Permisos </th>
                                 <th scope="col"> Acciones </th>
                             </tr>
@@ -38,7 +38,7 @@
                                 <td>{{ $role->id }}</td>
                                 <td>{{ $role->name }}</td>
                                 <td>{{ $role->guard_name }}</td>
-                                <td class="text-primary">{{ $role->created_at->format($settingGeneral->date_format . ' h:m:s') }}</td>
+                                <td class="text-primary">{{ $role->updated_at->format($settingGeneral->date_format . ' H:i:s') }}</td>
                                 <td>
                                     @forelse ($role->permissions as $permission)
                                     <span class="badge rounded-pill bg-label-info">{{ $permission->name }}</span>

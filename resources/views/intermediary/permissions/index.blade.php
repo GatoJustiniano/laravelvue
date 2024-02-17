@@ -38,7 +38,7 @@
                                 <td>{{ $permission->name }}</td>
                                 <td>{{ $permission->guard_name }}</td>
                                 <td class="text-primary">{{ $permission->created_at->format($settingGeneral->date_format
-                                    . ' H:m:s') }}</td>
+                                    . ' H:i:s') }}</td>
                                 <td>
                                     @can('permissions.show')
                                     <a href="{{ route('permissions.show',$permission->id) }}"

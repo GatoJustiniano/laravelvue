@@ -25638,7 +25638,7 @@ runtime.setup(pusher_Pusher);
 /***/ (function(module) {
 
 /*!
-* sweetalert2 v11.10.4
+* sweetalert2 v11.10.5
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -28595,7 +28595,7 @@ runtime.setup(pusher_Pusher);
       handleInputValidator(instance, inputValue, type);
     } else if (input && !input.checkValidity()) {
       instance.enableButtons();
-      instance.showValidationMessage(innerParams.validationMessage);
+      instance.showValidationMessage(innerParams.validationMessage || input.validationMessage);
     } else if (type === 'deny') {
       deny(instance, inputValue);
     } else {
@@ -30259,7 +30259,7 @@ runtime.setup(pusher_Pusher);
     };
   });
   SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '11.10.4';
+  SweetAlert.version = '11.10.5';
 
   var Swal = SweetAlert;
   // @ts-ignore

@@ -38,8 +38,8 @@ class UserController extends Controller
             $user->nombres = $user->name . ' ' . $user->middle_name;
             $user->apellidos = $user->last_name . ' ' . $user->maternal_last_name;
             $user->role_name = $user->roles->pluck('name')->implode(', ') ?: 'Sin roles';
-            $user->v_created_at = $user->created_at->format($data_setting->date_format . ' H:m:s');
-            $user->v_updated_at = $user->updated_at->format($data_setting->date_format . ' H:m:s');
+            $user->v_created_at = $user->created_at->format($data_setting->date_format . ' H:i:s');
+            $user->v_updated_at = $user->updated_at->format($data_setting->date_format . ' H:i:s');
         }       
         return DataTables::of($users)            
             ->toJson();

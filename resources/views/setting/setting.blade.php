@@ -9,7 +9,7 @@
             <div
                 class="card-header sticky-element bg-label-secondary d-flex justify-content-sm-between align-items-sm-center flex-column flex-sm-row">
                 <h5 class="card-title mb-sm-0 me-2">Configuración General</h5>
-                <p class="card-title mb-sm-0 me-2">Modificado {{ $data_setting->updated_at->format($data_setting->date_format . ' H:m:s') }}</p>
+                <p class="card-title mb-sm-0 me-2">Modificado {{ $data_setting->updated_at->format($data_setting->date_format . ' H:i:s') }}</p>
                 <div class="action-btns">
                     <a class="btn btn-label-info me-3" href="{{ URL::previous() }}">
                         Retroceder
