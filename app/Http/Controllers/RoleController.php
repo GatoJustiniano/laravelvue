@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Gate;
@@ -18,8 +19,13 @@ class RoleController extends Controller
     public function index()
     {
         abort_if(Gate::denies('roles.index'), 403);        
-        $roles = Role::paginate(10);
-
+        $roles = Role::paginate(5);
+        foreach ($roles as $rol) {  
+            $rol->cant_user = User::with('roles')->get()->filter(
+                fn ($user) => $user->roles->where('name', $rol->name)->toArray()
+            )->count();            
+        }
+        
         return view('intermediary/roles/index', compact('roles'));
     }
 

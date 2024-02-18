@@ -2,7 +2,36 @@
 @section('title', 'Listado de Roles')
 
 @section('content')
-<div class="row">
+<div class="row">    
+
+    <div class="row col-md-12 mb-3">
+        @forelse ($roles as $role)
+        <div class="col-xl-4 col-lg-6 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h6 class="fw-normal">Total {{ $role->cant_user }} usuarios</h6>              
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <div class="role-heading">
+                            <h4 class="mb-1">{{ $role->name }}</h4>                            
+                        </div>
+                        @can('roles.edit')
+                            <a href="{{ route('roles.edit',$role->id) }}"
+                                class="text-muted btn-icon ">
+                                <i class="material-icons">edit</i>
+                            </a>
+                        @endcan                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        @empty
+        <tr>
+            <h4>Sin registros.</h4>
+        </tr>
+        @endforelse
+    </div>
     <div class="col-12">
         <div class="card">
             <div
@@ -47,25 +76,26 @@
                                     @endforelse
                                 </td>
                                 <td>
-                                    @can('roles.show')
-                                    <a href="{{ route('roles.show',$role->id) }}"
-                                        class="btn btn-outline-primary btn-icon ">
-                                        <i class="material-icons">person</i>
-                                    </a>
-                                    @endcan
-                                    @can('roles.edit')
-                                    <a href="{{ route('roles.edit',$role->id) }}"
-                                        class="btn btn-outline-primary btn-icon ">
-                                        <i class="material-icons">edit</i>
-                                    </a>
-                                    @endcan
-                                    @can('roles.destroy')
-                                        <button type="button" class="btn btn-outline-danger btn-icon "
-                                            data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $role->id }}">
-                                            <i class="material-icons">delete</i>
-                                        </button>                                    
-                                    @endcan
-
+                                    <div class="d-inline-block text-nowrap">
+                                        @can('roles.show')
+                                        <a href="{{ route('roles.show',$role->id) }}"
+                                            class="btn btn-outline-secondary btn-icon btn-sm">
+                                            <i class="material-icons">visibility</i>
+                                        </a>
+                                        @endcan
+                                        @can('roles.edit')
+                                        <a href="{{ route('roles.edit',$role->id) }}"
+                                            class="btn btn-outline-secondary btn-icon btn-sm">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                        @endcan
+                                        @can('roles.destroy')
+                                            <button type="button" class="btn btn-outline-secondary btn-icon btn-sm"
+                                                data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $role->id }}">
+                                                <i class="material-icons">delete</i>
+                                            </button>                                    
+                                        @endcan
+                                    </div>
                                 </td>
                             </tr>
                             @empty

@@ -27,7 +27,7 @@
                                 <th scope="col"> # </th>
                                 <th scope="col"> Nombre </th>
                                 <th scope="col"> Guard </th>
-                                <th scope="col"> Fecha de creación </th>
+                                <th scope="col"> Fecha Actualización </th>
                                 <th scope="col"> Acciones </th>
                             </tr>
                         </thead>
@@ -37,32 +37,34 @@
                                 <td>{{ $permission->id }}</td>
                                 <td>{{ $permission->name }}</td>
                                 <td>{{ $permission->guard_name }}</td>
-                                <td class="text-primary">{{ $permission->created_at->format($settingGeneral->date_format
+                                <td class="text-primary">{{ $permission->updated_at->format($settingGeneral->date_format
                                     . ' H:i:s') }}</td>
                                 <td>
-                                    @can('permissions.show')
-                                    <a href="{{ route('permissions.show',$permission->id) }}"
-                                        class="btn btn-outline-primary btn-icon ">
-                                        <i class="material-icons">person</i>
-                                    </a>
-                                    @endcan
-                                    @can('permissions.edit')
-                                    <a href="{{ route('permissions.edit',$permission->id) }}"
-                                        class="btn btn-outline-primary btn-icon ">
-                                        <i class="material-icons">edit</i>
-                                    </a>
-                                    @endcan
-                                    @can('permissions.destroy')
-                                    <form action="{{ route('permissions.destroy', $permission->id) }}" method="post"
-                                        onsubmit="return confirm('Está seguro de eliminar?')"
-                                        style="display: inline-block;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" rel="tooltip" class="btn btn-outline-danger btn-icon">
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                    </form>
-                                    @endcan
+                                    <div class="d-inline-block text-nowrap">
+                                        @can('permissions.show')
+                                        <a href="{{ route('permissions.show',$permission->id) }}"
+                                            class="btn btn-outline-secondary btn-icon btn-sm">
+                                            <i class="material-icons">person</i>
+                                        </a>
+                                        @endcan
+                                        @can('permissions.edit')
+                                        <a href="{{ route('permissions.edit',$permission->id) }}"
+                                            class="btn btn-outline-secondary btn-icon btn-sm">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                        @endcan
+                                        @can('permissions.destroy')
+                                        <form action="{{ route('permissions.destroy', $permission->id) }}" method="post"
+                                            onsubmit="return confirm('Está seguro de eliminar?')"
+                                            style="display: inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" rel="tooltip" class="btn btn-outline-secondary btn-icon btn-sm" >
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </form>
+                                        @endcan
+                                    </div>
                                 </td>
                             </tr>
                             @empty

@@ -50,25 +50,27 @@
                                 <td>{{ $user->created_at->format($settingGeneral->date_format) }}</td>
                                 <td>{{ $user->updated_at->format($settingGeneral->date_format) }}</td>
                                 <td>
-                                    @can('user.show')
-                                    <a href="{{ route('user.show',$user->id) }}"
-                                        class="btn btn-outline-primary btn-icon ">
-                                        <i class="material-icons">person</i>
-                                    </a>
-                                    @endcan
-                                    @can('user.edit')
-                                    <a href="{{ route('user.edit',$user->id) }}"
-                                        class="btn btn-outline-primary btn-icon ">
-                                        <i class="material-icons">edit</i>
-                                    </a>
-                                    @endcan
-
-                                    @can('user.destroy')
-                                    <button type="button" class="btn btn-outline-danger btn-icon "
-                                        data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $user->id }}">
-                                        <i class="material-icons">delete</i>
-                                    </button>
-                                    @endcan
+                                    <div class="d-inline-block text-nowrap">
+                                        @can('user.show')
+                                        <a href="{{ route('user.show',$user->id) }}"
+                                            class="btn btn-outline-secondary btn-sm btn-icon ">
+                                            <i class="material-icons">visibility</i>
+                                        </a>
+                                        @endcan
+                                        @can('user.edit')
+                                        <a href="{{ route('user.edit',$user->id) }}"
+                                            class="btn btn-outline-secondary btn-sm btn-icon ">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                        @endcan
+    
+                                        @can('user.destroy')
+                                        <button type="button" class="btn btn-outline-secondary btn-sm btn-icon "
+                                            data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $user->id }}">
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                        @endcan
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach
@@ -182,13 +184,13 @@
                     render: function(data) {
                         return `
                             @can('user.show')
-                                <button type="button" class="btn btn-outline-primary btn-icon"
+                                <button type="button" class="btn btn-outline-secondary btn-icon"
                                     data-bs-toggle="modal" data-bs-target="#showModal" data-id="${data.id}">                                
                                     <i class="material-icons">person</i>
                                 </button>
                             @endcan
                             @can('user.destroy')
-                                <button type="button" class="btn btn-outline-danger btn-icon" 
+                                <button type="button" class="btn btn-outline-secondary btn-icon" 
                                     data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="${data.id}">
                                     <i class="material-icons">delete</i>
                                 </button>                            
