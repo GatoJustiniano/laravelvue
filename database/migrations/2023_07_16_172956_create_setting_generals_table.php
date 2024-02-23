@@ -20,6 +20,7 @@ class CreateSettingGeneralsTable extends Migration
             $table->string('currency');
             $table->string('date_format');
             $table->string('t_c');
+            $table->string('notification_type');
             $table->timestamps();
         });
     }
