@@ -70,6 +70,10 @@
     </div>
 </div>
 
-<input class="btn btn-outline-success mt-3" type="submit" value="Enviar">
+<div class="row ">
+    <div class="text-center">
+        <input class="btn btn-outline-success" type="submit" value="{{ __('Save') }}">        
+    </div>
+</div>
 
 

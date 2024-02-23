@@ -40,8 +40,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('intermediary/permissions', PermissionController::class);
     Route::resource('intermediary/roles', RoleController::class);
 
-    Route::get('dashboard/list_users', [UserController::class, 'listarUsuarios'])->name('list_users');
     Route::resource('dashboard/user', UserController::class);        
+    Route::get('dashboard/list_users', [UserController::class, 'listarUsuarios'])->name('list_users');
     
     Route::resource('dashboard/category', CategoryController::class);
     Route::resource('dashboard/contact', ContactController::class)->only(['index','show','destroy']);
