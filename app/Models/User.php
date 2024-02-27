@@ -54,4 +54,31 @@ class User extends Authenticatable
         $this->attributes["password"] = Hash::make($value);
     }
     
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'customer_id');
+    }
+
+    public function payments()
+    {
+        return $this->hasManyThrough(Payment::class, Order::class, 'customer_id');
+    }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function isAdmin()
+    {
+        return $this->admin_since != null
+            && $this->admin_since->lessThanOrEqualTo(now());
+    }    
+
+    public function getProfileImageAttribute()
+    {
+        return $this->image
+            ? "images/{$this->image->path}"
+            : 'https://www.gravatar.com/avatar/404?d=mp';
+    }
 }
