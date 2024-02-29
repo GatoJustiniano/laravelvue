@@ -27,18 +27,18 @@ class Product extends Model
      *
      * @return void
      */
-    protected static function booted()
-    {
-        static::addGlobalScope(new AvailableScope);
+    // protected static function booted()
+    // {
+    //     static::addGlobalScope(new AvailableScope);
 
-        static::updated(function($product) {
-            if ($product->stock == 0 && $product->status == 'available') {
-                $product->status = 'unavailable';
+    //     static::updated(function($product) {
+    //         if ($product->stock == 0 && $product->status == 'available') {
+    //             $product->status = 'unavailable';
 
-                $product->save();
-            }
-        });
-    }
+    //             $product->save();
+    //         }
+    //     });
+    // }
 
     public function carts()
     {

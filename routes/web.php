@@ -9,6 +9,7 @@ use App\Http\Controllers\dashboard\PostController;
 use App\Http\Controllers\dashboard\UserController;
 use App\Http\Controllers\SettingGeneralController;
 use App\Http\Controllers\dashboard\ContactController;
+use App\Http\Controllers\dashboard\ProductController;
 use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 use App\Http\Controllers\dashboard\CategoryController;
 use App\Http\Controllers\dashboard\PostCommentController;
@@ -58,7 +59,7 @@ Route::middleware(['auth'])->group(function () {
     
     Route::view('/game', 'game.show')->name('game.show');
 
-    
+    Route::resource('product', ProductController::class);
 
 });
 

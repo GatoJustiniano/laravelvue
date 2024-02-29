@@ -5,18 +5,20 @@ namespace App\Http\Controllers\dashboard;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\Controller;
+
 class ProductController extends Controller
 {
     public function index()
     {
-        return view('products.index')->with([
-            'products' => Product::without('images')->get(),
+        return view('dashboard.products.index')->with([
+            'products' => Product::without('images')->paginate(10),
         ]);
     }
 
     public function create()
     {
-        return view('products.create');
+        return view('dashboard.products.create');
     }
 
     public function store(ProductRequest $request)
@@ -30,21 +32,21 @@ class ProductController extends Controller
         }
 
         return redirect()
-            ->route('products.index')
+            ->route('dashboard.products.index')
             ->withSuccess("The new product with id {$product->id} was created");
         // ->with(['success' => "The new product with id {$product->id} was created"]);
     }
 
     public function show(Product $product)
     {
-        return view('products.show')->with([
+        return view('dashboard.products.show')->with([
             'product' => $product,
         ]);
     }
 
     public function edit(Product $product)
     {
-        return view('products.edit')->with([
+        return view('dashboard.products.edit')->with([
             'product' => $product,
         ]);
     }
@@ -70,7 +72,7 @@ class ProductController extends Controller
         }
 
         return redirect()
-            ->route('products.index')
+            ->route('dashboard.products.index')
             ->withSuccess("The product with id {$product->id} was edited");
     }
 
@@ -79,7 +81,7 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()
-            ->route('products.index')
+            ->route('dashboard.products.index')
             ->withSuccess("The product with id {$product->id} was deleted");
     }
 }
