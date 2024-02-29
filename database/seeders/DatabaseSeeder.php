@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        llenadoExtra();
+        $this->llenadoExtra();
         // $this->call([
         //     CategoryTableSeeder::class,
         //     PostTableSeeder::class,

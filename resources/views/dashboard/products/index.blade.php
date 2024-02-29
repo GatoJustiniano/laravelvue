@@ -39,13 +39,13 @@
                             @foreach ($products as $product)
                             <tr>
                                 <td>{{ $product->id }}</td>
-                                <td>{{ $product->title }}</td>
-                                <td>{{ $product->description }}</td>
-                                <td>
-                                    <span class="badge bg-info">{{ $role->price }}</span>                                    
+                                <td>{{ Illuminate\Support\Str::limit($product->title, 10) }}</td>
+                                <td>{{ Illuminate\Support\Str::limit($product->description, 10) }}</td>
+                                <td class="text-center">
+                                    <span class="badge bg-secondary">{{ $product->price  . ' ' .$settingGeneral->currency }}</span>                                    
                                 </td>
                                 <td>
-                                    <span class="badge bg-info">{{ $role->stock }}</span>                                    
+                                    <span class="badge bg-secondary">{{ $product->stock }}</span>                                    
                                 </td>
                                 <td>{{ $product->created_at->format($settingGeneral->date_format) }}</td>
                                 <td>{{ $product->updated_at->format($settingGeneral->date_format) }}</td>
