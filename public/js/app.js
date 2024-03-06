@@ -3637,7 +3637,11 @@ var Echo = /*#__PURE__*/function () {
   }, {
     key: "connect",
     value: function connect() {
-      if (this.options.broadcaster == 'pusher') {
+      if (this.options.broadcaster == 'reverb') {
+        this.connector = new PusherConnector(_extends(_extends({}, this.options), {
+          cluster: ''
+        }));
+      } else if (this.options.broadcaster == 'pusher') {
         this.connector = new PusherConnector(this.options);
       } else if (this.options.broadcaster == 'socket.io') {
         this.connector = new SocketIoConnector(this.options);
@@ -25638,7 +25642,7 @@ runtime.setup(pusher_Pusher);
 /***/ (function(module) {
 
 /*!
-* sweetalert2 v11.10.5
+* sweetalert2 v11.10.6
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -29897,7 +29901,7 @@ runtime.setup(pusher_Pusher);
      * @returns {Promise<string | void>}
      */
     email: function email(string, validationMessage) {
-      return /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9-]{2,24}$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid email address');
+      return /^[a-zA-Z0-9.+_'-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9-]+$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid email address');
     },
     /**
      * @param {string} string
@@ -30259,7 +30263,7 @@ runtime.setup(pusher_Pusher);
     };
   });
   SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '11.10.5';
+  SweetAlert.version = '11.10.6';
 
   var Swal = SweetAlert;
   // @ts-ignore
