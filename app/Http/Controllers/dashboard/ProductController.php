@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Models\Product;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
+use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
@@ -14,6 +16,19 @@ class ProductController extends Controller
         return view('dashboard.products.index')->with([
             'products' => Product::without('images')->paginate(10),
         ]);
+    }
+
+    public function listarProducts()
+    {         
+        $data_setting = view()->shared('settingGeneral');
+        $products = Product::all(); 
+        foreach ($products as $product) {                                                                   
+            $product->description_small = Str::limit($product->description, 10);
+            $product->v_created_at = $product->created_at->format($data_setting->date_format . ' H:i:s');
+            $product->v_updated_at = $product->updated_at->format($data_setting->date_format . ' H:i:s');
+        }       
+        return DataTables::of($products)            
+            ->toJson();
     }
 
     public function create()

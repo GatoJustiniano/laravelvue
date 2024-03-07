@@ -78,7 +78,28 @@
                     </table>
                     {{ $products->links() }}
                 </div>
-            </div>            
+            </div>  
+            <div class="card-body">
+                <div class="table-responsive text-nowrap">
+                    <table id="listProducts" class="table table-sm mb-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Título</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Creación</th>
+                                <th scope="col">Actualización</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>          
         </div>
     </div>
 </div>
@@ -140,7 +161,41 @@
             var modal = $(this)
             modal.find('.modal-title').text('Vas a borrar el usuario ' + id)
             
-        });        
+        });  
+        
+        $('#listProducts').DataTable({
+            "language": { "url": "{{ asset('js/bt5/libs/datatable-i18n-es-ES.json') }}" },            
+            "ajax" : "{{ route('list_products') }}",
+            "columns" : [                
+                {data: 'id'},
+                {data: 'title'},
+                {data: 'description_small'},
+                {data: 'price'},                
+                {data: 'stock'},                
+                {data: 'v_created_at'},                
+                {data: 'v_updated_at'},                
+                {
+                    data: null,
+                    render: function(data) {
+                        return `
+                            @can('user.show')
+                                <button type="button" class="btn btn-outline-secondary btn-icon"
+                                    data-bs-toggle="modal" data-bs-target="#showModal" data-id="${data.id}">                                
+                                    <i class="material-icons">person</i>
+                                </button>
+                            @endcan
+                            @can('user.destroy')
+                                <button type="button" class="btn btn-outline-secondary btn-icon" 
+                                    data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="${data.id}">
+                                    <i class="material-icons">delete</i>
+                                </button>                            
+                            @endcan                            
+                        `;
+                    }
+                },
+            ],            
+        }); 
+    }   
 
 </script>
 

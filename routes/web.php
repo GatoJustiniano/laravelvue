@@ -59,7 +59,8 @@ Route::middleware(['auth'])->group(function () {
     
     Route::view('/game', 'game.show')->name('game.show');
 
-    Route::resource('product', ProductController::class);
+    Route::resource('dashboard/product', ProductController::class);
+    Route::get('dashboard/list_products', [ProductController::class, 'listarProducts'])->name('list_products');
 
 });
 
