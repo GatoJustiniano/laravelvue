@@ -20,7 +20,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive text-nowrap">
-            <table class="table table-sm mb-3">
+            <table class="table table-sm">
                 <thead>
                     <tr>
                         <th scope="col">Apellidos</th>
@@ -40,9 +40,9 @@
                         <td>{{ $user->email }}</td>
                         <td>
                             @forelse ($user->roles as $role)
-                            <span class="badge bg-info">{{ $role->name }}</span>
+                            <span class="badge bg-label-info">{{ $role->name }}</span>
                             @empty
-                            <span class="badge bg-danger">Sin roles</span>
+                            <span class="badge bg-label-danger">Sin roles</span>
                             @endforelse
                         </td>
                         <td>{{ $user->created_at->format($settingGeneral->date_format) }}</td>
@@ -64,7 +64,8 @@
 
                                 @can('user.destroy')
                                 <button type="button" class="btn btn-outline-secondary btn-sm btn-icon "
-                                    data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $user->id }}">
+                                    data-bs-toggle="modal" data-bs-target="#deleteModal" 
+                                    data-id="{{ $user->id }}" data-info="{{ $user->name }}">
                                     <i class="material-icons">delete</i>
                                 </button>
                                 @endcan
@@ -74,16 +75,17 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $users->links() }}
-
         </div>
+    </div>
+    <div class="card-footer p-0">
+        {{ $users->links() }}
     </div>
 
 </div>
 <div class="card mt-3">
     <h5 class="card-header">Data table</h5>
     <div class="card-datatable text-nowrap">
-        <table id="listUsuarios" class="dt-scrollableTable table table-bordered">
+        <table id="listUsuarios" class="dt-scrollableTable table table-sm">
             <thead>
                 <tr>
                     <th scope="col">Apellidos</th>
@@ -128,7 +130,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Seguro que deseas eliminar el usuario seleccionada?</p>
+                <p>Seguro que deseas eliminar el usuario seleccionado?</p>
             </div>
             <div class="modal-footer">
                 <form id="formDelete" action="{{ route('user.destroy',0) }}" method="POST"
@@ -149,16 +151,18 @@
 
             var button = $(event.relatedTarget) 
             var id = button.data('id') 
+            var info = button.data('info') 
 
             action = $('#formDelete').attr('data-action').slice(0,-1)
 
             $('#formDelete').attr('action',action + id )
 
             var modal = $(this)
-            modal.find('.modal-title').text('Vas a borrar el usuario ' + id)
+            modal.find('.modal-title').text('Vas a borrar el usuario ' + info + ' con Id:' + id)
             
         });
 
+        var t = $(".dt-scrollableTable");
         $('#listUsuarios').DataTable({
             "language": { "url": "{{ asset('js/bt5/libs/datatable-i18n-es-ES.json') }}" },            
             "ajax" : "{{ route('list_users') }}",
@@ -168,39 +172,49 @@
                 {data: 'email'},
                 {data: 'role_name', render: function(data) {
                     if (data === 'Sin roles') {
-                        return '<span class="badge bg-danger">'+data+'</span>'                        
+                        return '<span class="badge bg-label-danger">'+data+'</span>'                        
                     } else {
-                        return '<span class="badge bg-info">'+data+'</span>'                        
+                        return '<span class="badge bg-label-info">'+data+'</span>'                        
                     }
                 }},                
                 {data: 'v_created_at'},                
                 {data: 'v_updated_at'},                
+                {data: null,},
+            ],
+            "scrollY": "300px",
+            "scrollX": !0, 
+            "columnDefs": [
                 {
-                    data: null,
-                    render: function(data) {
+                    targets: -1,                    
+                    searchable: false,
+                    orderable: false,
+                    render: function(row) {
                         return `
                             @can('user.show')
-                                <button type="button" class="btn btn-outline-secondary btn-icon"
-                                    data-bs-toggle="modal" data-bs-target="#showModal" data-id="${data.id}">                                
-                                    <i class="material-icons">person</i>
+                                <button type="button" class="btn btn-outline-secondary btn-sm btn-icon"
+                                    data-bs-toggle="modal" data-bs-target="#showModal" data-id="${row.id}">                                
+                                    <i class="material-icons">visibility</i>
+                                </button>
+                            @endcan
+                            @can('user.edit')
+                                <button type="button" class="btn btn-outline-secondary btn-sm btn-icon"
+                                    data-bs-toggle="modal" data-bs-target="#showModal" data-id="${row.id}">                                
+                                    <i class="material-icons">edit</i>
                                 </button>
                             @endcan
                             @can('user.destroy')
-                                <button type="button" class="btn btn-outline-secondary btn-icon" 
-                                    data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="${data.id}">
+                                <button type="button" class="btn btn-outline-secondary btn-sm btn-icon" 
+                                    data-bs-toggle="modal" data-bs-target="#deleteModal" 
+                                    data-id="${row.id}" data-info="${row.name}">
                                     <i class="material-icons">delete</i>
                                 </button>                            
                             @endcan                            
                         `;
                     }
-                },
+                },                
             ],
-            "scrollY": "300px",
-            "scrollX": !0,            
         });                
-    };  
-
-    
+    };
 
 </script>
 
