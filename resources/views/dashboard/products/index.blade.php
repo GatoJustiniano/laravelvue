@@ -81,7 +81,7 @@
             </div>  
             <div class="card-body">
                 <div class="table-responsive text-nowrap">
-                    <table id="listProducts" class="table table-sm mb-3">
+                    <table id="listProducts" class="table table-sm">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
