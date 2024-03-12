@@ -40,6 +40,7 @@ class UserController extends Controller
             $user->role_name = $user->roles->pluck('name')->implode(', ') ?: 'Sin roles';
             $user->v_created_at = $user->created_at->format($data_setting->date_format . ' H:i:s');
             $user->v_updated_at = $user->updated_at->format($data_setting->date_format . ' H:i:s');
+            $user->buttons = $this->generateButtons('user', $user->id);
         }       
         return DataTables::of($users)            
             ->toJson();

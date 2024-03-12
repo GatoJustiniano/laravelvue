@@ -64,8 +64,8 @@
 
                                 @can('user.destroy')
                                 <button type="button" class="btn btn-outline-secondary btn-sm btn-icon "
-                                    data-bs-toggle="modal" data-bs-target="#deleteModal" 
-                                    data-id="{{ $user->id }}" data-info="{{ $user->name }}">
+                                    data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $user->id }}"
+                                    data-info="{{ $user->name }}">
                                     <i class="material-icons">delete</i>
                                 </button>
                                 @endcan
@@ -96,7 +96,7 @@
                     <th scope="col">Actualización</th>
                     <th scope="col">Acciones</th>
                 </tr>
-            </thead>            
+            </thead>
         </table>
 
     </div>
@@ -146,23 +146,18 @@
 </div>
 
 <script>
-    window.onload = function () {        
-        $('#deleteModal').on('show.bs.modal', function (event) {
+    window.onload = function () {
 
+        $('#deleteModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) 
             var id = button.data('id') 
             var info = button.data('info') 
-
             action = $('#formDelete').attr('data-action').slice(0,-1)
-
             $('#formDelete').attr('action',action + id )
-
             var modal = $(this)
             modal.find('.modal-title').text('Vas a borrar el usuario ' + info + ' con Id:' + id)
-            
         });
-
-        var t = $(".dt-scrollableTable");
+        
         $('#listUsuarios').DataTable({
             "language": { "url": "{{ asset('js/bt5/libs/datatable-i18n-es-ES.json') }}" },            
             "ajax" : "{{ route('list_users') }}",
@@ -188,20 +183,8 @@
                     targets: -1,                    
                     searchable: false,
                     orderable: false,
-                    render: function(row) {
-                        return `
-                            @can('user.show')
-                                <button type="button" class="btn btn-outline-secondary btn-sm btn-icon"
-                                    data-bs-toggle="modal" data-bs-target="#showModal" data-id="${row.id}">                                
-                                    <i class="material-icons">visibility</i>
-                                </button>
-                            @endcan
-                            @can('user.edit')
-                                <button type="button" class="btn btn-outline-secondary btn-sm btn-icon"
-                                    data-bs-toggle="modal" data-bs-target="#showModal" data-id="${row.id}">                                
-                                    <i class="material-icons">edit</i>
-                                </button>
-                            @endcan
+                    render: function(row) {                        
+                        let botones = $('<div />').html(row.buttons).text() + `
                             @can('user.destroy')
                                 <button type="button" class="btn btn-outline-secondary btn-sm btn-icon" 
                                     data-bs-toggle="modal" data-bs-target="#deleteModal" 
@@ -210,6 +193,7 @@
                                 </button>                            
                             @endcan                            
                         `;
+                        return botones;
                     }
                 },                
             ],
