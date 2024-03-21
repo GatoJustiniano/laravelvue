@@ -41,6 +41,13 @@
                         </a>
                     </li>
                 @endcan
+                @can('product.index')
+                    <li class="menu-item {{ $activePage == 'products' ? ' active' : '' }}">
+                        <a href="{{ route('product.index') }}" class="menu-link">
+                            Productos
+                        </a>
+                    </li>
+                @endcan
             </ul>
         </li>
 

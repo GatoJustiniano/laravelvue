@@ -1,5 +1,5 @@
-@extends('dashboard.master', ['activePage' => 'users'])
-@section('title', 'Detalles del Usuario '.$user->last_name )
+@extends('dashboard.master', ['activePage' => 'products'])
+@section('title', 'Detalles del Productos '.$product->title )
 
 @section('content')
 
@@ -15,9 +15,9 @@
                     <div class="user-avatar-section">
                         <div class=" d-flex align-items-center flex-column">
                             <img class="img-fluid rounded my-4" src="{{ asset('images_post/1634095210.jpg') }}"
-                                height="110" width="110" alt="Imagen de user {{$user->id}}" />
+                                height="110" width="110" alt="Imagen de product {{$product->id}}" />
                             <div class="user-info text-center">
-                                <h4 class="mb-2">{{ $user->name }}</h4>
+                                <h4 class="mb-2">{{ $product->title }}</h4>
                                 @forelse (Auth::user()->roles as $role)
                                 <span class="badge bg-label-secondary">{{ $role->name }}</span>
                                 @empty
@@ -31,39 +31,26 @@
                     <div class="info-container">
                         <ul class="list-unstyled">
                             <li class="mb-3">
-                                <span class="fw-bold me-2">Nombres:</span>
-                                <span>{{ $user->name . ' ' . $user->middle_name }}</span>
+                                <span class="fw-bold me-2">Titulo:</span>
+                                <span>{{ $product->title }}</span>
                             </li>
                             <li class="mb-3">
-                                <span class="fw-bold me-2">Apellidos:</span>
-                                <span>{{ $user->last_name . ' ' . $user->maternal_last_name }}</span>
+                                <span class="fw-bold me-2">Descripción:</span>
+                                <span>{{ $product->description }}</span>
                             </li>
                             <li class="mb-3">
-                                <span class="fw-bold me-2">Correo Electrónico:</span>
-                                <span>{{ $user->email }}</span>
+                                <span class="fw-bold me-2">Precio:</span>
+                                <span>{{ $product->price }}</span>
                             </li>
                             <li class="mb-3">
                                 <span class="fw-bold me-2">Status:</span>
-                                <span class="badge bg-label-success">Active</span>
-                            </li>
-                            <li class="mb-3">
-                                <span class="fw-bold me-2">Roles:</span>
-                                @forelse ($user->roles as $role)
-                                <span>{{ $role->name }}</span>
-                                @empty
-                                <span>Sin roles</span>
-                                @endforelse
-                            </li>
+                                <span class="badge bg-label-secondary">{{ $product->status }}</span>
+                            </li>                            
                         </ul>
                         <div class="d-flex justify-content-center pt-3">
-                            <a href="{{ route('user.edit',$user->id) }}" class="btn btn-primary me-3">
+                            <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary me-3">
                                 Editar
-                            </a>
-                            @can('roles.index')
-                            <a href="{{ route('roles.index') }}" class="btn btn-label-danger">
-                                Administrar roles
-                            </a>
-                            @endcan
+                            </a>                            
                         </div>
                     </div>
                 </div>

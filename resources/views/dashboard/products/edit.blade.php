@@ -1,4 +1,4 @@
-@extends('dashboard.master', ['activePage' => 'users'])
+@extends('dashboard.master', ['activePage' => 'products'])
 
 @section('content')
 
