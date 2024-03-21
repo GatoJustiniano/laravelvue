@@ -7,15 +7,13 @@
 <div class="container-xxl flex-grow-1 container-p-y">
 
     <div class="row">
-        <!-- User Sidebar -->
-        <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
-            <!-- User Card -->
-            <div class="card mb-4">
+        <!-- Lado Izquierdo -->
+        <div class="col-xl-6 col-lg-6 col-md-6 order-1 order-md-0">
+            <!-- Card -->
+            <div class="card">
                 <div class="card-body">
                     <div class="user-avatar-section">
-                        <div class=" d-flex align-items-center flex-column">
-                            <img class="img-fluid rounded my-4" src="{{ asset('images_post/1634095210.jpg') }}"
-                                height="110" width="110" alt="Imagen de producto {{$product->id}}" />
+                        <div class="d-flex align-items-center flex-column">                            
                             <div class="user-info text-center">
                                 <h4 class="mb-2">{{ $product->title }}</h4>
                                 <span class="badge bg-label-secondary">Categoría</span>
@@ -51,115 +49,36 @@
                     </div>
                 </div>
             </div>
-            <!-- /User Card -->
+            <!-- /Card -->
         </div>
-        <!--/ User Sidebar -->
+        <!--/ Sidebar -->
 
 
-        <!-- User Content -->
-        <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
-            <!-- User Pills -->
-            <ul class="nav nav-pills flex-column flex-md-row mb-3">
-                <li class="nav-item">
-                    <button class="nav-link active" id="pills-primer-tab" type="button" data-bs-toggle="pill"
-                        data-bs-target="#pills-primer" role="tab" aria-controls="pills-primer" aria-selected="true">
-                        <i class="bx bx-user me-1"></i> Cuenta
+        <!-- Content -->
+        <div class="col-xl-6 col-lg-6 col-md-6 order-0 order-md-1">            
+            <div class="card">
+                <div id="carousel{{ $product->id }}" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        @foreach ($product->images as $image)
+                        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                            <img class="card-img-top" src="{{ asset($image->path) }}" height="400px">
+                        </div>
+                        @endforeach                            
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{ $product->id }}"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
                     </button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" id="pills-segundo-tab" type="button" data-bs-toggle="pill"
-                        data-bs-target="#pills-segundo" role="tab" aria-controls="pills-segundo" aria-selected="true">
-                        <i class="bx bx-lock-alt me-1"></i> Seguridad
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel{{ $product->id }}"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
                     </button>
-                </li>
-            </ul>
-            <!--/ User Pills -->
-
-            <div class="tab-content p-0" id="myTabContent">
-                <!-- tabPrimer -->
-                <div class="tab-pane fade show active" id="pills-primer" role="tabpanel"
-                    aria-labelledby="pills-primer-tab">
-                    <!-- Project table -->
-                    <div class="card mb-4">
-                        <h5 class="card-header">Lista de proyectos</h5>
-                        <div class="table-responsive mb-3">
-                            <table class="table datatable-project border-top">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Proyectos</th>
-                                        <th class="text-nowrap">Total equipos</th>
-                                        <th>Tipo</th>
-                                        <th>Horas</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- /Project table -->
-                    <div class="card mb-4">
-                        <div class="table-responsive mb-3">
-                            <table class="table datatable-invoice border-top">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>ID</th>
-                                        <th><i class='bx bx-trending-up'></i></th>
-                                        <th>Total</th>
-                                        <th>Issued Date</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                    <div id="carousel{{ $product->id }}" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            @foreach ($product->images as $image)
-                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                <img class="d-block w-100" src="{{ asset($image->path) }}" height="500">
-                            </div>
-                            @endforeach                            
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{ $product->id }}"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carousel{{ $product->id }}"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
                 </div>
-                <!-- /tabPrimer -->
-
-                <!-- tabSegundo -->
-                <div class="tab-pane fade" id="pills-segundo" role="tabpanel" aria-labelledby="pills-segundo-tab">
-                    <div class="card mb-4">
-                        <div class="table-responsive mb-3">
-                            <table class="table datatable-invoice border-top">
-                                <thead>
-                                    <tr>
-                                        <th>Operación</th>
-                                        <th>ID</th>
-                                        <th><i class='bx bx-trending-up'></i></th>
-                                        <th>Total</th>
-                                        <th>Issued Date</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- /tabSegundo -->
             </div>
-
-
         </div>
-        <!--/ User Content -->
+        <!--/ Content -->
     </div>
 
 </div>

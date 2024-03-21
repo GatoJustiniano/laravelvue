@@ -13,8 +13,8 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="user-avatar-section">
-                        <div class=" d-flex align-items-center flex-column">
-                            <img class="img-fluid rounded my-4" src="{{ asset('images_post/1634095210.jpg') }}"
+                        <div class=" d-flex align-items-center flex-column">                            
+                            <img class="img-fluid rounded my-4" src="{{ ($user->image ? asset($user->image->path) : '') ?? '' }}"
                                 height="110" width="110" alt="Imagen de user {{$user->id}}" />
                             <div class="user-info text-center">
                                 <h4 class="mb-2">{{ $user->name }}</h4>
