@@ -15,14 +15,10 @@
                     <div class="user-avatar-section">
                         <div class=" d-flex align-items-center flex-column">
                             <img class="img-fluid rounded my-4" src="{{ asset('images_post/1634095210.jpg') }}"
-                                height="110" width="110" alt="Imagen de product {{$product->id}}" />
+                                height="110" width="110" alt="Imagen de producto {{$product->id}}" />
                             <div class="user-info text-center">
                                 <h4 class="mb-2">{{ $product->title }}</h4>
-                                @forelse (Auth::user()->roles as $role)
-                                <span class="badge bg-label-secondary">{{ $role->name }}</span>
-                                @empty
-                                <span>Sin roles</span>
-                                @endforelse
+                                <span class="badge bg-label-secondary">Categoría</span>
                             </div>
                         </div>
                     </div>
@@ -45,12 +41,12 @@
                             <li class="mb-3">
                                 <span class="fw-bold me-2">Status:</span>
                                 <span class="badge bg-label-secondary">{{ $product->status }}</span>
-                            </li>                            
+                            </li>
                         </ul>
                         <div class="d-flex justify-content-center pt-3">
                             <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary me-3">
                                 Editar
-                            </a>                            
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -116,6 +112,25 @@
                                 </thead>
                             </table>
                         </div>
+                    </div>
+                    <div id="carousel{{ $product->id }}" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @foreach ($product->images as $image)
+                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                <img class="d-block w-100" src="{{ asset($image->path) }}" height="500">
+                            </div>
+                            @endforeach                            
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{ $product->id }}"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel{{ $product->id }}"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
                 </div>
                 <!-- /tabPrimer -->
