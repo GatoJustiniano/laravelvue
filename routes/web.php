@@ -61,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('dashboard/product', ProductController::class);
     Route::get('dashboard/list_products', [ProductController::class, 'listarProducts'])->name('list_products');
+    Route::get('dashboard/products', [ProductController::class, 'productsGeneral'])->name('productsGeneral');
 
 });
 

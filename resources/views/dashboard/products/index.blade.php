@@ -132,7 +132,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Seguro que deseas eliminar el usuario seleccionada?</p>
+                <p>Seguro que deseas eliminar el registro seleccionado?</p>
             </div>
             <div class="modal-footer">                
                 <form id="formDelete" action="{{ route('product.destroy',0) }}" method="POST"
@@ -153,13 +153,14 @@
 
             var button = $(event.relatedTarget) 
             var id = button.data('id') 
+            var info = button.data('info') 
 
             action = $('#formDelete').attr('data-action').slice(0,-1)
 
             $('#formDelete').attr('action',action + id )
 
-            var modal = $(this)
-            modal.find('.modal-title').text('Vas a borrar el usuario ' + id)
+            var modal = $(this)            
+            modal.find('.modal-title').text('Vas a borrar el producto ' + info + ' con Id:' + id)
             
         });  
         
@@ -174,26 +175,27 @@
                 {data: 'stock'},                
                 {data: 'v_created_at'},                
                 {data: 'v_updated_at'},                
+                {data: null},
+            ],  
+            "columnDefs": [
                 {
-                    data: null,
-                    render: function(data) {
-                        return `
-                            @can('user.show')
-                                <button type="button" class="btn btn-outline-secondary btn-icon"
-                                    data-bs-toggle="modal" data-bs-target="#showModal" data-id="${data.id}">                                
-                                    <i class="material-icons">person</i>
-                                </button>
-                            @endcan
+                    targets: -1,                    
+                    searchable: false,
+                    orderable: false,
+                    render: function(row) {                        
+                        let botones = $('<div />').html(row.buttons).text() + `
                             @can('user.destroy')
-                                <button type="button" class="btn btn-outline-secondary btn-icon" 
-                                    data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="${data.id}">
+                                <button type="button" class="btn btn-outline-secondary btn-sm btn-icon" 
+                                    data-bs-toggle="modal" data-bs-target="#deleteModal" 
+                                    data-id="${row.id}" data-info="${row.title}">
                                     <i class="material-icons">delete</i>
                                 </button>                            
                             @endcan                            
                         `;
+                        return botones;
                     }
-                },
-            ],            
+                },                
+            ],          
         }); 
     }   
 

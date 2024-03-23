@@ -21,7 +21,7 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboards -->
-        <li class="menu-item {{ ($activePage == 'users'|| $activePage == 'posts') ? 'active open' : '' }} ">
+        <li class="menu-item {{ in_array($activePage, ['users', 'posts', 'products']) ? 'active open' : '' }} ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon material-icons">assignment_turned_in</i>
                 Dashboards
@@ -52,7 +52,7 @@
         </li>
 
         <!-- Layouts -->
-        <li class="menu-item {{ ($activePage == 'category'|| $activePage == 'contacts') ? 'active open' : '' }} ">
+        <li class="menu-item {{ in_array($activePage, ['category', 'contacts']) ? 'active open' : '' }} ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div>Otros</div>
@@ -80,7 +80,7 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Roles &amp; Permisos</span>
         </li>
-        <li class="menu-item {{ ($activePage == 'roles'|| $activePage == 'permissions') ? 'active open' : '' }}">
+        <li class="menu-item {{ in_array($activePage, ['roles', 'permissions']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-chart"></i>
                 <div>Roles y Permisos</div>

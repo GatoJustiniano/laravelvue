@@ -18,6 +18,14 @@ class ProductController extends Controller
         ]);
     }
 
+    function productsGeneral() {
+        $products = Product::all();
+
+        return view('dashboard.products.product_general')->with([
+            'products' => $products,
+        ]);
+    }
+
     public function listarProducts()
     {         
         $data_setting = view()->shared('settingGeneral');
@@ -26,6 +34,7 @@ class ProductController extends Controller
             $product->description_small = Str::limit($product->description, 10);
             $product->v_created_at = $product->created_at->format($data_setting->date_format . ' H:i:s');
             $product->v_updated_at = $product->updated_at->format($data_setting->date_format . ' H:i:s');
+            $product->buttons = $this->generateButtons('product', $product->id);
         }       
         return DataTables::of($products)            
             ->toJson();
