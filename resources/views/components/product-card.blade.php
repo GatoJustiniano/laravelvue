@@ -1,11 +1,11 @@
-<div class="card">
+<div class="card h-100">
     <div id="carousel{{ $product->id }}" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             @foreach ($product->images as $image)
             <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                 <img class="card-img-top" src="{{ asset($image->path) }}" height="200">
             </div>
-            @endforeach                            
+            @endforeach
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{ $product->id }}"
             data-bs-slide="prev">
@@ -19,9 +19,12 @@
         </button>
     </div>
     <div class="card-body">
-        <h4 class="text-right"><strong>${{ $product->price }}</strong></h4>
-        <h5 class="card-title">{{ $product->title }}</h5>
-        <p class="card-text">{{ $product->description }}</p>
-        <p class="card-text"><strong>{{ $product->stock }} left</strong></p>        
+        <small class="text-muted">Precio</small>
+        <div class="d-flex justify-content-between mb-2">
+            <h5 class="text-primary mb-0">{{ $settingGeneral->currency }} {{ $product->price }}</h5>            
+            <span class="badge bg-label-primary">{{ $product->stock }} Stock</span>
+        </div>
+        <h5 class="mb-2 pb-1">{{ $product->title }}</h5>        
+        <p class="small">{{ $product->description }}</p>        
     </div>
 </div>
