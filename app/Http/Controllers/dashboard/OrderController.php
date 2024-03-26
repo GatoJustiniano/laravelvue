@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\dashboard;
 
 use Illuminate\Http\Request;
+use App\Services\CartService;
+use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
@@ -30,7 +32,7 @@ class OrderController extends Controller
                 ->withErrors("Your cart is empty!");
         }
 
-        return view('orders.create')->with([
+        return view('dashboard.orders.create')->with([
             'cart' => $cart,
         ]);
     }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\dashboard;
 
 use Illuminate\Http\Request;
+use App\Services\CartService;
+
+use App\Http\Controllers\Controller;
 
 class CartController extends Controller
 {
@@ -20,7 +23,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('carts.index')->with([
+        return view('dashboard.carts.index')->with([
             'cart' => $this->cartService->getFromCookie(),
         ]);
     }

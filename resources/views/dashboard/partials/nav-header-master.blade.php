@@ -48,20 +48,24 @@
                     </div>
                     <div class="dropdown-shortcuts-list scrollable-container">
                         <div class="row row-bordered overflow-visible g-0">
-                            <div class="dropdown-shortcuts-item col">
-                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
-                                    <i class="bx bx-user fs-4"></i>
-                                </span>
-                                <a href="{{ route('user.index') }}" class="stretched-link">Listar Usuarios</a>
-                                <small class="text-muted mb-0">Administrar</small>
-                            </div>
-                            <div class="dropdown-shortcuts-item col">
-                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
-                                    <i class="bx bx-check-shield fs-4"></i>
-                                </span>
-                                <a href="{{ route('roles.index') }}" class="stretched-link">Roles y Permisos</a>
-                                <small class="text-muted mb-0">Asignar</small>
-                            </div>
+                            @can('user.index')
+                                <div class="dropdown-shortcuts-item col">
+                                    <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
+                                        <i class="bx bx-user fs-4"></i>
+                                    </span>
+                                    <a href="{{ route('user.index') }}" class="stretched-link">Listar Usuarios</a>
+                                    <small class="text-muted mb-0">Administrar</small>
+                                </div>                                
+                            @endcan
+                            @can('roles.index')
+                                <div class="dropdown-shortcuts-item col">
+                                    <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
+                                        <i class="bx bx-check-shield fs-4"></i>
+                                    </span>
+                                    <a href="{{ route('roles.index') }}" class="stretched-link">Roles y Permisos</a>
+                                    <small class="text-muted mb-0">Asignar</small>
+                                </div>                                
+                            @endcan
                         </div>
                         <div class="row row-bordered overflow-visible g-0">
                             <div class="dropdown-shortcuts-item col">
@@ -77,6 +81,16 @@
                                 </span>
                                 <a href="" class="stretched-link">Documentación</a>
                                 <small class="text-muted mb-0">Opciones</small>
+                            </div>
+                            <div class="dropdown-shortcuts-item col">
+                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
+                                    <i class="bx bx-cart-alt fs-4"></i>
+                                </span>
+                                <a href="{{ route('carts.index') }}" class="stretched-link">Carrito</a>
+                                <small class="text-muted mb-0">
+                                    @inject('cartService', 'App\Services\CartService')
+                                    Cant. ({{ $cartService->countProducts() }})
+                                </small>
                             </div>
                         </div>
                     </div>

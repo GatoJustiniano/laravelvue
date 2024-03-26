@@ -55,11 +55,13 @@ class Product extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
+    // scope
     public function scopeAvailable($query)
     {
         $query->where('status', 'available');
     }
 
+    // accesor
     public function getTotalAttribute()
     {
         return $this->pivot->quantity * $this->price;

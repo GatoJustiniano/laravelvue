@@ -27,4 +27,29 @@
         <h5 class="mb-2 pb-1">{{ $product->title }}</h5>        
         <p class="small">{{ $product->description }}</p>        
     </div>
+    <div class="card-footer">
+        @if (isset($cart))
+            <p class="card-text">
+                {{ $product->pivot->quantity }} en el carrito <strong>(${{ $product->total }})</strong>
+            </p>
+            <form
+                class="d-inline"
+                method="POST"
+                action="{{ route('products.carts.destroy', ['cart' => $cart->id, 'product' => $product->id]) }}"
+            >
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-warning">Remover del carrito</button>
+            </form>
+        @else
+            <form
+                class="d-inline"
+                method="POST"
+                action="{{ route('products.carts.store', ['product' => $product->id]) }}"
+            >
+                @csrf
+                <button type="submit" class="btn btn-success">Añadir a carrito</button>
+            </form>
+        @endif
+    </div>
 </div>
