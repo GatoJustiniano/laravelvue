@@ -107,7 +107,7 @@
         <!-- Ayuda -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Ayuda</span></li>
         <li class="menu-item">
-            <a href="" class="menu-link">
+            <a href="javascript:void(0);" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-receipt"></i>
                 <div>Tutorial</div>
             </a>
